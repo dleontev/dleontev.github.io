@@ -3,4 +3,4 @@ layout: page
 permalink: /
 ---
 
-{% include_relative about.md %}
+{% include_relative bio.md %}
