@@ -48,8 +48,4 @@ On this site, you'll find a collection of personal projects and insightful blog 
       margin: 5px; /* Add some space between images */
     }
   }
-  
-  li {
-    margin-bottom: 20px;
-  }
 </style>
