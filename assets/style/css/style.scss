@@ -7,27 +7,28 @@
 }
 
 // Styles for certification images
-.certs {
+.certs {  
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center; // Center items vertically
-  gap: 20px; // Add spacing between items
+  align-items: center; 
+  gap: 20px; 
 
+  // Style the links (which now contain the images)
   a {
-    display: block; // Make <a> elements behave like block elements
-    text-decoration: none; // Remove underlines from links
+    display: inline-block; // Allows for padding and margin
+    text-decoration: none; 
+    border: 1px solid #ddd; // Add a subtle border
+    padding: 10px; // Add padding around the image
+    transition: transform 0.2s ease; // Add a smooth hover effect
+
+    &:hover {
+      transform: scale(1.1); // Slightly enlarge image on hover
+    }
 
     img {
-      max-width: 150px; // Set maximum width for images
-      height: auto; // Maintain aspect ratio
-      border: 1px solid #ddd; // Add a subtle border
-      padding: 10px; // Add padding around the image
-      transition: transform 0.2s ease; // Add a smooth hover effect
-
-      &:hover {
-        transform: scale(1.1); // Slightly enlarge image on hover
-      }
+      max-width: 150px; 
+      height: auto; 
     }
   }
 }
@@ -37,7 +38,7 @@
   .certs {
     a {
       img {
-        max-width: 48%; // Make images take up almost half the screen width
+        max-width: 48%; 
       }
     }
   }
