@@ -1,5 +1,7 @@
 
-👋 Hello! 
+#### 👋 About
+
+Hello! 
 
 I'm Dimitriy, an IT professional with a passion for technology and a drive to continuously learn and improve. 💻
 
@@ -7,7 +9,7 @@ This site features technical projects and blog posts showcasing my IT learning j
 
 <a href="https://linkedin.com/in/dleontev" target="_blank" rel="noopener noreferrer">Let's connect!</a> 🤝
 
-### 🧰 Skills 
+#### 🛠️ Skills 
 
 
 * **Operating Systems:** Windows 10/11, Windows Server, Linux
