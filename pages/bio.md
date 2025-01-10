@@ -20,6 +20,32 @@ This site will feature technical projects and blog posts showcasing my IT learni
 
 #### 🎯 Certifications 
 
+<style>
+  /* Basic responsive design for smaller screens */
+  @media (max-width: 768px) {
+    div.certs {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    div.certs a {
+      flex: 1 0 30%; 
+      box-sizing: border-box;
+      margin: 5px;
+    }
+
+    div.certs img {
+      max-width: 100%; 
+      height: auto;
+    }
+  }
+
+  /* Global image size constraint */
+  div.certs img { 
+    max-width: 135px; /* Ensures images never exceed 135px */
+  }
+</style>
+
 <div class="certs">
   <a href="https://www.credly.com/badges/89dce4f4-c73f-422c-8524-27b654fb0cd8/public_url" target="_blank" rel="noopener noreferrer">
     <img src="/assets/certs/comptia-security-ce-certification.png" alt="CompTIA Security+">
@@ -52,29 +78,3 @@ This site will feature technical projects and blog posts showcasing my IT learni
     <img src="/assets/certs/cloud-digital-leader-certification.png" alt="Google Cloud Digital Leader">
   </a>
 </div>
-
-<style>
-  /* Basic responsive design for smaller screens */
-  @media (max-width: 768px) {
-    div.certs {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    div.certs a {
-      flex: 1 0 30%; 
-      box-sizing: border-box;
-      margin: 5px;
-    }
-
-    div.certs img {
-      max-width: 100%; 
-      height: auto;
-    }
-  }
-
-  /* Global image size constraint */
-  div.certs img { 
-    max-width: 135px; /* Ensures images never exceed 135px */
-  }
-</style>
