@@ -1,5 +1,5 @@
 ---
-layout: post
-title: About me
-subtitle: <a/subtitle>
+layout: home
+title: My Blog
+subtitle: My IT Learning Journey
 ---
