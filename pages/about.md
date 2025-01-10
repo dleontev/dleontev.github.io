@@ -7,13 +7,11 @@ weight: 3
 
 # **About Me**
 
-👋 Hello! I'm Dimitriy, an IT professional with a passion for technology and a drive to continuously learn and improve. 💻
+👋 Hello! 
 
-On my GitHub profile, you'll find a collection of my personal projects, scripts, and documentation that showcase my skills and experience in the IT field. 🚀 I'm always looking to connect with other IT professionals and learn from others. Feel free to reach out! 🤝
+I'm Dimitriy, an IT professional with a passion for technology and a drive to continuously learn and improve. 💻
 
-## 📂 Projects 
-
-🚧 TBD 🚧
+On this site, you'll find a collection of personal projects and insightful blog posts where I share my IT learning journey and experience. I'm always eager to connect with fellow IT professionals and expand my knowledge. Let's connect! 🤝
 
 ## 🧰 Skills 
 
@@ -27,7 +25,6 @@ On my GitHub profile, you'll find a collection of my personal projects, scripts,
 
 ## 🏅 Certifications 
 
-* **Cisco Certified Network Associate (In progress)**
 * CompTIA A+
 * CompTIA Network+
 * CompTIA Security+
@@ -36,15 +33,3 @@ On my GitHub profile, you'll find a collection of my personal projects, scripts,
 * Microsoft Certified: Security, Compliance, and Identity Fundamentals
 * AWS Certified Cloud Practitioner
 * Google Cloud Digital Leader
-
-<div class="row">
-* **Cisco Certified Network Associate (In progress)**
-* CompTIA A+
-* CompTIA Network+
-* CompTIA Security+
-* Microsoft Certified: Azure Fundamentals
-* Microsoft 365 Certified: Fundamentals
-* Microsoft Certified: Security, Compliance, and Identity Fundamentals
-* AWS Certified Cloud Practitioner
-* Google Cloud Digital Leader
-</div>
