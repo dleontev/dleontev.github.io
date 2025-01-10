@@ -6,19 +6,17 @@ On this site, you'll find a collection of personal projects and insightful blog 
 
 <a href="https://linkedin.com/dleontev" target="_blank" rel="noopener noreferrer">Let's connect!</a> 🤝
 
-## 🧰 Skills 
+## 🧰 My Skills 
 
 * **Operating Systems:** Windows 10/11, Windows Server, Linux
 * **Cloud Computing:** AWS, Azure, GCP
 * **Microsoft Technologies:** Active Directory, Microsoft 365, Entra ID, Microsoft Office Suite, SharePoint, Teams
-* **Networking:** TCP/IP, DNS, DHCP, Firewalls, VPNs
+* **Networking:** TCP/IP, DNS, DHCP, Firewalls
 * **Scripting:** PowerShell, Bash, Python
 * **Troubleshooting:** Hardware, Software, Network Connectivity
 * **Soft Skills:** Communication, Empathy, Active Listening, Teamwork, Problem-solving
 
-## 🏅 Certifications 
-
-## Certifications
+## 🏅 My Certifications 
 
 <div>
   <a href="https://www.comptia.org/certifications/security+" target="_blank" rel="noopener noreferrer"><img src="/certs/comptia-security-ce-certification.png" alt="CompTIA Security+" width="150" /></a> 
@@ -49,5 +47,9 @@ On this site, you'll find a collection of personal projects and insightful blog 
       max-width: 48%; /* Make images take up almost half the screen width */
       margin: 5px; /* Add some space between images */
     }
+  }
+  
+  li {
+    margin-bottom: 20px;
   }
 </style>
