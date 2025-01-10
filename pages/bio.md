@@ -2,7 +2,9 @@
 
 I'm Dimitriy, an IT professional with a passion for technology and a drive to continuously learn and improve. 💻
 
-On this site, you'll find a collection of personal projects and insightful blog posts where I share my IT learning journey and experience. I'm always eager to connect with fellow IT professionals and expand my knowledge. Let's connect! 🤝
+On this site, you'll find a collection of personal projects and insightful blog posts where I share my IT learning journey and experience. I'm always eager to connect with fellow IT professionals and expand my knowledge. 
+
+<a href="https://linkedin.com/dleontev" target="_blank" rel="noopener noreferrer">Let's connect!</a> 🤝
 
 ## 🧰 Skills 
 
