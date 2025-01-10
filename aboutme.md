@@ -1,16 +1,13 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle: <a/subtitle>
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+👋 Hello! I'm Dimitriy, an IT professional with a passion for technology and a drive to continuously learn and improve. 💻
 
-- I rock a great mustache
-- I'm extremely loyal to my family
-
-What else do you need?
+On my GitHub profile, you'll find a collection of my personal projects, scripts, and documentation that showcase my skills and experience in the IT field. 🚀 I'm always looking to connect with other IT professionals and learn from others. Feel free to reach out! 🤝
 
 ### My story
 
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+<a/story>
