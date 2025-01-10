@@ -37,6 +37,7 @@ This site will feature technical projects and blog posts showcasing my IT learni
     div.certs img { /* Target images within divs with the class "certs" */
       max-width: 48%; /* Make images take up almost half the screen width */
       margin: 5px; /* Add some space between images */
+	  max-width: 100px
     }
   }
 </style>
