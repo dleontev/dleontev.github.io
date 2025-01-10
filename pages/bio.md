@@ -1,3 +1,4 @@
+
 👋 Hello! 
 
 I'm Dimitriy, an IT professional with a passion for technology and a drive to continuously learn and improve. 💻
@@ -6,7 +7,7 @@ On this site, you'll find a collection of personal projects and insightful blog 
 
 <a href="https://linkedin.com/dleontev" target="_blank" rel="noopener noreferrer">Let's connect!</a> 🤝
 
-## 🧰 My Skills 
+## 🧰 Skills 
 
 * **Operating Systems:** Windows 10/11, Windows Server, Linux
 * **Cloud Computing:** AWS, Azure, GCP
@@ -16,7 +17,7 @@ On this site, you'll find a collection of personal projects and insightful blog 
 * **Troubleshooting:** Hardware, Software, Network Connectivity
 * **Soft Skills:** Communication, Empathy, Active Listening, Teamwork, Problem-solving
 
-## 🏅 My Certifications 
+## 🏅 Certifications 
 
 <div class="certs"> <a href="https://www.comptia.org/certifications/security+" target="_blank" rel="noopener noreferrer"><img src="/certs/comptia-security-ce-certification.png" alt="CompTIA Security+" width="150" /></a> <a href="https://www.comptia.org/certifications/network+" target="_blank" rel="noopener noreferrer"><img src="/certs/comptia-network-ce-certification.1.png" alt="CompTIA Network+" width="150" /></a> <a href="https://www.comptia.org/certifications/a" target="_blank" rel="noopener noreferrer"><img src="/certs/comptia-a-ce-certification.1.png" alt="CompTIA A+" width="150" /></a> </div>
 
