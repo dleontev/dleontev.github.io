@@ -59,13 +59,22 @@ This site will feature technical projects and blog posts showcasing my IT learni
     div.certs {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      width: 100%; /* Make divs take full width */
+    }
+
+    div.certs a {
+      flex: 1 0 30%; 
+      box-sizing: border-box;
+      margin: 5px;
     }
 
     div.certs img {
-      max-width: 100%; /* Make images scale to fit div */
-      margin: 5px;
+      max-width: 100%; 
+      height: auto;
     }
+  }
+
+  /* Global image size constraint */
+  div.certs img { 
+    max-width: 135px; /* Ensures images never exceed 135px */
   }
 </style>
