@@ -22,8 +22,8 @@ author: Dimitriy Leontev
 navbar-links:
   About Me: "aboutme"
   Projects:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
+    - Project 1: "project1"
+    - Project 2: "project2"
   Blog: "posts"
 
 ################
@@ -53,13 +53,7 @@ social-network-links:
   email: "contact@dleontev.com"
   #rss: false  # remove this line if you don't want to show an RSS link at the bottom
   #facebook: deanattali
-  github: daattali
-  #twitter: daattali
-  #patreon: DeanAttali
-  #youtube: "@daattali"
-  #whatsapp: 15551212
-#  medium: yourname
-#  reddit: yourname or r/yoursubreddit
+  github: dleontev
   linkedin: dleontev
 #  xing: yourname
 #  stackoverflow: "3943160/daattali"
