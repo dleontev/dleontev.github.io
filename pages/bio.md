@@ -36,8 +36,35 @@ This site will feature technical projects and blog posts showcasing my IT learni
   }
 </style>
 
-<div class="certs"> <a href="https://www.credly.com/badges/89dce4f4-c73f-422c-8524-27b654fb0cd8/public_url" target="_blank" rel="noopener noreferrer"><img src="/assets/certs/comptia-security-ce-certification.png" alt="CompTIA Security+" width="130" /></a> <a href="https://www.credly.com/badges/862a93c5-791e-4e71-9253-7857de3998bb/public_url" target="_blank" rel="noopener noreferrer"><img src="/assets/certs/comptia-network-ce-certification.1.png" alt="CompTIA Network+" width="130" /></a> <a href="https://www.credly.com/badges/42c03b0a-32b0-41a4-9e15-9f3eacfd8d63/public_url" target="_blank" rel="noopener noreferrer"><img src="/assets/certs/comptia-a-ce-certification.1.png" alt="CompTIA A+" width="130" /></a> </div>
+<div class="certs" style="display: flex; flex-wrap: nowrap; justify-content: flex-start;"> 
+  <a href="https://www.credly.com/badges/89dce4f4-c73f-422c-8524-27b654fb0cd8/public_url" target="_blank" rel="noopener noreferrer">
+    <img src="/assets/certs/comptia-security-ce-certification.png" alt="CompTIA Security+" style="width: 135px; height: auto; flex-shrink: 0;">
+  </a> 
+  <a href="https://www.credly.com/badges/862a93c5-791e-4e71-9253-7857de3998bb/public_url" target="_blank" rel="noopener noreferrer">
+    <img src="/assets/certs/comptia-network-ce-certification.1.png" alt="CompTIA Network+" style="width: 135px; height: auto; flex-shrink: 0;">
+  </a> 
+  <a href="https://www.credly.com/badges/42c03b0a-32b0-41a4-9e15-9f3eacfd8d63/public_url" target="_blank" rel="noopener noreferrer">
+    <img src="/assets/certs/comptia-a-ce-certification.1.png" alt="CompTIA A+" style="width: 135px; height: auto; flex-shrink: 0;">
+  </a> 
+</div>
 
-<div class="certs"> <a href="https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/7967D0AB0C7E1557?sharingId" target="_blank" rel="noopener noreferrer"><img src="/assets/certs/ms900.png" alt="Microsoft 365 Fundamentals" width="130" /></a> <a href="https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/9150E0CACB9D0869?sharingId" target="_blank" rel="noopener noreferrer"><img src="/assets/certs/az900.png" alt="Microsoft Azure Fundamentals" width="130" /></a> <a href="https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/1BB266E7DCEF2D20?sharingId" target="_blank" rel="noopener noreferrer"><img src="/assets/certs/sc900.png" alt="Microsoft Security, Compliance, and Identity Fundamentals" width="130" /></a> </div>
+<div class="certs" style="display: flex; flex-wrap: nowrap; justify-content: flex-start;"> 
+  <a href="https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/7967D0AB0C7E1557?sharingId" target="_blank" rel="noopener noreferrer">
+    <img src="/assets/certs/ms900.png" alt="Microsoft 365 Fundamentals" style="width: 135px; height: auto; flex-shrink: 0;">
+  </a> 
+  <a href="https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/9150E0CACB9D0869?sharingId" target="_blank" rel="noopener noreferrer">
+    <img src="/assets/certs/az900.png" alt="Microsoft Azure Fundamentals" style="width: 135px; height: auto; flex-shrink: 0;">
+  </a> 
+  <a href="https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/1BB266E7DCEF2D20?sharingId" target="_blank" rel="noopener noreferrer">
+    <img src="/assets/certs/sc900.png" alt="Microsoft Security, Compliance, and Identity Fundamentals" style="width: 135px; height: auto; flex-shrink: 0;">
+  </a> 
+</div>
 
-<div class="certs"> <a href="https://www.credly.com/badges/dcd09eaf-4bc2-4586-ba00-963f23995a7b/linked_in_profile" target="_blank" rel="noopener noreferrer"><img src="/assets/certs/aws-certified-cloud-practitioner.png" alt="AWS Certified Cloud Practitioner" width="130" /></a> <a href="https://www.credly.com/badges/01e02437-e84f-4a13-bbf8-f2892be18cda/linked_in_profile" target="_blank" rel="noopener noreferrer"><img src="/assets/certs/cloud-digital-leader-certification.png" alt="Google Cloud Digital Leader" width="130" /></a> </div>
+<div class="certs" style="display: flex; flex-wrap: nowrap; justify-content: flex-start;"> 
+  <a href="https://www.credly.com/badges/dcd09eaf-4bc2-4586-ba00-963f23995a7b/linked_in_profile" target="_blank" rel="noopener noreferrer">
+    <img src="/assets/certs/aws-certified-cloud-practitioner.png" alt="AWS Certified Cloud Practitioner" style="width: 135px; height: auto; flex-shrink: 0;">
+  </a> 
+  <a href="https://www.credly.com/badges/01e02437-e84f-4a13-bbf8-f2892be18cda/linked_in_profile" target="_blank" rel="noopener noreferrer">
+    <img src="/assets/certs/cloud-digital-leader-certification.png" alt="Google Cloud Digital Leader" style="width: 135px; height: auto; flex-shrink: 0;">
+  </a> 
+</div>
