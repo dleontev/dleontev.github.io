@@ -36,7 +36,7 @@ This site will feature technical projects and blog posts showcasing my IT learni
   }
 </style>
 
-<div class="certs" style="display: flex; flex-wrap: nowrap; justify-content: flex-start;"> 
+<div class="certs" style="display: flex; flex-wrap: nowrap; justify-content: center; max-width: 405px; width: 100%;"> 
   <a href="https://www.credly.com/badges/89dce4f4-c73f-422c-8524-27b654fb0cd8/public_url" target="_blank" rel="noopener noreferrer">
     <img src="/assets/certs/comptia-security-ce-certification.png" alt="CompTIA Security+" style="max-width: 135px; width: 100%; height: auto;">
   </a> 
@@ -48,7 +48,7 @@ This site will feature technical projects and blog posts showcasing my IT learni
   </a> 
 </div>
 
-<div class="certs" style="display: flex; flex-wrap: nowrap; justify-content: flex-start;"> 
+<div class="certs" style="display: flex; flex-wrap: nowrap; justify-content: center; max-width: 405px; width: 100%;"> 
   <a href="https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/7967D0AB0C7E1557?sharingId" target="_blank" rel="noopener noreferrer">
     <img src="/assets/certs/ms900.png" alt="Microsoft 365 Fundamentals" style="max-width: 135px; width: 100%; height: auto;">
   </a> 
@@ -60,12 +60,11 @@ This site will feature technical projects and blog posts showcasing my IT learni
   </a> 
 </div>
 
-<div class="certs" style="display: flex; flex-wrap: nowrap; justify-content: flex-start;"> 
+<div class="certs" style="display: flex; flex-wrap: nowrap; justify-content: center; max-width: 405px; width: 100%;"> 
   <a href="https://www.credly.com/badges/dcd09eaf-4bc2-4586-ba00-963f23995a7b/linked_in_profile" target="_blank" rel="noopener noreferrer">
     <img src="/assets/certs/aws-certified-cloud-practitioner.png" alt="AWS Certified Cloud Practitioner" style="max-width: 135px; width: 100%; height: auto;">
   </a> 
   <a href="https://www.credly.com/badges/01e02437-e84f-4a13-bbf8-f2892be18cda/linked_in_profile" target="_blank" rel="noopener noreferrer">
     <img src="/assets/certs/cloud-digital-leader-certification.png" alt="Google Cloud Digital Leader" style="max-width: 135px; width: 100%; height: auto;">
-  </a>  
-  <img src="/assets/certs/placeholder.png" style="max-width: 135px; width: 100%; height: auto;">
+  </a> 
 </div>
