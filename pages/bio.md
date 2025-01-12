@@ -36,7 +36,7 @@ This site will feature technical projects and blog posts showcasing my IT learni
   }
 </style>
 
-<div class="certs" style="display: flex; flex-wrap: nowrap; justify-content: center; max-width: 405px; width: 100%;"> 
+<div class="certs" style="display: flex; flex-wrap: nowrap; justify-content: center; max-width: 420px; width: 100%;"> 
   <a href="https://www.credly.com/badges/89dce4f4-c73f-422c-8524-27b654fb0cd8/public_url" target="_blank" rel="noopener noreferrer">
     <img src="/assets/certs/comptia-security-ce-certification.png" alt="CompTIA Security+" style="max-width: 135px; width: 100%; height: auto;">
   </a> 
@@ -48,7 +48,7 @@ This site will feature technical projects and blog posts showcasing my IT learni
   </a> 
 </div>
 
-<div class="certs" style="display: flex; flex-wrap: nowrap; justify-content: center; max-width: 405px; width: 100%;"> 
+<div class="certs" style="display: flex; flex-wrap: nowrap; justify-content: center; max-width: 420px; width: 100%;"> 
   <a href="https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/9150E0CACB9D0869?sharingId" target="_blank" rel="noopener noreferrer">
     <img src="/assets/certs/az900.png" alt="Microsoft Azure Fundamentals" style="max-width: 135px; width: 100%; height: auto;">
   </a> 
@@ -60,7 +60,7 @@ This site will feature technical projects and blog posts showcasing my IT learni
   </a> 
 </div>
 
-<div class="certs" style="display: flex; flex-wrap: nowrap; justify-content: center; max-width: 405px; width: 100%;"> 
+<div class="certs" style="display: flex; flex-wrap: nowrap; justify-content: center; max-width: 420px; width: 100%;"> 
   <a href="https://www.credly.com/badges/dcd09eaf-4bc2-4586-ba00-963f23995a7b/linked_in_profile" target="_blank" rel="noopener noreferrer">
     <img src="/assets/certs/aws-certified-cloud-practitioner.png" alt="AWS Certified Cloud Practitioner" style="max-width: 135px; width: 100%; height: auto;">
   </a> 
