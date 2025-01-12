@@ -49,11 +49,11 @@ This site will feature technical projects and blog posts showcasing my IT learni
 </div>
 
 <div class="certs" style="display: flex; flex-wrap: nowrap; justify-content: center; max-width: 405px; width: 100%;"> 
-  <a href="https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/7967D0AB0C7E1557?sharingId" target="_blank" rel="noopener noreferrer">
-    <img src="/assets/certs/ms900.png" alt="Microsoft 365 Fundamentals" style="max-width: 135px; width: 100%; height: auto;">
-  </a> 
   <a href="https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/9150E0CACB9D0869?sharingId" target="_blank" rel="noopener noreferrer">
     <img src="/assets/certs/az900.png" alt="Microsoft Azure Fundamentals" style="max-width: 135px; width: 100%; height: auto;">
+  </a> 
+  <a href="https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/7967D0AB0C7E1557?sharingId" target="_blank" rel="noopener noreferrer">
+    <img src="/assets/certs/ms900.png" alt="Microsoft 365 Fundamentals" style="max-width: 135px; width: 100%; height: auto;">
   </a> 
   <a href="https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/1BB266E7DCEF2D20?sharingId" target="_blank" rel="noopener noreferrer">
     <img src="/assets/certs/sc900.png" alt="Microsoft Security, Compliance, and Identity Fundamentals" style="max-width: 135px; width: 100%; height: auto;">
