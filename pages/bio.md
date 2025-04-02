@@ -67,4 +67,7 @@ This site will feature technical projects and blog posts showcasing my IT learni
   <a href="https://www.credly.com/badges/01e02437-e84f-4a13-bbf8-f2892be18cda/linked_in_profile" target="_blank" rel="noopener noreferrer">
     <img src="/assets/certs/cloud-digital-leader-certification.png" alt="Google Cloud Digital Leader" style="max-width: 135px; width: 100%; height: auto;">
   </a> 
+  <a href="https://www.credly.com/" target="_blank" rel="noopener noreferrer">
+    <img src="/assets/certs/ccna_600.png" alt="Cisco Certified Network Associate" style="max-width: 135px; width: 100%; height: auto;">
+  </a>   
 </div>
