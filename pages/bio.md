@@ -12,8 +12,8 @@ This site will feature technical projects and blog posts showcasing my IT learni
 
 * **Operating Systems:** Windows 10/11, Windows Server, Linux
 * **Cloud Computing:** AWS, Azure, GCP
-* **Microsoft Technologies:** Active Directory, Microsoft 365, Entra ID, Microsoft Office Suite, SharePoint, Teams
-* **Networking:** TCP/IP, DNS, DHCP, Firewalls
+* **Microsoft Technologies:** Active Directory, Microsoft 365, Entra ID, SharePoint, Teams
+* **Networking:** TCP/IP, DNS, DHCP, OSI Model
 * **Scripting:** PowerShell, Bash, Python
 * **Troubleshooting:** Hardware, Software, Network Connectivity
 * **Soft Skills:** Communication, Empathy, Active Listening, Teamwork, Problem-solving
@@ -64,10 +64,10 @@ This site will feature technical projects and blog posts showcasing my IT learni
   <a href="https://www.credly.com/badges/dcd09eaf-4bc2-4586-ba00-963f23995a7b/linked_in_profile" target="_blank" rel="noopener noreferrer">
     <img src="/assets/certs/aws-certified-cloud-practitioner.png" alt="AWS Certified Cloud Practitioner" style="max-width: 135px; width: 100%; height: auto;">
   </a> 
+  <a href="https://www.credly.com/badges/7948539b-0785-478c-8df6-93e947a60ae4/public_url" target="_blank" rel="noopener noreferrer">
+    <img src="/assets/certs/ccna_600.png" alt="Cisco Certified Network Associate" style="max-width: 135px; width: 100%; height: auto;">
+  </a>     
   <a href="https://www.credly.com/badges/01e02437-e84f-4a13-bbf8-f2892be18cda/linked_in_profile" target="_blank" rel="noopener noreferrer">
     <img src="/assets/certs/cloud-digital-leader-certification.png" alt="Google Cloud Digital Leader" style="max-width: 135px; width: 100%; height: auto;">
   </a> 
-  <a href="https://www.credly.com/" target="_blank" rel="noopener noreferrer">
-    <img src="/assets/certs/ccna_600.png" alt="Cisco Certified Network Associate" style="max-width: 135px; width: 100%; height: auto;">
-  </a>   
 </div>
