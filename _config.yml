@@ -1,8 +1,9 @@
 ### Site Settings ###
-title               : Dimitriy Leontev | IT Specialist
+title               : "Dimitriy Leontev | IT Systems & Cloud Operations"
 description         : >-
-                      Something awesome is brewing! 
-                      Stay tuned.
+                      IT systems and cloud operations professional focused on secure,
+                      reliable, and user-centered technology across Microsoft 365,
+                      identity, endpoints, networking, security, and support operations.
 baseurl             : "/"            # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
 url                 : https://www.dleontev.com
 repository          : dleontev/dleontev.github.io      # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
