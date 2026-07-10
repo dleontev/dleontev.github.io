@@ -10,13 +10,12 @@ I'm currently focused on Microsoft 365, Entra ID, identity security, endpoints, 
 
 #### 🛠️ Skills 
 
-
 * **Operating Systems:** Windows 10/11, Windows Server, Linux
 * **Cloud Platforms:** Microsoft Azure, AWS, Google Cloud
 * **Microsoft 365:** Exchange Online, SharePoint, Teams
 * **Identity:** Microsoft Entra ID, Active Directory, MFA, Conditional Access
 * **Security:** Microsoft Defender, Zero Trust Principles
-* **Endpoint Management:** Microsoft Intune, Windows Endpoint Support, Patch Management
+* **Endpoint:** Microsoft Intune, Windows Endpoint Support, Patch Management
 * **Networking:** TCP/IP, DNS, DHCP, OSI Model
 * **Scripting & Automation:** PowerShell, Bash, Python
 * **IT Operations:** Troubleshooting, Documentation, Process Improvement, User Support
@@ -26,22 +25,26 @@ I'm currently focused on Microsoft 365, Entra ID, identity security, endpoints, 
 <style>
   /* Basic responsive design for smaller screens */
   @media (max-width: 768px) { 
-    div.certs { /* Target only divs with the class "certs" */
+    div.certs {
       display: flex;
-      flex-wrap: wrap; /* Allow items to wrap onto multiple lines */
-      justify-content: center; /* Center the items horizontally */
+      flex-wrap: wrap;
+      justify-content: center;
     }
-    div.certs img { /* Target images within divs with the class "certs" */
+    div.certs img {
       max-width: 100px;
-      margin: 5px; /* Add some space between images */
+      margin: 5px;
     }
   }
 </style>
 
-<div class="certs" style="display: flex; flex-wrap: nowrap; justify-content: center; max-width: 675px; width: 100%;"> 
-  <a href="https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/49FB98CF655F629?sharingId" target="_blank" rel="noopener noreferrer">
+<!-- Microsoft certifications -->
+<div class="certs" style="display: flex; flex-wrap: nowrap; justify-content: center; max-width: 900px; width: 100%;"> 
+  <a href="https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/49FB98CF655F629?sharingId=5D99A4F73136E1D2" target="_blank" rel="noopener noreferrer">
     <img src="/assets/certs/ms102.png" alt="Microsoft 365 Certified: Administrator Expert" style="max-width: 120px; width: 100%; height: auto;">
   </a> 
+  <a href="https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/864D90DDBFFFEC51?sharingId=5D99A4F73136E1D2" target="_blank" rel="noopener noreferrer">
+    <img src="/assets/certs/ms700.png" alt="Microsoft 365 Certified: Teams Administrator Associate" style="max-width: 120px; width: 100%; height: auto;">
+  </a>
   <a href="https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/D7F8B77B20B61A5C?sharingId" target="_blank" rel="noopener noreferrer">
     <img src="/assets/certs/md102.png" alt="Microsoft 365 Certified: Endpoint Administrator Associate" style="max-width: 120px; width: 100%; height: auto;">
   </a>   
@@ -56,6 +59,7 @@ I'm currently focused on Microsoft 365, Entra ID, identity security, endpoints, 
   </a> 
 </div>
 
+<!-- Networking, security, and cloud foundations -->
 <div class="certs" style="display: flex; flex-wrap: nowrap; justify-content: center; max-width: 810px; width: 100%;"> 
   <a href="https://www.credly.com/badges/7948539b-0785-478c-8df6-93e947a60ae4/public_url" target="_blank" rel="noopener noreferrer">
     <img src="/assets/certs/ccna_600.png" alt="Cisco Certified Network Associate" style="max-width: 120px; width: 100%; height: auto;">
