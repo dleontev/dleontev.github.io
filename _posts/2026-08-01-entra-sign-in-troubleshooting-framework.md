@@ -1,19 +1,10 @@
 ---
 title: 'Building a Practical Microsoft Entra Sign-In Troubleshooting Framework'
-date: 2026-08-01 22:30:00 -0700
 tags: [Microsoft Entra, Identity, Troubleshooting, Microsoft 365]
 style: fill
-color: primary
+color: info
 description: A structured, evidence-first approach to investigating Microsoft Entra sign-in issues.
-permalink: /blog/entra-sign-in-troubleshooting-framework/
-published: true
 ---
-
-<!--
-AI-assisted code
-Purpose: Publish a safe initial article about a practical Microsoft Entra sign-in troubleshooting framework.
-Reviewed and tested by: Dimitriy Leontev on August 1, 2026 before production use.
--->
 
 A sign-in problem can look simple from the outside. A user enters a password, receives an error, and cannot access an application. Behind that experience, the cause could involve identity state, authentication methods, Conditional Access, device registration, application configuration, licensing, network location, or service health.
 
