@@ -18,7 +18,7 @@ This site contains sanitized technical projects, practical frameworks, and lesso
 * **Security & Governance:** Microsoft Defender, Microsoft Purview, Identity Security, Data Classification, Least Privilege, Zero Trust Principles
 * **Networking:** TCP/IP, DNS, DHCP, Routing, Switching, Firewalls, Wireless, Network Troubleshooting
 * **Automation:** PowerShell, Power Automate, Bash, Python
-* **Cloud:** Microsoft Azure, AWS, Google Cloud
+* **Cloud:** Microsoft Azure; foundational knowledge of AWS and Google Cloud
 * **IT Operations:** Troubleshooting, Documentation, Process Improvement, Vendor Coordination
 
 #### 🎯 Certifications 
