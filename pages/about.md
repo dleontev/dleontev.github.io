@@ -7,7 +7,7 @@ weight: 3
 
 I'm Dimitriy Leontev, a Network Administrator focused on Microsoft 365, identity, systems, infrastructure, and secure cloud operations.
 
-I work in a public-sector IT environment where my responsibilities span Microsoft 365 administration, Microsoft Entra ID, Exchange Online, SharePoint Online, Teams and Teams Phone, Active Directory, Windows Server and endpoints, networking, security, automation, documentation, and day-to-day service operations.
+I work in a public-sector IT environment where my responsibilities span Microsoft 365 administration, Microsoft Entra ID, Exchange Online, SharePoint Online, Teams, Microsoft Purview, Active Directory, Windows Server and endpoints, networking, security, automation, documentation, and day-to-day service operations.
 
 What I enjoy most is working across the boundaries between those systems.
 
@@ -17,13 +17,13 @@ A problem that appears to be a Teams issue may actually involve identity, licens
 
 My current areas of focus include:
 
-- **Microsoft 365:** Exchange Online, SharePoint Online, OneDrive, Microsoft Teams, Teams Phone, Forms, and Microsoft 365 administration
+- **Microsoft 365:** Exchange Online, SharePoint Online, OneDrive, Microsoft Teams, Forms, and Microsoft 365 administration
 - **Identity:** Microsoft Entra ID, Active Directory, hybrid identity, authentication, MFA, Conditional Access, and access management
 - **Systems:** Windows Server, Windows endpoints, Group Policy, patching, configuration, and operational support
 - **Automation:** PowerShell, Power Automate, scripting, workflow improvement, and reducing repetitive administrative work
 - **Networking:** TCP/IP, DNS, DHCP, routing, switching, firewalls, wireless networking, and troubleshooting
-- **Security:** Microsoft Defender, identity security, least privilege, Zero Trust principles, and secure administration
-- **IT Operations:** troubleshooting, service ownership, documentation, standard operating procedures, vendor coordination, change planning, and continuous improvement
+- **Security & Governance:** Microsoft Defender, Microsoft Purview, identity security, least privilege, Zero Trust principles, data classification, and records-management considerations
+- **IT Operations:** troubleshooting, documentation, standard operating procedures, vendor coordination, change planning, and continuous improvement
 
 ## How I Approach IT
 
