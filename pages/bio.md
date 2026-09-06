@@ -1,26 +1,27 @@
 Hello!
 
-I'm Dimitriy, an IT systems and cloud operations professional focused on secure, reliable, and user-centered technology. 💻
+I'm Dimitriy, a Network Administrator focused on Microsoft 365, identity, systems, infrastructure, and secure cloud operations. 💻
 
-This site documents practical projects, certifications, and lessons learned from supporting modern IT environments.
+I work across Microsoft 365, Microsoft Entra ID, Exchange Online, SharePoint Online, Teams and Teams Phone, Windows systems, networking, security, automation, and IT service operations.
 
-I'm currently focused on Microsoft 365, Entra ID, identity security, endpoints, networking, and cloud support operations.
+I enjoy solving problems that cross technology boundaries and turning recurring support work into clearer standards, documentation, automation, and service improvements.
 
-<a href="https://linkedin.com/in/dleontev" target="_blank" rel="noopener noreferrer">Let's connect!</a> 🤝
+This site contains sanitized technical projects, practical frameworks, and lessons from my work and continued learning in Microsoft cloud and infrastructure technologies.
 
-#### 🛠️ Skills 
+<a href="/about/">More about my background</a> · <a href="https://linkedin.com/in/dleontev" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
 
-* **Operating Systems:** Windows 10/11, Windows Server, Linux
-* **Cloud Platforms:** Microsoft Azure, AWS, Google Cloud
-* **Microsoft 365:** Exchange Online, SharePoint, Teams
-* **Identity:** Microsoft Entra ID, Active Directory, MFA, Conditional Access
-* **Security:** Microsoft Defender, Zero Trust Principles
-* **Endpoint:** Microsoft Intune, Windows Endpoint Support, Patch Management
-* **Networking:** TCP/IP, DNS, DHCP, OSI Model
-* **Scripting & Automation:** PowerShell, Bash, Python
-* **IT Operations:** Troubleshooting, Documentation, Process Improvement, User Support
+#### 🛠️ Skills
 
-#### 🎯 Certifications 
+* **Microsoft 365:** Exchange Online, SharePoint Online, OneDrive, Teams, Teams Phone, Forms
+* **Identity:** Microsoft Entra ID, Active Directory, Hybrid Identity, MFA, Conditional Access
+* **Systems & Endpoint:** Windows 10/11, Windows Server, Group Policy, Patch Management, Endpoint Support
+* **Security:** Microsoft Defender, Identity Security, Least Privilege, Zero Trust Principles
+* **Networking:** TCP/IP, DNS, DHCP, Routing, Switching, Firewalls, Wireless, Network Troubleshooting
+* **Automation:** PowerShell, Power Automate, Bash, Python
+* **Cloud:** Microsoft Azure fundamentals; foundational AWS and Google Cloud knowledge
+* **IT Operations:** Troubleshooting, Service Ownership, Documentation, Process Improvement, Vendor Coordination
+
+#### 🎯 Selected Certifications 
 
 <style>
   /* Basic responsive design for smaller screens */
