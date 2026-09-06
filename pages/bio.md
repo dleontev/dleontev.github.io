@@ -2,9 +2,9 @@ Hello!
 
 I'm Dimitriy, a Network Administrator focused on Microsoft 365, identity, systems, infrastructure, and secure cloud operations. 💻
 
-I work across Microsoft 365, Microsoft Entra ID, Exchange Online, SharePoint Online, Teams, Microsoft Purview, Windows systems, networking, security, automation, and IT service operations.
+My work spans Microsoft 365, identity, Windows systems, networking, security, governance, and automation in a public-sector IT environment.
 
-I enjoy solving problems that cross technology boundaries and turning recurring support work into clearer standards, documentation, automation, and service improvements.
+I enjoy solving problems that cross technology boundaries and turning recurring support work into clearer standards, documentation, automation, and technical improvements.
 
 This site contains sanitized technical projects, practical frameworks, and lessons from my work and continued learning in Microsoft cloud and infrastructure technologies.
 
@@ -12,14 +12,15 @@ This site contains sanitized technical projects, practical frameworks, and lesso
 
 #### 🛠️ Skills
 
-* **Microsoft 365:** Exchange Online, SharePoint Online, OneDrive, Teams, Forms
+* **Microsoft 365:** Exchange Online, SharePoint Online, Microsoft Teams
 * **Identity:** Microsoft Entra ID, Active Directory, Hybrid Identity, MFA, Conditional Access
-* **Systems & Endpoint:** Windows 10/11, Windows Server, Group Policy, Patch Management, Endpoint Support
-* **Security & Governance:** Microsoft Defender, Microsoft Purview, Identity Security, Data Classification, Least Privilege, Zero Trust Principles
-* **Networking:** TCP/IP, DNS, DHCP, Routing, Switching, Firewalls, Wireless, Network Troubleshooting
-* **Automation:** PowerShell, Power Automate, Bash, Python
+* **Security:** Microsoft Defender, Identity Security, Least Privilege, Zero Trust
+* **Compliance & Governance:** Microsoft Purview, Data Classification, Retention, Sensitivity Labels
+* **Systems & Endpoint:** Windows 10/11, Windows Server, Group Policy, Microsoft Intune, Patch Management
+* **Networking:** TCP/IP, DNS, DHCP, Routing, Switching, Firewalls, Wireless
+* **Automation:** PowerShell, Power Automate
 * **Cloud:** Microsoft Azure; foundational knowledge of AWS and Google Cloud
-* **IT Operations:** Troubleshooting, Documentation, Process Improvement, Vendor Coordination
+* **IT Operations:** Troubleshooting, Documentation, SOPs, Process Improvement
 
 #### 🎯 Certifications 
 
