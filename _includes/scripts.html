@@ -1,2 +1,3 @@
-<script defer src="{{ '/assets/js/site.js' | relative_url }}"></script>
-{% if page.search %}<script defer src="{{ '/assets/js/search.js' | relative_url }}"></script>{% endif %}
+<script defer src="{{ '/assets/js/site.js' | relative_url }}?v={{ site.github.build_revision | default: site.time | url_encode }}"></script>
+{% if page.search %}<script defer src="{{ '/assets/js/search.js' | relative_url }}?v={{ site.github.build_revision | default: site.time | url_encode }}"></script>{% endif %}
+
