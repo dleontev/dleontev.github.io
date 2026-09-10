@@ -63,5 +63,6 @@ The projects and articles on this site document that work through sanitized tech
 - Microsoft Security, Compliance, and Identity Fundamentals
 - AWS Certified Cloud Practitioner
 - Google Cloud Digital Leader
+- [Google Cloud Generative AI Leader](https://www.credly.com/badges/759c4516-42bd-4ffa-b1a8-20e3e779f86b/public_url)
 
 You can also find me on [LinkedIn](https://www.linkedin.com/in/dleontev/) and [GitHub](https://github.com/dleontev).

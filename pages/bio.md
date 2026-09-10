@@ -61,8 +61,8 @@ This site contains sanitized technical projects, practical frameworks, and lesso
   </a> 
 </div>
 
-<!-- Networking, security, and cloud foundations -->
-<div class="certs" style="display: flex; flex-wrap: nowrap; justify-content: center; max-width: 810px; width: 100%;"> 
+<!-- Networking, security, cloud, and AI certifications -->
+<div class="certs" style="display: flex; flex-wrap: wrap; justify-content: center; max-width: 810px; width: 100%;"> 
   <a href="https://www.credly.com/badges/7948539b-0785-478c-8df6-93e947a60ae4/public_url" target="_blank" rel="noopener noreferrer">
     <img src="/assets/certs/ccna_600.png" alt="Cisco Certified Network Associate" style="max-width: 120px; width: 100%; height: auto;">
   </a>  
@@ -81,4 +81,7 @@ This site contains sanitized technical projects, practical frameworks, and lesso
   <a href="https://www.credly.com/badges/01e02437-e84f-4a13-bbf8-f2892be18cda/linked_in_profile" target="_blank" rel="noopener noreferrer">
     <img src="/assets/certs/cloud-digital-leader-certification.png" alt="Google Cloud Digital Leader" style="max-width: 120px; width: 100%; height: auto;">
   </a>   
+  <a href="https://www.credly.com/badges/759c4516-42bd-4ffa-b1a8-20e3e779f86b/public_url" target="_blank" rel="noopener noreferrer">
+    <img src="/assets/certs/generative-ai-leader-certification.png" alt="Google Cloud Generative AI Leader" style="max-width: 120px; width: 100%; height: auto;">
+  </a>
 </div>
