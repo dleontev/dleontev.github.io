@@ -1,7 +1,7 @@
 ---
 name: Conditional Access Review Checklist
-tools: [Planned, Microsoft Entra, Conditional Access, Zero Trust]
-image:
+status: Planned
+tools: [Microsoft Entra, Conditional Access, Zero Trust]
 description: A planned lab-based checklist for reviewing policy purpose, scope, exclusions, grant controls, report-only testing, and validation.
 permalink: /projects/conditional-access-review-checklist/
 ---

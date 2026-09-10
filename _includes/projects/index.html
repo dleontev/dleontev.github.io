@@ -1,0 +1,11 @@
+<div class="project-grid">
+{% for project in site.projects %}
+  <article class="project-summary">
+    <p class="project-status">{{ project.status | escape }}</p>
+    <h2><a href="{{ project.url | relative_url }}">{{ project.name | escape }}</a></h2>
+    <p>{{ project.description | escape }}</p>
+    <ul class="topic-list" aria-label="Technologies">{% for tool in project.tools %}<li>{{ tool | escape }}</li>{% endfor %}</ul>
+    {% if project.article %}<p class="availability">Initial article available</p>{% else %}<p class="availability">Scope available; resources planned</p>{% endif %}
+  </article>
+{% endfor %}
+</div>

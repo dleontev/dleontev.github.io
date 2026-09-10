@@ -1,8 +1,7 @@
 ---
 title: 'Building a Practical Microsoft Entra Sign-In Troubleshooting Framework'
+related_project: /projects/entra-sign-in-troubleshooting-framework/
 tags: [Microsoft Entra, Identity, Troubleshooting, Microsoft 365]
-style: fill
-color: info
 description: A structured, evidence-first approach to investigating Microsoft Entra sign-in issues.
 ---
 
@@ -11,6 +10,13 @@ A sign-in problem can look simple from the outside. A user enters a password, re
 That is why effective identity troubleshooting should begin with evidence, not assumptions.
 
 This article introduces the framework I am building for investigating Microsoft Entra sign-in issues in a structured, repeatable, and user-centered way. This first version focuses on the overall method. I will expand it with sanitized lab examples, decision trees, and troubleshooting checklists as the project develops.
+
+<nav class="article-toc" aria-label="On this page" markdown="1">
+**On this page**
+
+* Contents
+{:toc}
+</nav>
 
 ## Why Build a Framework?
 

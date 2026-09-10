@@ -1,7 +1,7 @@
 ---
 name: Microsoft 365 Support Operations Toolkit
-tools: [Planned, Microsoft 365, PowerShell, Support Engineering]
-image:
+status: Planned
+tools: [Microsoft 365, PowerShell, Support Engineering]
 description: A planned collection of reusable templates and safe automation patterns for technical triage, stakeholder updates, escalation evidence, and service documentation.
 permalink: /projects/microsoft-365-support-operations-toolkit/
 ---

@@ -1,8 +1,6 @@
 ---
 title: 'Building a Practical Microsoft 365 Service Ownership Framework'
 tags: [Microsoft 365, Cloud Operations, IT Operations, Service Management]
-style: fill
-color: info
 description: A practical framework for operating Microsoft 365 as an evolving business service rather than a collection of administrative portals.
 ---
 
@@ -17,6 +15,13 @@ The platform supports communication, collaboration, identity, file storage, work
 That is why I find it useful to think about Microsoft 365 as a **service that needs to be actively owned**, not simply a collection of products that need to be administered.
 
 This article outlines the framework I use to think about that responsibility.
+
+<nav class="article-toc" aria-label="On this page" markdown="1">
+**On this page**
+
+* Contents
+{:toc}
+</nav>
 
 ## What Does Service Ownership Mean?
 

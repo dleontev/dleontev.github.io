@@ -1,0 +1,35 @@
+name: Validate site
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1
+        with:
+          ruby-version: '3.3'
+          bundler: '2.6.3'
+          bundler-cache: true
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Build
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build --trace
+      - name: Validate generated content
+        run: bundle exec ruby scripts/validate.rb
+      - name: Install browser checks
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+      - name: Test browser behavior and accessibility
+        run: npm test

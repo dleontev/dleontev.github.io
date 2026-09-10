@@ -1,87 +1,54 @@
-### Site Settings ###
-title               : "Dimitriy Leontev | Microsoft 365, Systems & Cloud"
-description         : >-
-                      IT systems and cloud operations professional focused on secure,
-                      reliable, and user-centered technology across Microsoft 365,
-                      identity, endpoints, networking, security, and support operations.
-baseurl             : "/"            # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
-url                 : https://www.dleontev.com
-repository          : dleontev/dleontev.github.io      # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
-remote_theme        : yousinix/portfolYOU
-open_new_tab        : true                    # Opens external URLs in new tab (works for posts, projects and navbar only)
-
-
-### Plugins ###
+title: "Dimitriy Leontev | Microsoft 365, Systems & Cloud"
+description: "Practical Microsoft 365, identity, systems, and cloud operations projects and articles by Dimitriy Leontev."
+url: "https://dleontev.com"
+baseurl: ""
+repository: dleontev/dleontev.github.io
+remote_theme: yousinix/portfolYOU@7a3e795d385e2dcd5bcd284f4862e1314efd1336
+social_image: /assets/profile-social.png
+open_new_tab: false
 plugins:
+  - jekyll-remote-theme
+  - jekyll-default-layout
+  - jekyll-optional-front-matter
   - jemoji
-
-
-### Navbar Settings ###
-nav_exclude:                                            # The following paths are excluded from navbar
-  - pages/tags.html
-  - pages/404.html
-  - pages/index.md
-
-
-### Author Info ###
 author:
-  name              : Dimitriy Leontev
-  image             : my-notion-face.png
-  email             : info@dleontev.com
-  github            : dleontev
-  linkedin          : dleontev
-
-
-### Posts ###
+  name: Dimitriy Leontev
+  image: /assets/profile-social.png
+  email: info@dleontev.com
+  github: dleontev
+  linkedin: dleontev
 permalink: /blog/:title
-
-
-### Collections ###
 collections:
   projects:
     output: true
     permalink: /projects/:name
-
-
-### Disqus ###
-disqus:
-  shortname: your-short-name-disqus                     # Your website Shortname on disqus
-
-
-### Analytics ###
-analytics:
-  enabled: false                                        # Set true to enable analytics
-  google:
-    tracking_id: your-google-tracking-id
-
-
-### Buy me a coffee ###
-# See https://www.buymeacoffee.com/
-buymeacoffee:
-  enabled: false
-  username: your_username
-  color: "#007bff"
-  message: "Thank you for visiting."                    # Message to be displayed aside from the button for a few seconds.
-  description: "Support me on Buy me a coffee!"
-
-
-### Defaults for collections ###
 defaults:
   - scope:
       path: ""
-      type: "projects"
+      type: projects
     values:
-      layout: "page"
+      layout: page
   - scope:
       path: ""
-      type: "posts"
+      type: posts
     values:
-      comments: false                                   # Set to true to enable disqus comments
-
-
-### Exclude from processing ###
+      layout: post
+      comments: false
 exclude:
   - README.md
-  - CONTRIBUTING.md
+  - assets/lib/README.md
   - LICENSE
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules
+  - package.json
+  - package-lock.json
+  - playwright.config.cjs
+  - tests
+  - scripts
+  - docs
+  - test-results
+  - playwright-report
+  - work-image-stats.json
   - "*.log"

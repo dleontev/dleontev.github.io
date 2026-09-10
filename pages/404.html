@@ -1,6 +1,9 @@
 ---
-layout: null
+layout: page
+title: Page not found
 permalink: /404.html
+noindex: true
 ---
-
-{% include 404.html %}
+<h1>Page not found</h1>
+<p>The page may have moved or the address may be incorrect.</p>
+<p><a class="btn btn-primary" href="{{ '/' | relative_url }}">Go back home</a> <a href="{{ '/blog/' | relative_url }}">Browse articles</a></p>

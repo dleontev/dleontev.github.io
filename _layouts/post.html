@@ -1,0 +1,15 @@
+---
+layout: page
+---
+<article>
+<h1>{{ page.title | escape }}</h1>
+<p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%-d %B %Y' }}</time> · {% assign minutes = content | number_of_words | divided_by: 180 %}{{ minutes | at_least: 1 }} min read</p>
+<ul class="topic-list" aria-label="Article topics">{% for tag in page.tags %}<li><a href="{{ '/blog/tags' | relative_url }}#{{ tag | slugify }}">{{ tag | escape }}</a></li>{% endfor %}</ul>
+{{ content }}
+<aside class="related-reading" aria-label="Related reading">
+  <h2>Continue reading</h2>
+  {% if page.related_project %}<p><a href="{{ page.related_project | relative_url }}">Explore the related project</a></p>{% endif %}
+  <ul>{% for other in site.posts %}{% unless other.url == page.url %}<li><a href="{{ other.url | relative_url }}">{{ other.title | escape }}</a></li>{% endunless %}{% endfor %}</ul>
+  <p><a href="{{ '/blog/' | relative_url }}">All articles</a></p>
+</aside>
+</article>

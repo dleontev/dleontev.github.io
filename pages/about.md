@@ -3,7 +3,10 @@ layout: page
 title: About
 permalink: /about/
 weight: 3
+description: "Dimitriy Leontev’s background, technical focus, approach to public-sector IT, and verified certifications."
 ---
+
+# About
 
 I'm Dimitriy Leontev, a Network Administrator focused on Microsoft 365, identity, systems, infrastructure, and secure cloud operations.
 
@@ -54,15 +57,6 @@ The projects and articles on this site document that work through sanitized tech
 
 ## Certifications
 
-- Microsoft 365 Certified: Administrator Expert
-- Microsoft 365 Certified: Teams Administrator Associate
-- Microsoft 365 Certified: Endpoint Administrator Associate
-- Cisco Certified Network Associate (CCNA)
-- CompTIA Security+
-- Microsoft Azure Fundamentals
-- Microsoft Security, Compliance, and Identity Fundamentals
-- AWS Certified Cloud Practitioner
-- Google Cloud Digital Leader
-- [Google Cloud Generative AI Leader](https://www.credly.com/badges/759c4516-42bd-4ffa-b1a8-20e3e779f86b/public_url)
+{% include certifications.html format="list" %}
 
 You can also find me on [LinkedIn](https://www.linkedin.com/in/dleontev/) and [GitHub](https://github.com/dleontev).

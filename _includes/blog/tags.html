@@ -1,0 +1,7 @@
+{% assign tags = site.tags | sort %}
+{% for tag in tags %}
+<section aria-labelledby="{{ tag[0] | slugify }}">
+  <h2 id="{{ tag[0] | slugify }}">{{ tag[0] | escape }}</h2>
+  <ul>{% for post in tag[1] %}<li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a> <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%-d %B %Y' }}</time></li>{% endfor %}</ul>
+</section>
+{% endfor %}

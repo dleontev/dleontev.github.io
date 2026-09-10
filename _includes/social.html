@@ -1,0 +1,7 @@
+<nav class="social-links" aria-label="Contact links">
+{% for account in site.author %}
+  {% assign service_key = account[0] %}
+  {% assign service = site.data.social-media[service_key] %}
+  {% if service %}<a href="{{ service.url }}{{ account[1] }}">{{ service.label | escape }}</a>{% endif %}
+{% endfor %}
+</nav>

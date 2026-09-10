@@ -1,7 +1,8 @@
 ---
 name: Microsoft Entra Sign-In Troubleshooting Framework
-tools: [In Progress, Microsoft Entra, Identity, Troubleshooting]
-image:
+status: In progress
+tools: [Microsoft Entra, Identity, Troubleshooting]
+article: 2026-08-01-entra-sign-in-troubleshooting-framework
 description: A practical, evidence-first framework for investigating sign-in issues across identity, authentication, Conditional Access, device state, and applications.
 permalink: /projects/entra-sign-in-troubleshooting-framework/
 ---
@@ -31,5 +32,5 @@ This project is developing a repeatable method for moving from a general sign-in
 Public materials will use lab or mock data and will not include employer-specific configurations, tenant identifiers, personal information, credentials, tokens, or security-sensitive details.
 
 <p class="text-center">
-{% include elements/button.html link="/blog/entra-sign-in-troubleshooting-framework/" text="Read the initial article" %}
+<a class="btn btn-primary" href="{% post_url 2026-08-01-entra-sign-in-troubleshooting-framework %}">Read the initial article</a>
 </p>

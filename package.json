@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "preview": "node scripts/serve.cjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@axe-core/playwright": "4.11.1"
+  }
+}

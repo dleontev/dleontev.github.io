@@ -1,0 +1,9 @@
+{% assign optimized = site.data.images[include.image] %}
+<figure class="figure">
+  {% if optimized %}
+  <img src="{{ optimized.src | relative_url }}" srcset="{{ optimized.small_src | relative_url }} {{ optimized.small_width }}w, {{ optimized.src | relative_url }} {{ optimized.width }}w" sizes="(max-width: 767px) calc(100vw - 48px), 850px" width="{{ optimized.width }}" height="{{ optimized.height }}" loading="{{ include.loading | default: 'lazy' }}" decoding="async" alt="{{ include.alt | default: include.caption | escape }}">
+  {% else %}
+  <img src="{{ include.image | relative_url }}" width="{{ include.width }}" height="{{ include.height }}" loading="{{ include.loading | default: 'lazy' }}" decoding="async" alt="{{ include.alt | default: include.caption | escape }}">
+  {% endif %}
+  {% if include.caption %}<figcaption>{{ include.caption | escape }}</figcaption>{% endif %}
+</figure>

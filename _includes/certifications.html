@@ -1,0 +1,20 @@
+{% if include.format == 'list' %}
+<ul class="certification-list">
+{% for cert in site.data.certifications %}
+  <li><a href="{{ cert.verification_url | escape }}">{{ cert.title | escape }}</a></li>
+{% endfor %}
+</ul>
+{% else %}
+{% assign groups = site.data.certifications | group_by: 'group' %}
+{% for group in groups %}
+<h3>{{ group.name | escape }}</h3>
+<ul class="cert-grid{% if group.items.size == 4 %} cert-grid--four{% endif %}">
+{% for cert in group.items %}
+  <li><a class="cert-link" href="{{ cert.verification_url | escape }}">
+    <img src="{{ cert.image | relative_url }}" width="{{ cert.width }}" height="{{ cert.height }}" loading="lazy" decoding="async" alt="">
+    <span>{{ cert.title | escape }}</span>
+  </a></li>
+{% endfor %}
+</ul>
+{% endfor %}
+{% endif %}

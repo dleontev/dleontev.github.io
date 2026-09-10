@@ -1,0 +1,91 @@
+- title: 'Microsoft 365 Certified: Administrator Expert'
+  issuer: Microsoft
+  image: /assets/certs/microsoft-365-administrator-expert.png
+  width: 240
+  height: 240
+  verification_url: https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/49FB98CF655F629?sharingId=5D99A4F73136E1D2
+  group: Microsoft
+- title: 'Microsoft 365 Certified: Teams Administrator Associate'
+  issuer: Microsoft
+  image: /assets/certs/microsoft-teams-administrator-associate.png
+  width: 240
+  height: 240
+  verification_url: https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/864D90DDBFFFEC51?sharingId=5D99A4F73136E1D2
+  group: Microsoft
+- title: 'Microsoft 365 Certified: Endpoint Administrator Associate'
+  issuer: Microsoft
+  image: /assets/certs/microsoft-endpoint-administrator-associate.png
+  width: 240
+  height: 240
+  verification_url: https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/D7F8B77B20B61A5C?sharingId
+  group: Microsoft
+- title: Microsoft Azure Fundamentals
+  issuer: Microsoft
+  image: /assets/certs/microsoft-azure-fundamentals.png
+  width: 240
+  height: 240
+  verification_url: https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/9150E0CACB9D0869?sharingId
+  group: Microsoft
+- title: Microsoft 365 Fundamentals
+  issuer: Microsoft
+  image: /assets/certs/microsoft-365-fundamentals.png
+  width: 240
+  height: 240
+  verification_url: https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/7967D0AB0C7E1557?sharingId
+  group: Microsoft
+- title: Microsoft Security, Compliance, and Identity Fundamentals
+  issuer: Microsoft
+  image: /assets/certs/microsoft-security-compliance-identity-fundamentals.png
+  width: 240
+  height: 240
+  verification_url: https://learn.microsoft.com/api/credentials/share/en-us/DimitriyLeontev/1BB266E7DCEF2D20?sharingId
+  group: Microsoft
+- title: Cisco Certified Network Associate
+  issuer: Cisco
+  image: /assets/certs/cisco-certified-network-associate.png
+  width: 240
+  height: 240
+  verification_url: https://www.credly.com/badges/7948539b-0785-478c-8df6-93e947a60ae4/public_url
+  group: Networking & security
+- title: CompTIA Security+
+  issuer: CompTIA
+  image: /assets/certs/comptia-security-ce-certification.png
+  width: 240
+  height: 239
+  verification_url: https://www.credly.com/badges/89dce4f4-c73f-422c-8524-27b654fb0cd8/public_url
+  group: Networking & security
+- title: CompTIA Network+
+  issuer: CompTIA
+  image: /assets/certs/comptia-network-ce-certification.png
+  width: 240
+  height: 238
+  verification_url: https://www.credly.com/badges/862a93c5-791e-4e71-9253-7857de3998bb/public_url
+  group: Networking & security
+- title: CompTIA A+
+  issuer: CompTIA
+  image: /assets/certs/comptia-a-ce-certification.png
+  width: 240
+  height: 238
+  verification_url: https://www.credly.com/badges/42c03b0a-32b0-41a4-9e15-9f3eacfd8d63/public_url
+  group: Networking & security
+- title: AWS Certified Cloud Practitioner
+  issuer: AWS
+  image: /assets/certs/aws-certified-cloud-practitioner.png
+  width: 240
+  height: 240
+  verification_url: https://www.credly.com/badges/dcd09eaf-4bc2-4586-ba00-963f23995a7b/linked_in_profile
+  group: Cloud & AI
+- title: Google Cloud Digital Leader
+  issuer: Google Cloud
+  image: /assets/certs/cloud-digital-leader-certification.png
+  width: 240
+  height: 240
+  verification_url: https://www.credly.com/badges/01e02437-e84f-4a13-bbf8-f2892be18cda/linked_in_profile
+  group: Cloud & AI
+- title: Google Cloud Generative AI Leader
+  issuer: Google Cloud
+  image: /assets/certs/generative-ai-leader-certification.png
+  width: 240
+  height: 240
+  verification_url: https://www.credly.com/badges/759c4516-42bd-4ffa-b1a8-20e3e779f86b/public_url
+  group: Cloud & AI
