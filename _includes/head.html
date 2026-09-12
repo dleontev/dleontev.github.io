@@ -1,5 +1,5 @@
 <head>
-  {% assign document_title = page.title | default: page.name | default: site.title %}
+  {% assign document_title = page.title | default: site.title %}
   {% assign description = page.description | default: site.description | strip_html | strip_newlines %}
   {% assign preview_image = page.social_image | default: site.social_image | absolute_url %}
   {% assign canonical_url = page.canonical_url | default: page.url | replace: 'index.html', '' | absolute_url %}
