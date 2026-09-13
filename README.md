@@ -55,7 +55,7 @@ Blog search shows a distinct results section and preserves the All articles arch
 bundle exec ruby scripts/profile-certifications.rb
 ```
 
-Copy the generated section into the separate `dleontev/dleontev` profile README in a reviewed update. This script only prints Markdown; it does not publish. Preserve issuer verification links; do not invent replacements for existing valueless sharingId parameters.
+Copy the generated section into the separate `dleontev/dleontev` profile README in a reviewed update. This script only prints Markdown; it does not publish. Use verified public credential destinations: Microsoft Learn links follow `https://learn.microsoft.com/en-us/users/dimitriyleontev/credentials/<credential-id>` with lowercase paths and no query string; Credly links follow `https://www.credly.com/badges/<badge-id>` with no sharing suffix. Confirm issuer redirects and the recipient before replacing a badge ID; do not guess credential identifiers or sharing values.
 
 ## Styling, fonts, and images
 
