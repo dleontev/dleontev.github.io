@@ -2,9 +2,13 @@
   <a class="site-brand" href="{{ '/' | relative_url }}">{{ site.author.name | escape }}</a>
   <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" hidden>Menu</button>
   <div id="site-menu" class="site-menu">
+    {% assign page_section = page.url | split: '/' | slice: 1 | first %}
     {% for item in site.data.navigation %}
-    <a href="{{ item.url | relative_url }}"{% if page.url contains item.url %} aria-current="page"{% endif %}>{{ item.title | escape }}</a>
+    {% assign item_section = item.url | split: '/' | slice: 1 | first %}
+    {% assign active_section = false %}
+    {% if item.url != '/' and page_section == item_section and page.url != item.url %}{% assign active_section = true %}{% endif %}
+    <a href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% elsif active_section %} class="active-section"{% endif %}>{{ item.title | escape }}</a>
     {% endfor %}
-    <button id="theme-toggle" type="button" aria-pressed="false" hidden>Dark mode</button>
+    <button id="theme-toggle" type="button" hidden>Switch to dark mode</button>
   </div>
 </nav>

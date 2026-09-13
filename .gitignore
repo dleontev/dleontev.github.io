@@ -10,3 +10,5 @@ test-results/
 playwright-report/
 work-image-stats.json
 *.log
+
+.validation/

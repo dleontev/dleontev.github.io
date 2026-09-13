@@ -5,6 +5,8 @@ require "uri"
 require "addressable/uri"
 require "yaml"
 require "set"
+load File.expand_path("build-manifest.rb", __dir__)
+manifest = JSON.parse(File.read(".validation/manifest.json"))
 root = "_site"
 failures = []
 files = Dir.glob("#{root}/**/*").select { |p| File.file?(p) }.to_set
@@ -20,6 +22,8 @@ end
 documents.each do |file, doc|
   route = "/" + file.delete_prefix("#{root}/").sub(/index\.html$/, "").sub(/\.html$/, "")
   route = "/404.html" if file.end_with?("/404.html")
+  ids = doc.css("[id]").map { |element| element["id"] }
+  failures << "#{file}: duplicate IDs" unless ids.length == ids.uniq.length
   failures << "#{file}: expected exactly one h1" unless doc.css("h1").length == 1
   failures << "#{file}: missing description" if doc.at_css('meta[name="description"]')&.[]("content").to_s.empty?
   canonical = doc.at_css('link[rel="canonical"]')&.[]("href")
@@ -52,6 +56,17 @@ documents.each do |file, doc|
     end
   end
 end
+manifest.fetch("pages").each do |page|
+  file = resolve.call(page.fetch("url"))
+  doc = documents[file]
+  unless doc
+    failures << "Missing page #{page['url']}"
+    next
+  end
+  failures << "Wrong browser title #{page['url']}" unless doc.at_css('title')&.text == page['browserTitle']
+  failures << "Wrong social title #{page['url']}" unless doc.at_css('meta[property="og:title"]')&.[]('content') == page['title']
+  failures << "Wrong canonical #{page['url']}" unless doc.at_css('link[rel="canonical"]')&.[]('href') == "https://dleontev.com#{page['url']}"
+end
 index = JSON.parse(File.read("#{root}/search.json"))
 index.each do |post|
   failures << "Invalid search entry" unless post["title"].is_a?(String) && post["tags"].is_a?(Array)
@@ -68,12 +83,16 @@ home = documents.fetch("#{root}/index.html")
 about = documents.fetch("#{root}/about/index.html")
 home_links = home.css(".cert-link").map { |e| e["href"] }.sort
 about_links = about.css(".certification-list a").map { |e| e["href"] }.sort
-failures << "Certification views disagree" unless home_links == about_links && home_links.length == certs.length
+failures << "Certification views disagree" unless home_links == about_links && home_links == certs.map { |cert| cert.fetch("verification_url") }.sort
 YAML.safe_load_file("_data/asset-aliases.yml").each do |old_path,new_path|
   failures << "Missing legacy/canonical asset #{old_path}" unless resolve.call(old_path) && resolve.call(new_path)
 end
 if failures.any?
   warn failures.uniq.join("\n")
   abort "#{failures.uniq.length} validation failures"
+end
+config = YAML.safe_load_file('_config.yml')
+certs.each do |cert|
+  %w[title issuer group image width height verification_url].each { |key| abort "Missing certification field #{key}" unless cert.key?(key) }
 end
 puts "Validated #{documents.length} HTML pages, #{index.length} search entries, and #{certs.length} certifications."

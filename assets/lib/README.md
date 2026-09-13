@@ -1,6 +1,5 @@
-# Vendored assets
+# Legacy libraries and attribution
 
-Bootstrap CSS 4.6.2 is copied from https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css.
-Its MIT license is included as bootstrap-LICENSE.txt.
-Only the CSS is used. Navigation, search, and theme behavior use the site's own JavaScript.
-Update the version in _includes/head.html and rerun the browser checks when replacing this file.
+Bootstrap 4.6.2 and its MIT license are retained at their existing URLs for compatibility. The site no longer loads Bootstrap CSS. Layout, components, and syntax styling live in assets/css/style.scss.
+
+The site was based on portfolYOU at 7a3e795d385e2dcd5bcd284f4862e1314efd1336. Its license is retained as portfolYOU-LICENSE.txt. The current templates and styles are local; the remote theme is no longer required to render the site.

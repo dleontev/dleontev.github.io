@@ -2,14 +2,22 @@
 layout: page
 ---
 <article>
-<h1>{{ page.title | escape }}</h1>
+<h1 id="article-top">{{ page.title | escape }}</h1>
 <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%-d %B %Y' }}</time> · {% assign minutes = content | number_of_words | divided_by: 180 %}{{ minutes | at_least: 1 }} min read</p>
 <ul class="topic-list" aria-label="Article topics">{% for tag in page.tags %}<li><a href="{{ '/blog/tags' | relative_url }}#{{ tag | slugify }}">{{ tag | escape }}</a></li>{% endfor %}</ul>
 {{ content }}
 <aside class="related-reading" aria-label="Related reading">
   <h2>Continue reading</h2>
   {% if page.related_project %}<p><a href="{{ page.related_project | relative_url }}">Explore the related project</a></p>{% endif %}
-  <ul>{% for other in site.posts %}{% unless other.url == page.url %}<li><a href="{{ other.url | relative_url }}">{{ other.title | escape }}</a></li>{% endunless %}{% endfor %}</ul>
+  {% assign selected = '' | split: ',' %}
+  {% for reference in page.related_posts %}{% assign match = site.posts | where: 'id', reference %}{% assign selected = selected | concat: match %}{% endfor %}
+  {% for other in site.posts %}
+    {% unless other.url == page.url %}{% for tag in other.tags %}{% if page.tags contains tag %}{% assign selected = selected | push: other %}{% break %}{% endif %}{% endfor %}{% endunless %}
+  {% endfor %}
+  {% assign selected = selected | concat: site.posts | uniq %}
+  {% assign count = 0 %}
+  <ul>{% for other in selected %}{% unless other.url == page.url %}{% if count == 3 %}{% break %}{% endif %}<li><a href="{{ other.url | relative_url }}">{{ other.title | escape }}</a></li>{% assign count = count | plus: 1 %}{% endunless %}{% endfor %}</ul>
   <p><a href="{{ '/blog/' | relative_url }}">All articles</a></p>
+  <p><a href="#article-top">Back to top</a></p>
 </aside>
 </article>

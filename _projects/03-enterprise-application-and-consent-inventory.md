@@ -1,5 +1,6 @@
 ---
-name: Enterprise Application and Consent Inventory
+title: Enterprise Application and Consent Inventory
+order: 3
 status: Planned
 tools: [Microsoft Entra, OAuth, Microsoft Graph]
 description: A planned lab project for reviewing enterprise applications, app registrations, service principals, owners, permissions, consent, and stale access.

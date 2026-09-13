@@ -16,12 +16,14 @@ That is why I find it useful to think about Microsoft 365 as a **service that ne
 
 This article outlines the framework I use to think about that responsibility.
 
-<nav class="article-toc" aria-label="On this page" markdown="1">
-**On this page**
+<details class="article-toc" markdown="1">
+<summary>On this page</summary>
+<nav aria-label="On this page" markdown="1">
 
 * Contents
 {:toc}
 </nav>
+</details>
 
 ## What Does Service Ownership Mean?
 

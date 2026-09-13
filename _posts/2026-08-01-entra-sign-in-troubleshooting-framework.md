@@ -11,12 +11,14 @@ That is why effective identity troubleshooting should begin with evidence, not a
 
 This article introduces the framework I am building for investigating Microsoft Entra sign-in issues in a structured, repeatable, and user-centered way. This first version focuses on the overall method. I will expand it with sanitized lab examples, decision trees, and troubleshooting checklists as the project develops.
 
-<nav class="article-toc" aria-label="On this page" markdown="1">
-**On this page**
+<details class="article-toc" markdown="1">
+<summary>On this page</summary>
+<nav aria-label="On this page" markdown="1">
 
 * Contents
 {:toc}
 </nav>
+</details>
 
 ## Why Build a Framework?
 

@@ -1,0 +1,6 @@
+<dl class="skills-list">
+{% for skill in site.data.skills %}
+  {% if include.context == 'about' %}{% assign description = skill.about %}{% else %}{% assign description = skill.home %}{% endif %}
+  {% if description %}<div class="skill-row"><dt>{{ skill.category | escape }}</dt><dd>{{ description | escape }}</dd></div>{% endif %}
+{% endfor %}
+</dl>

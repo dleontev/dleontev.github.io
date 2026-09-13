@@ -20,14 +20,7 @@ A problem that appears to be a Teams issue may actually involve identity, licens
 
 My current areas of focus include:
 
-- **Microsoft 365:** Exchange Online, SharePoint Online, Microsoft Teams, and Microsoft 365 administration
-- **Identity:** Microsoft Entra ID, Active Directory, hybrid identity, authentication, MFA, Conditional Access, and access management
-- **Security:** Microsoft Defender, identity security, least privilege, Zero Trust principles, and secure administration
-- **Compliance & Governance:** Microsoft Purview, data classification, retention, sensitivity labels, and records-management considerations
-- **Systems & Endpoint:** Windows Server, Windows endpoints, Group Policy, Microsoft Intune, patching, configuration, and operational support
-- **Automation:** PowerShell, Power Automate, workflow improvement, and reducing repetitive administrative work
-- **Networking:** TCP/IP, DNS, DHCP, routing, switching, firewalls, wireless networking, and troubleshooting
-- **IT Operations:** troubleshooting, documentation, standard operating procedures, change planning, and continuous improvement
+{% include skills.html context='about' %}
 
 ## How I Approach IT
 

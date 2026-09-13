@@ -16,15 +16,7 @@ I solve problems across technology boundaries and turn recurring support work in
 
 ## Skills
 
-* **Microsoft 365:** Exchange Online, SharePoint Online, Microsoft Teams
-* **Identity:** Microsoft Entra ID, Active Directory, Hybrid Identity, MFA, Conditional Access
-* **Security:** Microsoft Defender, Identity Security, Least Privilege, Zero Trust
-* **Compliance & Governance:** Microsoft Purview, Data Classification, Retention, Sensitivity Labels
-* **Systems & Endpoint:** Windows 10/11, Windows Server, Group Policy, Microsoft Intune, Patch Management
-* **Networking:** TCP/IP, DNS, DHCP, Routing, Switching, Firewalls, Wireless
-* **Automation:** PowerShell, Power Automate
-* **Cloud:** Microsoft Azure; foundational knowledge of AWS and Google Cloud
-* **IT Operations:** Troubleshooting, Documentation, SOPs, Process Improvement
+{% include skills.html context='home' %}
 
 [More about my background]({% link pages/about.md %}) · [Connect on LinkedIn](https://www.linkedin.com/in/dleontev/)
 

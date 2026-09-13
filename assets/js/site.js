@@ -15,10 +15,16 @@
     mobile.addEventListener('change', sync);
     sync();
   }
+  document.querySelectorAll('.article-toc').forEach(toc => {
+    const sync = () => { toc.open = !mobile.matches; };
+    mobile.addEventListener('change', sync); sync();
+  });
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', () => {
-      const target = document.getElementById(decodeURIComponent(link.hash.slice(1)));
-      if (target && target.matches('h2, h3')) { target.tabIndex = -1; target.focus({preventScroll: true}); }
+      let id;
+      try { id = decodeURIComponent(link.hash.slice(1)); } catch { return; }
+      const target = document.getElementById(id);
+      if (target && target.matches('h1, h2, h3, h4, h5, h6')) { target.tabIndex = -1; target.focus({preventScroll: true}); }
     });
   });
 })();

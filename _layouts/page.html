@@ -1,4 +1,4 @@
 ---
 layout: default
 ---
-<div class="content-column markdown-body">{{ content }}</div>
+<div class="content-column markdown-body{% if page.home %} home-content{% endif %}">{{ content }}</div>

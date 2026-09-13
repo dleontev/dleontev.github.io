@@ -7,7 +7,7 @@
   const apply = theme => {
     root.setAttribute('data-theme', theme);
     const button = document.getElementById('theme-toggle');
-    if (button) button.setAttribute('aria-pressed', String(theme === 'dark'));
+    if (button) button.textContent = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
   };
   apply(explicit || (preference.matches ? 'dark' : 'light'));
   preference.addEventListener('change', event => {
