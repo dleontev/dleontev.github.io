@@ -75,6 +75,9 @@ index.each do |post|
 end
 certs = YAML.safe_load_file("_data/certifications.yml")
 certs.each do |cert|
+  %w[title issuer group image width height verification_url].each { |key| abort "Missing certification field #{key}" unless cert.key?(key) }
+end
+certs.each do |cert|
   failures << "Missing certification image #{cert['image']}" unless resolve.call(cert["image"])
   failures << "Bad certification verification link" unless cert["verification_url"].start_with?("https://")
   failures << "Nonstandard canonical image name #{cert['image']}" unless File.basename(cert["image"]).match?(/\A[a-z0-9]+(?:-[a-z0-9]+)*\.png\z/)
@@ -90,9 +93,5 @@ end
 if failures.any?
   warn failures.uniq.join("\n")
   abort "#{failures.uniq.length} validation failures"
-end
-config = YAML.safe_load_file('_config.yml')
-certs.each do |cert|
-  %w[title issuer group image width height verification_url].each { |key| abort "Missing certification field #{key}" unless cert.key?(key) }
 end
 puts "Validated #{documents.length} HTML pages, #{index.length} search entries, and #{certs.length} certifications."
