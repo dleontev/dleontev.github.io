@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 gem "github-pages", "232", group: :jekyll_plugins
-gem "webrick", "1.9.1"
+gem "webrick", "1.9.2"
 gem "logger", "1.6.5"
 gem "csv", "3.3.2"
 gem "base64", "0.2.0"
