@@ -79,8 +79,10 @@ $null = [IO.Directory]::CreateDirectory($root)
 $runName = $IncidentId + '-' + [datetimeoffset]::UtcNow.ToString('yyyyMMddTHHmmssfffZ') + '-' + [guid]::NewGuid().ToString('N')
 $runDirectory = Join-Path $root $runName
 $null = New-Item -ItemType Directory -Path $runDirectory -ErrorAction Stop
-$evidence | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath (Join-Path $runDirectory 'evidence.json') -Encoding utf8NoBOM
-ConvertTo-TriageReport -Evidence $evidence | Set-Content -LiteralPath (Join-Path $runDirectory 'report.md') -Encoding utf8NoBOM
+$json = ($evidence | ConvertTo-Json -Depth 20) -replace "`r`n", "`n"
+$report = ConvertTo-TriageReport -Evidence $evidence
+Set-Content -LiteralPath (Join-Path $runDirectory 'evidence.json') -Value ($json + "`n") -Encoding utf8NoBOM -NoNewline
+Set-Content -LiteralPath (Join-Path $runDirectory 'report.md') -Value ($report + "`n") -Encoding utf8NoBOM -NoNewline
 [pscustomobject]@{ CollectionStatus = $status; Mode = $mode; OutputDirectory = $runDirectory }
 if ($status -ne 'Complete') {
     throw "Collection is incomplete. Review collection results in $runDirectory before using this evidence."

@@ -39,7 +39,7 @@ These are candidates for manual review. Their presence does not establish the ca
 - classification: incident
 - isResolved: False
 - startDateTime: 2026-09-14T15:45:00Z
-- endDateTime: 
+- endDateTime: Not reported
 - lastModifiedDateTime: 2026-09-14T16:20:00Z
 - impactDescription: Fictional users may experience delayed mailbox access. This is not a real Microsoft advisory.
 

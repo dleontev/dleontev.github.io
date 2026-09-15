@@ -102,6 +102,7 @@ function ConvertTo-TriageText {
     param([AllowNull()][object]$Value)
     # Numeric entities prevent operator/API text from introducing Markdown or HTML structure.
     $text = ([string]$Value -replace '[\r\n\t]+', ' ').Trim()
+    if (-not $text) { return 'Not reported' }
     [regex]::Replace($text, '[&<>"''`*_|\[\]\\]', {
         param($match)
         '&#' + [int][char]$match.Value + ';'
