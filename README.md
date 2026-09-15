@@ -41,6 +41,16 @@ Article URLs intentionally have no trailing slash. Other existing routes retain 
 
 ## Article navigation and search
 
+The Microsoft 365 incident triage toolkit source, offline tests, and synthetic samples live in `tools/microsoft-365-incident-triage-toolkit/`, which is excluded from Jekyll output. The downloadable ZIP is built from an explicit file list. After changing toolkit files, use PowerShell 7.5 or later:
+
+```powershell
+./tools/microsoft-365-incident-triage-toolkit/tests/Test-M365IncidentTriage.ps1
+./scripts/package-triage-toolkit.ps1
+./scripts/package-triage-toolkit.ps1 -Check
+```
+
+The offline tests do not connect to a tenant. Published samples must stay synthetic; live output belongs outside the repository.
+
 Use Kramdown's `{:toc}` inside the native `details.article-toc` pattern in existing posts. It works without JavaScript; JavaScript opens it by default on desktop and collapses it on mobile. Heading links move keyboard focus to the destination. Keep the Back to top and All articles links in the post layout.
 
 Related reading takes up to three posts: explicit `related_posts` Jekyll IDs first, then shared tags, then recent posts. The current article is excluded and duplicate entries are removed.

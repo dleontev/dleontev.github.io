@@ -45,6 +45,7 @@ exclude:
   - playwright.config.cjs
   - tests
   - scripts
+  - tools
   - docs
   - test-results
   - playwright-report
