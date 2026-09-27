@@ -107,3 +107,19 @@ test('content, Home and contents remain available without JavaScript',async({bro
   await page.goto('http://127.0.0.1:4000/blog/ccna-ocg'); await expect(page.getByRole('link',{name:'Home',exact:true})).toBeVisible();
   await page.locator('.article-toc summary').click(); await expect(page.locator('.article-toc nav')).toBeVisible(); await context.close();
 });
+
+test('message trace examples scroll by keyboard without JavaScript',async({browser})=>{
+  const context=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
+  try {
+    const page=await context.newPage();
+    await page.goto('http://127.0.0.1:4000/blog/where-did-the-email-go-troubleshooting-exchange-online-with-message-trace');
+    const examples=page.locator('.language-powershell pre');
+    await expect(examples).toHaveCount(4);
+    const example=examples.first();
+    await expect(example).toHaveAccessibleName('Code example');
+    expect(await example.evaluate(el=>el.scrollWidth>el.clientWidth)).toBe(true);
+    await example.focus(); await expect(example).toBeFocused();
+    await page.keyboard.press('ArrowRight');
+    await expect.poll(()=>example.evaluate(el=>el.scrollLeft)).toBeGreaterThan(0);
+  } finally { await context.close(); }
+});
