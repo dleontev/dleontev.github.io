@@ -25,7 +25,9 @@ Dir.glob('{pages,_projects,_posts}/*').sort.each do |path|
   owner = config.fetch('author').fetch('name')
   pages << {source: path, url: route, title: title, browserTitle: title.include?(owner) ? title : "#{title} | #{owner}",
             section: route == '/' ? 'Home' : {'about'=>'About','blog'=>'Blog','projects'=>'Projects'}[route.split('/')[1]],
-            article: data['article'], tags: data['tags'], status: data['status']}
+            article: data['article'], tags: data['tags'], status: data['status'],
+            noindex: data['noindex'] == true, sitemap: data['sitemap'] != false,
+            last_modified_at: data['last_modified_at']&.to_s}
 end
 FileUtils.mkdir_p('.validation')
 File.write('.validation/manifest.json', JSON.pretty_generate({pages: pages, redirects: redirects,

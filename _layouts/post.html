@@ -3,7 +3,8 @@ layout: page
 ---
 <article>
 <h1 id="article-top">{{ page.title | escape }}</h1>
-<p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%-d %B %Y' }}</time> · {% assign minutes = content | number_of_words | divided_by: 180 %}{{ minutes | at_least: 1 }} min read</p>
+<p class="post-meta post-byline">By <a rel="author" href="{{ '/about/' | relative_url }}">{{ site.author.name | escape }}</a></p>
+<p class="post-meta post-details"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%-d %B %Y' }}</time> · {% assign minutes = content | number_of_words | divided_by: 180 %}{{ minutes | at_least: 1 }} min read</p>
 <ul class="topic-list" aria-label="Article topics">{% for tag in page.tags %}<li><a href="{{ '/blog/tags' | relative_url }}#{{ tag | slugify }}">{{ tag | escape }}</a></li>{% endfor %}</ul>
 {% assign accessible_content = content | replace: '<pre class="highlight">', '<pre class="highlight" tabindex="0" role="region" aria-label="Code example">' | replace: '<pre>', '<pre tabindex="0" role="region" aria-label="Code example">' %}
 {{ accessible_content }}
