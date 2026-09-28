@@ -39,6 +39,14 @@ The workflow uses pinned actions and locked Ruby/npm dependencies. Dependabot pr
 
 Article URLs intentionally have no trailing slash. Other existing routes retain their conventions. `/pages/bio` redirects to Home and is excluded from indexing.
 
+## Structured identity data
+
+`_includes/structured-data.html` emits one JSON-LD graph on indexable HTML pages. The stable `/#person` identity connects the website publisher, article author, project creator, and About profile. Name, job title, image, and professional profile handles come from `_config.yml`; keep them consistent with the visible biography. About declares `schema_type: ProfilePage` in front matter.
+
+Home and About include skills and credentials from the same YAML records used for their visible content. Credential URLs link to the existing issuer verification pages. Articles use their publication dates; projects retain their actual status as `CreativeWork` records. Do not infer employment history, credential validity dates, completed software, or modification dates from a build. The 404 and legacy redirect pages intentionally omit structured data.
+
+All dynamic values are JSON-encoded, and literal less-than signs are escaped before embedding the graph in HTML. `scripts/validate.rb` checks the generated relationships and their agreement with visible content as part of normal validation.
+
 ## Article navigation and search
 
 Use Kramdown's `{:toc}` inside the native `details.article-toc` pattern in existing posts. It works without JavaScript; JavaScript opens it by default on desktop and collapses it on mobile. Heading links move keyboard focus to the destination. Keep the Back to top and All articles links in the post layout.
