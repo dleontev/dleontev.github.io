@@ -1,5 +1,6 @@
 ---
 layout: page
+schema_type: ProfilePage
 title: About
 permalink: /about/
 weight: 3

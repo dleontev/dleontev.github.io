@@ -19,6 +19,7 @@
   <meta name="twitter:description" content="{{ description | escape }}">
   <meta name="twitter:image" content="{{ preview_image | escape }}">
   {% if page.noindex %}<meta name="robots" content="noindex, follow">{% endif %}
+  {% include structured-data.html %}
   <link rel="icon" href="{{ '/assets/favicon.ico' | relative_url }}">
   <link rel="preload" href="{{ '/assets/fonts/poppins-latin-400.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
   <script src="{{ '/assets/js/theme.js' | relative_url }}?v={{ site.github.build_revision | default: site.time | url_encode }}"></script>

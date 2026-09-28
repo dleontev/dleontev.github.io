@@ -5,6 +5,7 @@ require "uri"
 require "addressable/uri"
 require "yaml"
 require "set"
+require_relative "validate-structured-data"
 load File.expand_path("build-manifest.rb", __dir__)
 manifest = JSON.parse(File.read(".validation/manifest.json"))
 root = "_site"
@@ -90,6 +91,7 @@ failures << "Certification views disagree" unless home_links == about_links && h
 YAML.safe_load_file("_data/asset-aliases.yml").each do |old_path,new_path|
   failures << "Missing legacy/canonical asset #{old_path}" unless resolve.call(old_path) && resolve.call(new_path)
 end
+failures.concat(validate_structured_data(documents, manifest))
 if failures.any?
   warn failures.uniq.join("\n")
   abort "#{failures.uniq.length} validation failures"
