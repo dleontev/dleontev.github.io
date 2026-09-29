@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require 'json'
 require 'yaml'
+require 'uri'
 
 def validate_structured_data(documents, manifest)
   config = YAML.safe_load_file('_config.yml')
@@ -66,6 +67,8 @@ def validate_structured_data(documents, manifest)
       raise 'work title differs from visible heading' unless work[article ? 'headline' : 'name'] == doc.at_css('h1').text
       if article
         raise 'wrong article type or date' unless work['@type'] == 'BlogPosting' && work['datePublished'] == doc.at_css('article time')['datetime']
+        bylines = doc.css('article .post-byline a[rel~="author"]')
+        raise 'missing or inconsistent author byline' unless bylines.length == 1 && bylines.first.text.strip == person['name'] && URI.join(canonical, bylines.first['href']).to_s == profile_url
       else
         raise 'project status differs from published status' unless work['@type'] == 'CreativeWork' && work['creativeWorkStatus'] == entry['status'] && doc.at_css('main').text.include?(entry['status'])
       end

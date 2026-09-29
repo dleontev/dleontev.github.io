@@ -6,6 +6,7 @@ require "addressable/uri"
 require "yaml"
 require "set"
 require_relative "validate-structured-data"
+require_relative "validate-discovery"
 load File.expand_path("build-manifest.rb", __dir__)
 manifest = JSON.parse(File.read(".validation/manifest.json"))
 root = "_site"
@@ -92,6 +93,7 @@ YAML.safe_load_file("_data/asset-aliases.yml").each do |old_path,new_path|
   failures << "Missing legacy/canonical asset #{old_path}" unless resolve.call(old_path) && resolve.call(new_path)
 end
 failures.concat(validate_structured_data(documents, manifest))
+failures.concat(validate_discovery(documents, manifest, root))
 if failures.any?
   warn failures.uniq.join("\n")
   abort "#{failures.uniq.length} validation failures"

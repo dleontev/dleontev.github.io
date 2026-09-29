@@ -1,0 +1,24 @@
+---
+layout: null
+sitemap: false
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- assign entries = site.html_pages -%}
+{%- for collection in site.collections -%}
+  {%- if collection.output -%}
+    {%- assign entries = entries | concat: collection.docs -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign entries = entries | sort: 'url' -%}
+{%- for entry in entries -%}
+  {%- unless entry.sitemap == false or entry.noindex or entry.redirect_target or entry.layout == 'redirect' %}
+  <url>
+    <loc>{{ entry.canonical_url | default: entry.url | replace: '/index.html', '/' | absolute_url | xml_escape }}</loc>
+    {%- if entry.last_modified_at %}
+    <lastmod>{{ entry.last_modified_at | date_to_xmlschema }}</lastmod>
+    {%- endif %}
+  </url>
+  {%- endunless -%}
+{%- endfor %}
+</urlset>
