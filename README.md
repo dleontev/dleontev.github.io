@@ -37,7 +37,7 @@ The workflow uses pinned actions and locked Ruby/npm dependencies. Dependabot pr
 - Every content page has an explicit title. Project sorting prefixes must never become browser or social-preview titles.
 - Generate internal links with Jekyll `post_url` and `link` tags. Preserve published permalinks or provide redirects.
 
-Article URLs intentionally have no trailing slash. Other existing routes retain their conventions. `/pages/bio` redirects to Home and is excluded from indexing.
+Article URLs intentionally have no trailing slash. Other existing routes retain their conventions. `/pages/bio` redirects to Home and is excluded from indexing and the sitemap. Its JavaScript redirect preserves URL fragments; an immediate meta refresh in a head `noscript` fallback handles browsers with scripting disabled. The visible destination link remains available if automatic navigation is suppressed. GitHub Pages does not provide configurable HTTP redirects for individual paths.
 
 ## Structured identity data
 
@@ -60,6 +60,8 @@ The normal content validator checks strict sitemap XML, unique canonical URLs, e
 After publication, check that the public sitemap and robots file return HTTP 200. In the verified `dleontev.com` property in Google Search Console and Bing Webmaster Tools, submit the sitemap and inspect Home, About, the Projects index, a project, and a recent article. Review indexing/canonical results and Bing AI Performance where available. Local preview URLs cannot be submitted; account verification and live deployment must come first.
 
 ## Article navigation and search
+
+`jekyll-feed` generates `/feed.xml` as an Atom feed of the ten most recent published articles, including full content, summaries, canonical article links, and the shared author name. `{% feed_meta %}` adds feed discovery in the shared head, and the footer exposes a Subscribe link. The feed remains outside the HTML sitemap. Content validation checks strict Atom XML, article coverage and order, author identity, and discovery/Subscribe links.
 
 Use Kramdown's `{:toc}` inside the native `details.article-toc` pattern in existing posts. It works without JavaScript; JavaScript opens it by default on desktop and collapses it on mobile. Heading links move keyboard focus to the destination. Keep the Back to top and All articles links in the post layout.
 

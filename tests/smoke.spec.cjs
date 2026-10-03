@@ -7,3 +7,11 @@ test('navigation, theme and article contents work across browser engines',async(
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.goto('/blog/ccna-ocg'); await page.locator('.article-toc summary').click(); await expect(page.locator('.article-toc nav')).toBeVisible();
 });
+
+test('legacy biography redirects without JavaScript in WebKit',async({browser})=>{
+  const context=await browser.newContext({javaScriptEnabled:false});
+  try {
+    const page=await context.newPage(); await page.goto('http://127.0.0.1:4000/pages/bio');
+    await expect(page).toHaveURL('http://127.0.0.1:4000/');
+  } finally { await context.close(); }
+});
