@@ -8,6 +8,7 @@
   <title>{{ document_title | escape }}{% unless document_title contains site.author.name %} | {{ site.author.name | escape }}{% endunless %}</title>
   <meta name="description" content="{{ description | escape }}">
   <link rel="canonical" href="{{ canonical_url | escape }}">
+  {% feed_meta %}
   <meta property="og:type" content="{% if page.collection == 'posts' %}article{% else %}website{% endif %}">
   <meta property="og:title" content="{{ document_title | escape }}">
   <meta property="og:description" content="{{ description | escape }}">
@@ -19,6 +20,7 @@
   <meta name="twitter:description" content="{{ description | escape }}">
   <meta name="twitter:image" content="{{ preview_image | escape }}">
   {% if page.noindex %}<meta name="robots" content="noindex, follow">{% endif %}
+  {% if page.redirect_target %}<noscript><meta http-equiv="refresh" content="0; url={{ page.redirect_target | relative_url | escape }}"></noscript>{% endif %}
   {% include structured-data.html %}
   <link rel="icon" href="{{ '/assets/favicon.ico' | relative_url }}">
   <link rel="preload" href="{{ '/assets/fonts/poppins-latin-400.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>

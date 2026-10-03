@@ -100,7 +100,15 @@ test('mobile contents disclose and focus their target, with a back-to-top link',
   expect(await page.locator('.related-reading li').count()).toBeLessThanOrEqual(3);
 });
 test('legacy redirects still reach their destination',async({page})=>{
-  for(const target of data.redirects){ await page.goto(target.url); await expect(page).toHaveURL('http://127.0.0.1:4000'+target.target); }
+  for(const target of data.redirects){ await page.goto(target.url+'#skills'); await expect(page).toHaveURL('http://127.0.0.1:4000'+target.target+'#skills'); }
+});
+
+test('legacy redirects work without JavaScript',async({browser})=>{
+  const context=await browser.newContext({javaScriptEnabled:false});
+  try {
+    const page=await context.newPage();
+    for(const target of data.redirects){ await page.goto('http://127.0.0.1:4000'+target.url); await expect(page).toHaveURL('http://127.0.0.1:4000'+target.target); }
+  } finally { await context.close(); }
 });
 test('content, Home and contents remain available without JavaScript',async({browser})=>{
   const context=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}}); const page=await context.newPage();

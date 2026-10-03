@@ -98,6 +98,8 @@ code { font-family:ui-monospace,monospace; overflow-wrap:break-word; }
 .related-reading,.section-return { border-top:1px solid var(--border); margin-top:2.5rem; padding-top:.75rem; }
 .related-reading h2 { margin-top:.5rem; }
 .site-footer { padding-block:2rem; margin-top:2rem; }
+.feed-subscribe { text-align:center; margin:.5rem 0 0; }
+.feed-subscribe a { display:inline-block; padding:.5rem; }
 .social-links { display:flex; justify-content:center; flex-wrap:wrap; gap:1.5rem; }
 .social-links a { padding:.5rem; }
 @media (max-width:991px) { .site-nav { gap:.75rem; } .site-menu { gap:.8rem; } .site-brand { font-size:1.1rem; } }

@@ -7,6 +7,7 @@ require "yaml"
 require "set"
 require_relative "validate-structured-data"
 require_relative "validate-discovery"
+require_relative "validate-feed"
 load File.expand_path("build-manifest.rb", __dir__)
 manifest = JSON.parse(File.read(".validation/manifest.json"))
 root = "_site"
@@ -70,6 +71,19 @@ manifest.fetch("pages").each do |page|
   failures << "Wrong canonical #{page['url']}" unless doc.at_css('link[rel="canonical"]')&.[]('href') == "https://dleontev.com#{page['url']}"
 end
 index = JSON.parse(File.read("#{root}/search.json"))
+manifest.fetch('redirects').each do |redirect|
+  file = resolve.call(redirect.fetch('url'))
+  doc = documents[file]
+  unless doc
+    failures << "Missing redirect #{redirect['url']}"
+    next
+  end
+  refresh = doc.at_css('head noscript meta[http-equiv="refresh"]')
+  failures << "#{file}: missing instant redirect without JavaScript" unless refresh&.[]('content') == "0; url=#{redirect['target']}"
+  failures << "#{file}: missing visible redirect destination" unless doc.css('main a[href]').any? { |link| link['href'] == redirect['target'] }
+  failures << "#{file}: redirect must remain noindex" unless doc.at_css('meta[name="robots"]')&.[]('content').to_s.include?('noindex')
+  failures << "#{file}: redirect canonical must match destination" unless doc.at_css('link[rel="canonical"]')&.[]('href') == "https://dleontev.com#{redirect['target']}"
+end
 index.each do |post|
   failures << "Invalid search entry" unless post["title"].is_a?(String) && post["tags"].is_a?(Array)
   uri = URI.parse(post.fetch("url"))
@@ -94,6 +108,7 @@ YAML.safe_load_file("_data/asset-aliases.yml").each do |old_path,new_path|
 end
 failures.concat(validate_structured_data(documents, manifest))
 failures.concat(validate_discovery(documents, manifest, root))
+failures.concat(validate_feed(documents, manifest, root))
 if failures.any?
   warn failures.uniq.join("\n")
   abort "#{failures.uniq.length} validation failures"

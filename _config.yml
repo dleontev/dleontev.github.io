@@ -9,6 +9,7 @@ plugins:
   - jekyll-default-layout
   - jekyll-optional-front-matter
   - jemoji
+  - jekyll-feed
 author:
   name: Dimitriy Leontev
   job_title: Network Administrator
