@@ -15,6 +15,8 @@
       <ul class="topic-list" aria-label="Technologies">{% for tool in project.tools %}<li>{{ tool | escape }}</li>{% endfor %}</ul>
       {% if project.article %}{% for article in site.posts %}{% assign article_key = article.path | split: '/' | last | remove: '.md' %}
         {% if article_key == project.article %}<p><a href="{{ article.url | relative_url }}">Read the initial article</a></p>{% break %}{% endif %}{% endfor %}
+      {% elsif project.demo_url or project.source_url %}
+      <p>{% if project.demo_url %}<a href="{{ project.demo_url | escape }}">Open {{ project.title | escape }}</a>{% endif %}{% if project.demo_url and project.source_url %}<br>{% endif %}{% if project.source_url %}<a href="{{ project.source_url | escape }}">View {{ project.title | escape }} source on GitHub</a>{% endif %}</p>
       {% else %}<p class="availability">Scope available; resources planned</p>{% endif %}
     </article>
   {% endfor %}
