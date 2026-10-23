@@ -1,6 +1,6 @@
-# Microsoft 365, systems & cloud
+# Network and Systems Administrator
 
-I'm Dimitriy, a Network Administrator focused on Microsoft 365, identity, systems, infrastructure, and secure cloud operations.
+I'm Dimitriy, a Network and Systems Administrator focused on Microsoft 365, identity, systems, infrastructure, and secure cloud operations.
 
 I solve problems across technology boundaries and turn recurring support work into clearer standards, documentation, and automation.
 
