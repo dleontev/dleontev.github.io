@@ -4,12 +4,12 @@ schema_type: ProfilePage
 title: About
 permalink: /about/
 weight: 3
-description: "Dimitriy Leontev’s background, technical focus, approach to public-sector IT, and verified certifications."
+description: "Dimitriy Leontev, Network and Systems Administrator: public-sector IT experience, technical skills, and verified certifications."
 ---
 
 # About
 
-I'm Dimitriy Leontev, a Network Administrator focused on Microsoft 365, identity, systems, infrastructure, and secure cloud operations.
+I'm Dimitriy Leontev, a Network and Systems Administrator focused on Microsoft 365, identity, systems, infrastructure, and secure cloud operations.
 
 I work in a public-sector IT environment where my responsibilities span Microsoft 365 administration, Microsoft Entra ID, Exchange Online, SharePoint Online, Microsoft Teams, Microsoft Purview, Active Directory, Windows Server and endpoints, networking, security, automation, documentation, and day-to-day IT operations.
 

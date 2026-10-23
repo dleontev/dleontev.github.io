@@ -1,5 +1,5 @@
-title: "Dimitriy Leontev | Microsoft 365, Systems & Cloud"
-description: "Practical Microsoft 365, identity, systems, and cloud operations projects and articles by Dimitriy Leontev."
+title: "Dimitriy Leontev | Network and Systems Administrator"
+description: "Microsoft 365, identity, infrastructure, and cloud projects and articles by Dimitriy Leontev, Network and Systems Administrator."
 url: "https://dleontev.com"
 baseurl: ""
 repository: dleontev/dleontev.github.io
@@ -12,7 +12,7 @@ plugins:
   - jekyll-feed
 author:
   name: Dimitriy Leontev
-  job_title: Network Administrator
+  job_title: Network and Systems Administrator
   image: /assets/profile-social.png
   email: info@dleontev.com
   github: dleontev
