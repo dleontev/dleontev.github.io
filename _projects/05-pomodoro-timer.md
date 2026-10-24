@@ -56,6 +56,8 @@ The prepare job runs the locked dependency installation, syntax checks, Node tes
 
 The source artifact is retained for 90 days. App Service installs dependencies in staging, and promotion swaps the staged application into production without another application build.
 
+The separate CI workflow also lints workflow syntax, and both workflows pin external action references to commit revisions.
+
 {% include elements/figure.html image="/assets/projects/pomodoro/pomodoro-release-flow.svg" width="650" height="1020" alt="Release flow: validate main, package the commit and checksums, publish to the dev staging slot using the publisher identity, verify staging, obtain owner approval, swap using the promoter identity, and verify both production hostnames." caption="The current release path. The same release moves through staging, approval, and production verification." %}
 
 [Open the release diagram at full size]({{ '/assets/projects/pomodoro/pomodoro-release-flow.svg' | relative_url }}).
