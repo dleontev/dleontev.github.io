@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" height="1020" viewBox="0 0 650 1020" role="img" aria-labelledby="release-title release-desc">
+  <title id="release-title">Pomodoro staging and production release flow</title>
+  <desc id="release-desc">Validate main, package a commit and file checksums, publish to the dev staging slot with the publisher identity, verify staging, obtain owner approval, recheck and swap with the production promoter, then verify both production hostnames. The workflow holds a release lock through approval and promotion.</desc>
+  <defs>
+    <marker id="release-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#0757a8"/></marker>
+    <style>
+      text{font-family:Arial,Helvetica,sans-serif;fill:#253344}
+      .heading{font-size:24px;font-weight:700}
+      .label{font-size:22px;font-weight:700}
+      .detail{font-size:18px}
+      .note{font-size:16px;fill:#526071}
+      .node{fill:#fff;stroke:#aabed2;stroke-width:1.5}
+      .flow{stroke:#0757a8;stroke-width:2.5;marker-end:url(#release-arrow)}
+    </style>
+  </defs>
+  <rect width="650" height="1020" rx="16" fill="#f4f7fa"/>
+  <text x="30" y="43" class="heading">From source to a verified public release</text>
+  <text x="30" y="73" class="detail">GitHub Actions · Azure App Service · OIDC</text>
+  <rect x="30" y="100" width="590" height="90" rx="10" class="node"/>
+  <text x="50" y="135" class="label">1. Validate main</text>
+  <text x="50" y="167" class="detail">Locked install · syntax · tests · startup checks</text>
+  <path d="M325 190V214" class="flow"/>
+  <rect x="30" y="220" width="590" height="90" rx="10" class="node"/>
+  <text x="50" y="255" class="label">2. Package one source release</text>
+  <text x="50" y="287" class="detail">Allowlist · commit marker · SHA-256 manifest</text>
+  <path d="M325 310V334" class="flow"/>
+  <rect x="30" y="340" width="590" height="90" rx="10" class="node"/>
+  <text x="50" y="375" class="label">3. Publish to staging</text>
+  <text x="50" y="407" class="detail">OIDC publisher → dev slot on the shared plan</text>
+  <path d="M325 430V454" class="flow"/>
+  <rect x="30" y="460" width="590" height="90" rx="10" class="node"/>
+  <text x="50" y="495" class="label">4. Verify the staged application</text>
+  <text x="50" y="527" class="detail">Health · release marker · frontend file hashes</text>
+  <path d="M325 550V574" class="flow"/>
+  <rect x="30" y="580" width="590" height="90" rx="10" fill="#fff8e8" stroke="#b39858" stroke-width="1.5"/>
+  <text x="50" y="615" class="label">5. Obtain production approval</text>
+  <text x="50" y="647" class="detail">Owner approves; the release lock stays held</text>
+  <path d="M325 670V694" class="flow"/>
+  <rect x="30" y="700" width="590" height="90" rx="10" class="node"/>
+  <text x="50" y="735" class="label">6. Recheck staging and swap</text>
+  <text x="50" y="767" class="detail">Separate OIDC promoter · promote the staged app</text>
+  <path d="M325 790V814" class="flow"/>
+  <rect x="30" y="820" width="590" height="90" rx="10" fill="#edf6ff" stroke="#0757a8" stroke-width="1.5"/>
+  <text x="50" y="855" class="label">7. Verify production</text>
+  <text x="50" y="887" class="detail">Default + custom hostname · retain the result</text>
+  <text x="30" y="950" class="note">Recovery: swap back before staging is overwritten,</text>
+  <text x="30" y="979" class="note">or restage a retained successful artifact for approval.</text>
+</svg>
