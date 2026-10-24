@@ -81,7 +81,7 @@ The repository defines two custom Azure roles:
 
 The staging role includes configuration-list and publishing-profile reads required by the deployment action. Those permissions can expose staging settings and deployment credentials, so keeping the assignment at the staging slot matters. OIDC removes the need to store a long-lived Azure deployment credential in GitHub; it still needs appropriately scoped Azure authorization.
 
-This is a solo-maintainer project. I approve the production deployment after the staging checks; that is a release decision rather than an independent code review. The [successful release's approval record](https://github.com/dleontev/pomodoro/actions/runs/39685922391) shows that the production gate was used.
+For this solo-maintainer project, I approve production after the staging checks. The [successful release's approval record](https://github.com/dleontev/pomodoro/actions/runs/39685922391) records that decision before promotion.
 
 ## Find the boundary behind a staging deployment failure
 
