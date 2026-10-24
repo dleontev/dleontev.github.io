@@ -1,111 +1,155 @@
 ---
-title: Pomodoro Timer
+title: "Pomodoro Timer: Controlled Releases on Azure"
 order: 0
 status: Deployed
-tools: [Node.js 24 LTS, Express 5, Vanilla JavaScript, GitHub Actions, Azure App Service, OIDC]
-description: "An engineering case study in deploying a Node.js timer to Azure App Service: GitHub Actions, OIDC, custom DNS, HTTPS, and deployment troubleshooting."
+tools: [Node.js 24 LTS, Express 5, GitHub Actions, Azure App Service, OIDC, Release verification]
+description: "An Azure release case study: verified source artifacts, staging, owner approval, separate OIDC identities, slot promotion, and deployment troubleshooting."
 permalink: /projects/pomodoro-timer/
 demo_url: https://pomodoro.dleontev.com/
 source_url: https://github.com/dleontev/pomodoro
+last_modified_at: "2026-10-23"
 ---
-# Pomodoro Timer
+# Pomodoro Timer: Controlled Releases on Azure
 
-**Status:** Deployed · Personal project · Configuration and deployment evidence reviewed October 19, 2026
+**Status:** Deployed · Personal project · Evidence reviewed October 23, 2026
 
-I deployed a Pomodoro timer that gives focused work and regular breaks a simple structure. The application supports adjustable session lengths, ambient sound, notifications, and restoration after a tab reload. My work connected the application to Azure hosting, automated deployment, and a custom domain, including investigating an initial deployment failure.
+A small timer became an opportunity to work through a larger operational question: how can I release a change, know what reached production, and recover an earlier version?
 
-I configured the cloud hosting, repository connection, and DNS. OpenAI Codex assisted with application implementation, subsequent code and workflow changes, and documentation. The automated results below come from recorded workflow runs; they are not claims of independent manual code review or exhaustive browser testing.
+The first deployment connected a Node.js application to Azure App Service and a custom domain. The current release process adds staging, an explicit production approval, separate deployment identities, and checks that compare the served application with the prepared release.
 
-[Open the Pomodoro timer](https://pomodoro.dleontev.com/) · [View the source on GitHub](https://github.com/dleontev/pomodoro)
+## Project at a glance
 
-<details class="article-toc">
+| Area | What this project demonstrates |
+| --- | --- |
+| Problem | Release changes without sending an unverified package straight to the public app. |
+| My contribution | Configured the hosting, repository connection, and custom DNS; approve production releases. Codex assisted with application implementation, release tooling, tests, and documentation. |
+| Key decisions | Keep the app small; package a known commit; verify staging; approve and swap; verify production. |
+| Recorded result | The reviewed release passed 70 Linux tests, completed staging checks, received owner approval, and passed production verification. |
+| Current evidence | The public release marker matched commit `6f78f67` when checked on October 23. |
+
+[Open the live timer](https://pomodoro.dleontev.com/) · [View the source](https://github.com/dleontev/pomodoro) · [Read the release guide](https://github.com/dleontev/pomodoro/blob/6f78f67ef67db690061a217ef31efd18bcecff30/docs/development-deployment.md)
+
+<details class="article-toc" markdown="1">
 <summary>On this page</summary>
-<nav aria-label="On this page">
-<ul>
-<li><a href="#application-architecture-and-decisions">Application architecture and decisions</a></li>
-<li><a href="#repository-and-deployment-connection">Repository and deployment connection</a></li>
-<li><a href="#azure-app-service-configuration">Azure App Service configuration</a></li>
-<li><a href="#deployment-authentication-with-oidc">Deployment authentication with OIDC</a></li>
-<li><a href="#validation-artifacts-and-azure-remote-build">Validation, artifacts, and Azure remote build</a></li>
-<li><a href="#investigating-the-initial-failure">Investigating the initial failure</a></li>
-<li><a href="#namecheap-dns-hostname-binding-and-https">Namecheap DNS, hostname binding, and HTTPS</a></li>
-<li><a href="#verification-and-operational-limits">Verification and operational limits</a></li>
-<li><a href="#lessons-and-tradeoffs">Lessons and tradeoffs</a></li>
-</ul>
+<nav aria-label="On this page" markdown="1">
+
+* Contents
+{:toc}
 </nav>
 </details>
 
-{% include elements/figure.html image="/assets/projects/pomodoro/pomodoro-desktop.jpg" width="1170" height="1040" loading="eager" alt="Live Pomodoro application showing a ready 25-minute focus timer, optional automatic session selection, notifications, ambient sound controls, and session length settings." caption="The live application on October 19, 2026. Optional session switching selects the next mode; every countdown still requires Start." %}
+## Keep the application small
 
-## Application architecture and decisions
+Node.js 24 LTS and Express 5 serve a vanilla HTML, CSS, and JavaScript frontend. Express is the only direct dependency. The browser owns the timer, preferences, and audio; the server serves public files and exposes `/health`. There is no database or account system.
 
-The browser owns timing, interface updates, audio, and session state. Express serves files from `public/` and exposes `/health`; it does not expose the repository root. Node.js 24 LTS and Express 5 provide a small server footprint, with Express the only direct npm dependency. There is no database, account system, frontend compilation step, or external asset CDN.
+The latest interface supports custom session lengths, optional session switching and automatic starts, separate ambient and notification audio, and recovery after a reload. The timer uses an absolute deadline to catch up after delayed callbacks. If a session is discovered more than five seconds late or expired on reload, it records completion once and waits for Start instead of racing through unseen cycles.
 
-This architecture keeps a personal timer straightforward to host, but state stays in the browser. An absolute finish time lets the display catch up after delayed callbacks; it does not make a suspended browser a reliable background service. Session restoration uses per-tab storage, while preferences use local storage. Closing the page ends notification delivery, and sessions do not synchronize across devices.
+Timer state is per tab, while preferences persist in the browser. That keeps hosting straightforward and makes the application useful for testing deployment changes.
 
-{% include elements/figure.html image="/assets/projects/pomodoro/pomodoro-architecture.svg" width="650" height="820" alt="Logical architecture: the browser uses the Node and Express App Service. GitHub main triggers validation, creates a source artifact, and passes it to a dependent deployment job. That job authenticates through Entra OIDC federation and deploys to Azure. Oryx remote build activity was observed in the initial successful deployment." caption="Logical application and CI/CD flow, based on the inspected source, workflow logs, and hosting configuration. This is a diagram, not an Azure topology screenshot." %}
+{% include elements/figure.html image="/assets/projects/pomodoro/pomodoro-desktop-2026-10-23.jpg" width="1425" height="1341" loading="eager" alt="The live Pomodoro timer with focus and break modes, optional session switching and automatic starts, separate ambient and notification sound controls, and session-length settings." caption="The live interface on October 23, 2026, shown with saved session and audio preferences." %}
 
-[Open the architecture diagram at full size]({{ '/assets/projects/pomodoro/pomodoro-architecture.svg' | relative_url }}).
+## Promote a verified release through staging
 
-## Repository and deployment connection
+The release workflow now owns the path from `main` to production. Development changes go through pull requests and CI; a change on `main` starts a release with three dependent jobs: **prepare**, **stage**, and **promote**.
 
-I established the [GitHub repository](https://github.com/dleontev/pomodoro) and connected its `main` branch through Azure Deployment Center using GitHub Actions. Azure generated the initial build-and-deploy workflow. Repository history separates that generated configuration from later Codex-assisted changes that added dependency installation, syntax checks, tests, and startup validation.
+The prepare job runs the locked dependency installation, syntax checks, Node tests, and a production-startup smoke check. It then packages only `server.js`, the package manifests, and `public/`. A generated manifest records the commit and SHA-256 checksum of each release file. Missing, changed, unlisted, and symbolic-link files are rejected.
 
-That distinction matters: the original successful deployment did not run the validation now present in the workflow. Pushes to `main` and manual dispatch currently trigger deployment; pull requests receive validation through a separate CI workflow. I did not need to upload application files manually for each subsequent change.
+The source artifact is retained for 90 days. App Service installs dependencies in staging, and promotion swaps the staged application into production without another application build.
 
-## Azure App Service configuration
+The separate CI workflow also lints workflow syntax, and both workflows pin external action references to commit revisions.
 
-I hosted the application using App Service's code publishing model. The verified configuration was:
+{% include elements/figure.html image="/assets/projects/pomodoro/pomodoro-release-flow.svg" width="650" height="1020" alt="Release flow: validate main, package the commit and checksums, publish to the dev staging slot using the publisher identity, verify staging, obtain owner approval, swap using the promoter identity, and verify both production hostnames." caption="The current release path. The same release moves through staging, approval, and production verification." %}
 
-| Setting | Observed value |
+[Open the release diagram at full size]({{ '/assets/projects/pomodoro/pomodoro-release-flow.svg' | relative_url }}).
+
+The existing Azure slot named `dev` serves as release staging. It shares the application's App Service plan; its name does not connect it to a GitHub development branch. The workflow checks the target slot, shared plan, and disabled automatic swapping before publishing.
+
+A concurrency lock covers staging, the approval wait, and promotion. Another workflow run cannot replace the candidate while it awaits approval. The promote job also rechecks staging immediately before the swap, covering changes that may have happened outside that workflow.
+
+[Azure deployment slots](https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots) provide the staging and swap mechanism; [GitHub environment protection](https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/control-deployments) supplies the approval gate. Slots require a supported App Service plan tier.
+
+## Separate publishing from production promotion
+
+The staging and production jobs authenticate through OIDC with separate environment identities. The workflow uses client, tenant, and subscription identifiers from environment variables, with no stored client secret or publish profile.
+
+The repository defines two custom Azure roles:
+
+| Role | Intended scope and responsibility |
 | --- | --- |
-| Operating system and runtime | Linux; Node.js 24 LTS |
-| Plan and capacity | Basic B1; one instance |
-| Region | West US 3 |
-| Transport | HTTPS Only; minimum inbound and SCM TLS 1.2 |
-| Basic publishing credentials | Disabled for SCM and FTP |
-| Always On / App Service Health Check | Disabled / not configured |
+| Staging publisher | Publish to the `dev` slot, with Reader access on the parent app for metadata checks. |
+| Production promoter | Read the app and slot metadata and perform the slot swap, without direct publishing or configuration-write operations in its role definition. |
 
-This approach places operating-system hosting under App Service while leaving application startup and dependencies in the repository. The server reads the platform-provided `PORT`; the package's production command is `npm start`, running `node server.js`. The retained evidence does not establish an Azure startup-command override. One instance and disabled Always On also limit the availability and startup assurances I can make.
+The staging role includes configuration-list and publishing-profile reads required by the deployment action. Those permissions can expose staging settings and deployment credentials, so keeping the assignment at the staging slot matters. OIDC removes the need to store a long-lived Azure deployment credential in GitHub; it still needs appropriately scoped Azure authorization.
 
-## Deployment authentication with OIDC
+For this solo-maintainer project, I approve production after the staging checks. The [successful release's approval record](https://github.com/dleontev/pomodoro/actions/runs/39685922391) records that decision before promotion.
 
-The deployment job grants `id-token: write` and uses `azure/login@v2` to authenticate through GitHub's OpenID Connect token. The login logs identify the repository's `main` branch as the federated subject. Entra validates the GitHub assertion and issues temporary Azure access; Azure authorization then determines what the identity can deploy.
+## Find the boundary behind a staging deployment failure
 
-The workflow references client, tenant, and subscription identifiers stored in GitHub secrets, but supplies neither a client secret nor a publish profile. Federation therefore avoids storing a long-lived Azure deployment password in this workflow. Identifiers alone are not authentication credentials.
+The move to staging exposed a useful distinction: Azure login and resource-metadata access could succeed while application publication still failed.
 
-I used a user-assigned managed identity for the Deployment Center connection. The federated trust lets the GitHub job obtain Azure access as that identity without a stored client secret. Its exact RBAC role and scope have not been verified in this record; successful deployment alone does not demonstrate least privilege. This deployment identity is separate from any runtime identity assigned to the web application.
+An [earlier staging run](https://github.com/dleontev/pomodoro/actions/runs/39536921924) reached the deployment action and failed with **Forbidden, HTTP 403**. Its preflight had already confirmed the slot and shared plan. An unauthenticated SCM probe returned 401, while an authenticated SCM read failed.
 
-## Validation, artifacts, and Azure remote build
+The investigation separated three checks:
 
-The current [deployment workflow](https://github.com/dleontev/pomodoro/tree/b6cee9b536193856a385de1c4aa75efb0763bf87/.github/workflows) runs on Ubuntu. Its build job installs the lockfile with `npm ci --ignore-scripts --no-fund`, checks JavaScript syntax, runs Node's tests, and starts the production command for HTTP smoke checks.
+1. **Authentication:** Did the OIDC login complete?
+2. **Resource management:** Could the identity read the intended app and slot?
+3. **Publication:** Could it access SCM/Kudu and publish to that slot?
 
-Only after these steps succeed does it upload the `node-app` source artifact, excluding `node_modules`. The deploy job explicitly declares `needs: build`, downloads that artifact, authenticates, and uses `azure/webapps-deploy@v3` against Production. This dependency gates deployment on its own validation job. The separate CI workflow is not another deployment prerequisite.
+The staging-role definition was refined to include the dev publishing-profile read and the `Microsoft.Web/sites/publish/action` operation alongside slot-specific publication. Microsoft documents that operation in its [Kudu access guidance](https://learn.microsoft.com/en-us/azure/app-service/resources-kudu#rbac-permissions-required-to-access-kudu).
 
-The artifact is source, not a precompiled frontend or a copy of the runner's installed dependencies. During the initial successful deployment, Kudu/OneDeploy explicitly reported “Running oryx build...”. That establishes Azure-side build activity for that attempt; it does not establish the exact remote install command or which setting enabled it. The separate CI pins action revisions; deployment actions currently use version tags.
+In the final reviewed run, authenticated SCM reads succeeded, staging publication completed, and the served frontend matched the release. This supplied a stronger recovery check than a successful Azure login alone.
 
-## Investigating the initial failure
+## Connect the custom domain and identify the public release
 
-My first deployment failed in the Azure login step with **“No subscriptions found”**, before the application deployment step ran. I reran without changing settings. The [second attempt](https://github.com/dleontev/pomodoro/actions/runs/39210637959) authenticated successfully and deployed the same commit using the existing successful build artifact.
+The Namecheap `pomodoro` CNAME routes the custom hostname to App Service. The separate `asuid.pomodoro` TXT record supplies Azure's domain-verification value. The public application is served over HTTPS at `pomodoro.dleontev.com`.
 
-The useful finding was where the failure occurred: authentication and subscription discovery, rather than application startup. Reusing the artifact helped separate recovery from a code or packaging change. The successful retry established recovery, but not a root cause. I have no evidence that a role correction, tenant change, or configuration fix caused it.
+The release workflow checks both the default production hostname and the custom domain after the swap. For each, it verifies:
 
-{% include elements/figure.html image="/assets/projects/pomodoro/pomodoro-actions-rerun.jpg" width="1084" height="340" alt="Actual GitHub Actions deployment job from the successful second attempt, showing completed artifact download, Azure login, and Azure Web App deployment steps." caption="The successful deployment job in attempt 2 of the initial run. This cropped GitHub Actions screenshot shows the actual completed steps; the logs establish the preceding login failure." %}
+- `/health` returns HTTP 200 and `{"status":"ok"}`.
+- `/release.json` identifies the expected application commit.
+- Every packaged frontend file, including the page at `/`, matches its manifest checksum.
 
-## Namecheap DNS, hostname binding, and HTTPS
+This distinguishes an available endpoint from the expected frontend release. It also makes a pending release visible: `main` may advance while production continues serving the previously approved commit.
 
-I used Namecheap DNS to connect `pomodoro.dleontev.com` to the application. The `pomodoro` CNAME targets the App Service default hostname. The separate `asuid.pomodoro` TXT record proves domain ownership to Azure; it does not route browser traffic. Live DNS confirmed both records, and the TXT value matched Azure's verification value.
+On October 23, the release verifier was rerun against the retained artifact. The public health endpoint returned 200, the version marker matched `6f78f67ef67db690061a217ef31efd18bcecff30`, and all nine packaged frontend files matched their checksums.
 
-Azure lists the custom hostname as **Secured**, with an SNI SSL binding. HTTPS requests to the custom domain passed normal certificate validation, and HTTP redirected to HTTPS. These checks establish working routing, hostname binding, and certificate delivery at review time. The certificate's managed-versus-uploaded origin and renewal configuration were not confirmed, so I do not claim automatic renewal.
+## Prepare two recovery paths
 
-## Verification and operational limits
+Immediately after a swap, the previous production application remains in `dev`. Swapping the same slots back can restore it, provided another staging deployment has not overwritten it. Check the versions before that decision and verify the public application afterward.
 
-The [deployment run for revision `b6cee9b`](https://github.com/dleontev/pomodoro/actions/runs/39353275607) recorded **42 tests passed, zero failures, and zero skips**, followed by successful production-startup checks of `/` and `/health`. Live checks also returned HTTP 200 for both endpoints over the custom HTTPS domain.
+For an older release, the workflow accepts a `rollback_run_id`. It checks that the selected run is a successful release from this repository's `main` history, downloads its retained source artifact, and verifies the package. The normal staging, approval, swap, and production checks then follow.
 
-These results cover defined automated cases and endpoint availability. Audio lifecycle tests use test doubles; the application has no automated browser end-to-end or accessibility audit suite. Its `/health` route is not an enabled App Service health probe. I have not established load capacity, continuous availability, or background notification reliability through these checks.
+Artifact recovery depends on the 90-day retention window. Redeploying retained source runs dependency installation in staging again. If the artifact has expired, a reviewed revert can produce a new release from Git history. A failed production check fails the workflow; it does not trigger an automatic rollback.
 
-## Lessons and tradeoffs
+## Reproduce the local checks
 
-The deployment failure made the boundaries between source validation, Azure authentication, remote build, and runtime behavior concrete. A green retry is useful evidence of recovery, but an explanation needs more than correlation.
+With Node.js 24 LTS and npm installed, these commands reproduce the reviewed source revision without Azure access:
 
-The final arrangement keeps hosting and delivery manageable for a small application. It also deploys directly to Production, packages source broadly, and relies on browser-local state. A staging environment, narrower deployment-file allowlist, and application browser tests would address specific limits; they are future improvements, not capabilities demonstrated by this deployment.
+```powershell
+git clone https://github.com/dleontev/pomodoro.git
+cd pomodoro
+git checkout 6f78f67ef67db690061a217ef31efd18bcecff30
+npm ci --ignore-scripts
+npm run check
+npm test
+npm run smoke
+```
+
+The syntax check should finish without errors. Tests cover application behavior, storage and audio lifecycles, HTTP responses, artifact integrity, and release verification. Platform-specific process tests can skip on Windows. The smoke check starts the actual production command on a temporary port and verifies `/` and `/health`.
+
+For Azure setup, promotion, and recovery commands, use the repository's [release guide](https://github.com/dleontev/pomodoro/blob/6f78f67ef67db690061a217ef31efd18bcecff30/docs/development-deployment.md).
+
+## Verification and remaining limits
+
+The [October 21 release](https://github.com/dleontev/pomodoro/actions/runs/39685922391) records all three jobs succeeding for `6f78f67`, with **70 tests passed, zero failures, and zero skips** on Linux.
+
+| Area | Evidence and boundary |
+| --- | --- |
+| Release execution | Staging publication, owner approval, slot swap, and both production-hostname checks passed in the recorded run. |
+| Live application | Health, release identity, and all nine frontend files matched the retained artifact when rechecked on October 23. |
+| Application behavior | Node tests use DOM, storage, and Web Audio test doubles. Automated browser end-to-end and accessibility audits remain future work. |
+| Azure access | Custom-role definitions and successful scoped operations are documented; effective inherited role assignments are not independently audited here. |
+| Recovery | Rollback selection and package checks have automated tests. The reviewed release did not exercise a live rollback. |
+| Availability | An HTTP health route and successful release checks do not establish continuous monitoring, load capacity, or an availability guarantee. |
+
+The main improvement is the connection between a source revision, a staged candidate, a deliberate release decision, and the application visitors receive. Browser tests and a controlled rollback drill are the next useful additions.
