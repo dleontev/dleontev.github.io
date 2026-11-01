@@ -5,7 +5,7 @@
     "preview": "node scripts/serve.cjs"
   },
   "devDependencies": {
-    "@playwright/test": "1.63.0",
+    "@playwright/test": "1.64.1",
     "@axe-core/playwright": "4.11.1"
   }
 }
