@@ -13,8 +13,8 @@
       <h3><a href="{{ project.url | relative_url }}">{{ project.title | escape }}</a></h3>
       <p>{{ project.description | escape }}</p>
       <ul class="topic-list" aria-label="Technologies">{% for tool in project.tools %}<li>{{ tool | escape }}</li>{% endfor %}</ul>
-      {% if project.article %}{% for article in site.posts %}{% assign article_key = article.path | split: '/' | last | remove: '.md' %}
-        {% if article_key == project.article %}<p><a href="{{ article.url | relative_url }}">Read the initial article</a></p>{% break %}{% endif %}{% endfor %}
+      {% if project.article %}{% assign article = site.posts | find: 'url', project.article %}
+        {% if article %}<p><a href="{{ article.url | relative_url }}">Read the initial article</a></p>{% endif %}
       {% elsif project.demo_url or project.source_url %}
       <p>{% if project.demo_url %}<a href="{{ project.demo_url | escape }}" aria-label="Open {{ project.title | escape }} live application">Open live app</a>{% endif %}{% if project.demo_url and project.source_url %}<br>{% endif %}{% if project.source_url %}<a href="{{ project.source_url | escape }}" aria-label="View {{ project.title | escape }} source on GitHub">View source on GitHub</a>{% endif %}</p>
       {% else %}<p class="availability">Scope available; resources planned</p>{% endif %}

@@ -6,7 +6,7 @@ tags: [Microsoft 365, Exchange Online, Troubleshooting, PowerShell]
 date: 2026-09-27
 permalink: /blog/where-did-the-email-go-troubleshooting-exchange-online-with-message-trace
 related_posts:
-  - /2026/08/27/microsoft-365-service-ownership-framework
+  - /blog/microsoft-365-service-ownership-framework
 ---
 
 “The supplier sent it, but I never received it.”

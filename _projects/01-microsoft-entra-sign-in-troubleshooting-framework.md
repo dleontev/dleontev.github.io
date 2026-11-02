@@ -3,7 +3,7 @@ title: Microsoft Entra Sign-In Troubleshooting Framework
 order: 1
 status: In progress
 tools: [Microsoft Entra, Identity, Troubleshooting]
-article: 2026-08-01-entra-sign-in-troubleshooting-framework
+article: /blog/entra-sign-in-troubleshooting-framework
 description: A practical, evidence-first framework for investigating sign-in issues across identity, authentication, Conditional Access, device state, and applications.
 permalink: /projects/entra-sign-in-troubleshooting-framework/
 ---

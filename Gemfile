@@ -1,5 +1,7 @@
 source "https://rubygems.org"
-gem "github-pages", "232", group: :jekyll_plugins
+# github-pages disables automatic _plugins loading; explicitly require this compatibility filter.
+gem "github-pages", "232", group: :jekyll_plugins,
+    require: ["github-pages", File.expand_path("_plugins/find-filter.rb", __dir__)]
 gem "webrick", "1.9.1"
 gem "logger", "1.6.5"
 gem "csv", "3.3.2"

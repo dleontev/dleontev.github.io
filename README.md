@@ -32,7 +32,7 @@ The workflow uses pinned actions and locked Ruby/npm dependencies. Dependabot pr
 - About: `pages/about.md`.
 - Skills: `_data/skills.yml`; each category has the existing homepage wording and, when applicable, its longer About wording. `_includes/skills.html` renders semantic rows on both pages.
 - Posts: `_posts/YYYY-MM-DD-slug.md`. Supply `title`, `description`, and a `tags` array. The layout supplies h1/date/tags; use h2 for major sections.
-- Projects: `_projects/`. Supply `title`, `order`, `description`, `status`, `tools`, and `permalink`. Set `article` to a post's filename without `.md` when material is available. Current and planned work are grouped separately, and available articles receive direct links.
+- Projects: `_projects/`. Supply `title`, `order`, `description`, `status`, `tools`, and `permalink`. Set `article` to the article's canonical site-relative URL (for example, `/blog/entra-sign-in-troubleshooting-framework`) when material is available. Current and planned work are grouped separately, and available articles receive direct links.
 - Navigation: `_data/navigation.yml`. Home uses an exact URL match; section ancestry is visually marked separately from `aria-current="page"`.
 - Every content page has an explicit title. Project sorting prefixes must never become browser or social-preview titles.
 - Generate internal links with Jekyll `post_url` and `link` tags. Preserve published permalinks or provide redirects.
@@ -65,7 +65,9 @@ After publication, check that the public sitemap and robots file return HTTP 200
 
 Use Kramdown's `{:toc}` inside the native `details.article-toc` pattern in existing posts. It works without JavaScript; JavaScript opens it by default on desktop and collapses it on mobile. Heading links move keyboard focus to the destination. Keep the Back to top and All articles links in the post layout.
 
-Related reading takes up to three posts: explicit `related_posts` Jekyll IDs first, then shared tags, then recent posts. The current article is excluded and duplicate entries are removed.
+Related reading takes up to three posts: explicit `related_posts` first, then shared tags, then recent posts. The current article is excluded and duplicate entries are removed. Use canonical site-relative URLs for `article`, `related_posts` (an array), and `related_project`, preserving each published URL's trailing-slash convention. The validator rejects unresolved references.
+
+Templates use `find` for single-document URL lookups. The current `github-pages` pin uses Jekyll 3.10; `_plugins/find-filter.rb` supplies this lookup through the existing `where` filter. The Gemfile explicitly requires that file after `github-pages` because the gem disables automatic local-plugin loading. Jekyll 4.1+ uses its native `find` instead; remove the compatibility file and its Gemfile require entry together after upgrading.
 
 Blog search shows a distinct results section and preserves the All articles archive. Results use text nodes for safe rendering. Search has clear, no-match, failure, retry, and eight-second timeout states. Malformed indexes also keep browsing available.
 

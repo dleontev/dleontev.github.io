@@ -87,9 +87,19 @@ test('project cards link directly to available material',async({page})=>{
   for(const target of current) {
     const card=page.locator('.project-summary').filter({has:page.getByRole('heading',{name:target.title,exact:true})});
     const url=await card.getByRole('link',{name:'Read the initial article'}).getAttribute('href');
-    expect(data.pages.some(p=>p.url===url && p.tags)).toBe(true);
+    expect(url).toBe(target.article);
   }
   await page.goto(current[0].url); await page.getByRole('link',{name:'All projects',exact:true}).click(); await expect(page).toHaveURL(/\/projects\/$/);
+  for(const target of data.pages.filter(p=>p.tags)) {
+    await page.goto(target.url);
+    const related=page.locator('.related-reading');
+    const urls=await related.locator('li a').evaluateAll(links=>links.map(link=>link.getAttribute('href')));
+    expect(urls.length).toBeLessThanOrEqual(3);
+    expect(new Set(urls).size).toBe(urls.length);
+    expect(urls).not.toContain(target.url);
+    expect(urls.slice(0,target.related_posts.length)).toEqual(target.related_posts);
+    if(target.related_project) await expect(related.getByRole('link',{name:'Explore the related project'})).toHaveAttribute('href',target.related_project);
+  }
 });
 test('mobile contents disclose and focus their target, with a back-to-top link',async({page})=>{
   await page.setViewportSize({width:390,height:844}); await page.goto('/blog/ccna-ocg');
