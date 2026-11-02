@@ -67,7 +67,7 @@ Use Kramdown's `{:toc}` inside the native `details.article-toc` pattern in exist
 
 Related reading takes up to three posts: explicit `related_posts` first, then shared tags, then recent posts. The current article is excluded and duplicate entries are removed. Use canonical site-relative URLs for `article`, `related_posts` (an array), and `related_project`, preserving each published URL's trailing-slash convention. The validator rejects unresolved references.
 
-Templates use `find` for single-document URL lookups. The current `github-pages` pin uses Jekyll 3.10; `_plugins/find-filter.rb` supplies this lookup through the existing `where` filter. Jekyll 4.1+ uses its native `find` instead, and the compatibility file can be removed after upgrading.
+Templates use `find` for single-document URL lookups. The current `github-pages` pin uses Jekyll 3.10; `_plugins/find-filter.rb` supplies this lookup through the existing `where` filter. The Gemfile explicitly requires that file after `github-pages` because the gem disables automatic local-plugin loading. Jekyll 4.1+ uses its native `find` instead; remove the compatibility file and its Gemfile require entry together after upgrading.
 
 Blog search shows a distinct results section and preserves the All articles archive. Results use text nodes for safe rendering. Search has clear, no-match, failure, retry, and eight-second timeout states. Malformed indexes also keep browsing available.
 
