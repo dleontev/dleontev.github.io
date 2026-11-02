@@ -59,7 +59,19 @@ documents.each do |file, doc|
     end
   end
 end
+post_urls = manifest.fetch("pages").select { |page| page["source"].start_with?("_posts/") }.map { |page| page["url"] }
+project_urls = manifest.fetch("pages").select { |page| page["source"].start_with?("_projects/") }.map { |page| page["url"] }
 manifest.fetch("pages").each do |page|
+  {"article" => post_urls, "related_project" => project_urls}.each do |field, urls|
+    failures << "#{page['source']}: invalid #{field} reference #{page[field]}" if page[field] && !urls.include?(page[field])
+  end
+  if page["related_posts"].is_a?(Array)
+    page["related_posts"].each do |url|
+      failures << "#{page['source']}: invalid related_posts reference #{url}" unless post_urls.include?(url)
+    end
+  else
+    failures << "#{page['source']}: related_posts must be an array of canonical article URLs"
+  end
   file = resolve.call(page.fetch("url"))
   doc = documents[file]
   unless doc
