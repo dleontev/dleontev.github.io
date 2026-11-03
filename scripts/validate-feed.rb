@@ -26,7 +26,7 @@ def validate_feed(documents, manifest, root)
     raise 'incorrect feed author' unless feed.at_xpath('/a:feed/a:author/a:name', ns)&.text == author
 
     pages = documents.values.to_h { |doc| [doc.at_css('link[rel="canonical"]')&.[]('href'), doc] }
-    expected = manifest.fetch('pages').select { |page| page['source'].start_with?('_posts/') }.map do |page|
+    expected = manifest.fetch('pages').select { |page| page['collection'] == 'posts' }.map do |page|
       canonical = URI.join(home, page.fetch('url')).to_s
       doc = pages.fetch(canonical)
       {url: canonical, title: doc.at_css('h1').text, published: Time.iso8601(doc.at_css('article time')['datetime'])}

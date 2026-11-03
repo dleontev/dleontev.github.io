@@ -57,8 +57,8 @@ def validate_structured_data(documents, manifest)
       end
 
       entry = manifest.fetch('pages').find { |item| "#{config.fetch('url')}#{item['url']}" == canonical }
-      next unless entry && entry['source'].start_with?('_posts/', '_projects/')
-      article = entry['source'].start_with?('_posts/')
+      next unless entry && %w[posts projects].include?(entry['collection'])
+      article = entry['collection'] == 'posts'
       work_id = "#{canonical}##{article ? 'article' : 'project'}"
       work = nodes.fetch(work_id)
       raise 'page does not identify its work' unless page.dig('mainEntity', '@id') == work_id

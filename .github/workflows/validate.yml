@@ -1,6 +1,7 @@
 name: Validate and deploy site
 on:
   push:
+    branches: [main]
   pull_request:
   workflow_dispatch:
 permissions:
@@ -25,6 +26,8 @@ jobs:
         with:
           node-version: '22'
           cache: npm
+      - name: Check build guards and resolved routing
+        run: bundle exec ruby scripts/test-build.rb
       - name: Build once
         env:
           JEKYLL_ENV: production

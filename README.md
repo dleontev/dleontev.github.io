@@ -8,6 +8,7 @@ Use Ruby 3.3 or 3.4, Bundler 2.6.3, and Node.js 22. Windows Ruby installations n
 
 ```sh
 bundle install
+bundle exec ruby scripts/test-build.rb
 bundle exec jekyll build
 bundle exec ruby scripts/validate.rb
 npm ci
@@ -16,15 +17,17 @@ npm test
 npm run preview
 ```
 
-Open http://127.0.0.1:4000. Rebuild after source edits and reload the preview. The preview server preserves published slashless article URLs. Generated content lives in `_site/`. The validator also builds `.validation/manifest.json` from page front matter and shared data; browser tests consume these expectations.
+Open http://127.0.0.1:4000. Rebuild after source edits and reload the preview. The preview server preserves published slashless article URLs. Generated content lives in `_site/`. The build writes `.validation/manifest.json` through `_plugins/validation-manifest.rb` after the rendered files have been written. It records Jekyll's resolved HTML pages, output collections, URLs, output paths, merged metadata, redirects, and shared data; the content validator and browser tests consume this inventory. It is excluded from publication and invalidated at the start of each rebuild. Rebuild before running validation; the validator does not reconstruct routes from filenames.
 
 ## Deployment and failure handling
 
 GitHub Pages uses **GitHub Actions** as its publishing source. `.github/workflows/validate.yml` builds once, checks content and browser behavior, and packages that exact `_site` directory only after successful tests. Its deployment job requires the validation job and runs only for main, never for pull requests or feature branches. No deployment job rebuilds the artifact.
 
-Review a change on a branch before merging. Main deployments are serialized; obsolete feature-branch validation runs are cancelled. Failure screenshots, traces, the HTML report, and candidate visual baselines are retained for seven days in `browser-diagnostics`. A failing test prevents the tested-site upload and deployment. To recover from a bad published change, revert it through a reviewed commit and let the same checks run.
+Pull requests validate once per update. Push validation runs only on `main`, and manual runs remain available. Review a change in a pull request before merging. Main deployments are serialized; obsolete pull-request validation runs are cancelled. Failure screenshots, traces, the HTML report, and candidate visual baselines are retained for seven days in `browser-diagnostics`. A failing test prevents the tested-site upload and deployment. To recover from a bad published change, revert it through a reviewed commit and let the same checks run.
 
 The build uses standalone Jekyll rather than the `github-pages` dependency bundle. `_config.yml` explicitly preserves GFM Markdown, Rouge highlighting, compressed CSS without source maps, and the previous inclusion of future-dated posts. Use `published: false` or `_drafts/` for unpublished work. The site uses local layouts and no packaged theme. `jekyll-github-metadata` supplies the build revision used by asset URLs; `jekyll-feed`, `jemoji`, `jekyll-default-layout`, and `jekyll-optional-front-matter` are the other active plugins. Sitemap and structured data remain local templates.
+
+Malformed front matter, invalid Liquid syntax, and unknown filters fail the build. `strict_variables` remains disabled because optional metadata is intentional. `scripts/test-build.rb` exercises the real Jekyll build with nested content, custom post routes/slugs, metadata defaults, output filtering, redirects, and invalid content. The inventory comes from resolved source metadata; title, canonical, structured-data, feed, and link assertions still independently inspect the rendered output.
 
 The workflow uses pinned actions and locked Ruby/npm dependencies. Dependabot proposes monthly dependency updates; review and validate them before merging. No user tokens belong in content or workflow files.
 
