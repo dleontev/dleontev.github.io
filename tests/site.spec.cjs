@@ -55,7 +55,7 @@ test('mobile menu and changing theme action work by keyboard and persist',async(
 });
 test('search separates results from the archive and clears without losing focus',async({page})=>{
   await page.goto('/blog/'); const field=page.getByRole('searchbox',{name:'Search articles'}); await expect(field).toBeEnabled();
-  const query=data.pages.find(p=>p.tags?.length).title;
+  const query=data.pages.find(p=>p.collection==='posts' && p.tags?.length).title;
   await field.fill(query); await expect(page.locator('#results-container a')).toHaveCount(1); await expect(page.locator('#results-container p')).not.toBeEmpty();
   await field.fill('zzzz-no-match'); await expect(page.getByRole('status')).toContainText('No matching articles');
   await expect(page.getByRole('heading',{name:'All articles',exact:true})).toBeVisible();
@@ -64,7 +64,7 @@ test('search separates results from the archive and clears without losing focus'
 test('failed and malformed search can retry while browsing remains available',async({page})=>{
   let requests=0; await page.route('**/search.json',route=>{requests++; return requests===1 ? route.fulfill({status:503,body:'Unavailable'}) : route.continue();});
   await page.goto('/blog/'); await expect(page.getByRole('status')).toContainText('Search is unavailable');
-  await expect(page.locator('.article-card')).toHaveCount(data.pages.filter(p=>p.tags).length);
+  await expect(page.locator('.article-card')).toHaveCount(data.pages.filter(p=>p.collection==='posts').length);
   await page.getByRole('button',{name:'Retry search'}).click(); await expect(page.getByRole('searchbox')).toBeEnabled();
   await page.route('**/search.json',route=>route.fulfill({contentType:'application/json',body:'[{"title":"bad"}]'}));
   await page.reload(); await expect(page.getByRole('status')).toContainText('Search is unavailable');
@@ -72,7 +72,7 @@ test('failed and malformed search can retry while browsing remains available',as
 test('slow search stops loading and offers retry',async({page})=>{
   await page.route('**/search.json',()=>new Promise(()=>{})); await page.goto('/blog/');
   await expect(page.getByRole('button',{name:'Retry search'})).toBeVisible({timeout:12000});
-  await expect(page.locator('.article-card')).toHaveCount(data.pages.filter(p=>p.tags).length);
+  await expect(page.locator('.article-card')).toHaveCount(data.pages.filter(p=>p.collection==='posts').length);
 });
 test('source certification links and every skill remain available',async({page})=>{
   await page.setViewportSize({width:320,height:740}); await page.goto('/');
@@ -90,7 +90,7 @@ test('project cards link directly to available material',async({page})=>{
     expect(url).toBe(target.article);
   }
   await page.goto(current[0].url); await page.getByRole('link',{name:'All projects',exact:true}).click(); await expect(page).toHaveURL(/\/projects\/$/);
-  for(const target of data.pages.filter(p=>p.tags)) {
+  for(const target of data.pages.filter(p=>p.collection==='posts')) {
     await page.goto(target.url);
     const related=page.locator('.related-reading');
     const urls=await related.locator('li a').evaluateAll(links=>links.map(link=>link.getAttribute('href')));

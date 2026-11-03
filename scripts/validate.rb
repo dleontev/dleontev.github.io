@@ -8,9 +8,13 @@ require "set"
 require_relative "validate-structured-data"
 require_relative "validate-discovery"
 require_relative "validate-feed"
-load File.expand_path("build-manifest.rb", __dir__)
-manifest = JSON.parse(File.read(".validation/manifest.json"))
 root = "_site"
+manifest_path = ".validation/manifest.json"
+abort "Validation manifest missing; run bundle exec jekyll build first" unless File.file?(manifest_path)
+manifest = JSON.parse(File.read(manifest_path))
+unless manifest["schema_version"] == 1 && manifest["source_root"] == File.expand_path(".") && manifest["destination"] == File.expand_path(root)
+  abort "Validation manifest does not match this source/output; run bundle exec jekyll build first"
+end
 failures = []
 files = Dir.glob("#{root}/**/*").select { |p| File.file?(p) }.to_set
 html_files = files.select { |p| p.end_with?(".html") }
@@ -59,8 +63,8 @@ documents.each do |file, doc|
     end
   end
 end
-post_urls = manifest.fetch("pages").select { |page| page["source"].start_with?("_posts/") }.map { |page| page["url"] }
-project_urls = manifest.fetch("pages").select { |page| page["source"].start_with?("_projects/") }.map { |page| page["url"] }
+post_urls = manifest.fetch("pages").select { |page| page["collection"] == "posts" }.map { |page| page["url"] }
+project_urls = manifest.fetch("pages").select { |page| page["collection"] == "projects" }.map { |page| page["url"] }
 manifest.fetch("pages").each do |page|
   {"article" => post_urls, "related_project" => project_urls}.each do |field, urls|
     failures << "#{page['source']}: invalid #{field} reference #{page[field]}" if page[field] && !urls.include?(page[field])
@@ -72,7 +76,7 @@ manifest.fetch("pages").each do |page|
   else
     failures << "#{page['source']}: related_posts must be an array of canonical article URLs"
   end
-  file = resolve.call(page.fetch("url"))
+  file = File.join(root, page.fetch("output"))
   doc = documents[file]
   unless doc
     failures << "Missing page #{page['url']}"
@@ -84,7 +88,7 @@ manifest.fetch("pages").each do |page|
 end
 index = JSON.parse(File.read("#{root}/search.json"))
 manifest.fetch('redirects').each do |redirect|
-  file = resolve.call(redirect.fetch('url'))
+  file = File.join(root, redirect.fetch('output'))
   doc = documents[file]
   unless doc
     failures << "Missing redirect #{redirect['url']}"
