@@ -1,10 +1,10 @@
 # Dimitriy Leontev's website
 
-Static Jekyll portfolio at https://dleontev.com.
+Static Jekyll 4 portfolio at https://dleontev.com. The Gemfile selects Jekyll 4.4 and explicitly declares the plugins and validation libraries; Gemfile.lock fixes the resolved versions for Windows and Linux.
 
 ## Preview and validate
 
-Use Ruby 3.3 or 3.4, Bundler 2.6.3, and Node.js 22.
+Use Ruby 3.3 or 3.4, Bundler 2.6.3, and Node.js 22. Windows Ruby installations need the matching RubyInstaller Devkit for native gems.
 
 ```sh
 bundle install
@@ -23,6 +23,8 @@ Open http://127.0.0.1:4000. Rebuild after source edits and reload the preview. T
 GitHub Pages uses **GitHub Actions** as its publishing source. `.github/workflows/validate.yml` builds once, checks content and browser behavior, and packages that exact `_site` directory only after successful tests. Its deployment job requires the validation job and runs only for main, never for pull requests or feature branches. No deployment job rebuilds the artifact.
 
 Review a change on a branch before merging. Main deployments are serialized; obsolete feature-branch validation runs are cancelled. Failure screenshots, traces, the HTML report, and candidate visual baselines are retained for seven days in `browser-diagnostics`. A failing test prevents the tested-site upload and deployment. To recover from a bad published change, revert it through a reviewed commit and let the same checks run.
+
+The build uses standalone Jekyll rather than the `github-pages` dependency bundle. `_config.yml` explicitly preserves GFM Markdown, Rouge highlighting, compressed CSS without source maps, and the previous inclusion of future-dated posts. Use `published: false` or `_drafts/` for unpublished work. The site uses local layouts and no packaged theme. `jekyll-github-metadata` supplies the build revision used by asset URLs; `jekyll-feed`, `jemoji`, `jekyll-default-layout`, and `jekyll-optional-front-matter` are the other active plugins. Sitemap and structured data remain local templates.
 
 The workflow uses pinned actions and locked Ruby/npm dependencies. Dependabot proposes monthly dependency updates; review and validate them before merging. No user tokens belong in content or workflow files.
 
@@ -67,7 +69,7 @@ Use Kramdown's `{:toc}` inside the native `details.article-toc` pattern in exist
 
 Related reading takes up to three posts: explicit `related_posts` first, then shared tags, then recent posts. The current article is excluded and duplicate entries are removed. Use canonical site-relative URLs for `article`, `related_posts` (an array), and `related_project`, preserving each published URL's trailing-slash convention. The validator rejects unresolved references.
 
-Templates use `find` for single-document URL lookups. The current `github-pages` pin uses Jekyll 3.10; `_plugins/find-filter.rb` supplies this lookup through the existing `where` filter. The Gemfile explicitly requires that file after `github-pages` because the gem disables automatic local-plugin loading. Jekyll 4.1+ uses its native `find` instead; remove the compatibility file and its Gemfile require entry together after upgrading.
+Templates use Jekyll 4's native `find` filter for single-document URL lookups. No compatibility filter or custom plugin loader is required.
 
 Blog search shows a distinct results section and preserves the All articles archive. Results use text nodes for safe rendering. Search has clear, no-match, failure, retry, and eight-second timeout states. Malformed indexes also keep browsing available.
 

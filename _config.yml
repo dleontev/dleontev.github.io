@@ -5,9 +5,27 @@ baseurl: ""
 repository: dleontev/dleontev.github.io
 social_image: /assets/profile-social.png
 open_new_tab: false
+
+# Rendering defaults previously supplied by the github-pages gem.
+theme: null
+markdown: kramdown
+highlighter: rouge
+future: true
+kramdown:
+  input: GFM
+  hard_wrap: false
+  gfm_quirks: [paragraph_end]
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    default_lang: plaintext
+sass:
+  style: compressed
+  sourcemap: never
+
 plugins:
   - jekyll-default-layout
   - jekyll-optional-front-matter
+  - jekyll-github-metadata
   - jemoji
   - jekyll-feed
 author:

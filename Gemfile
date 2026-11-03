@@ -1,8 +1,21 @@
 source "https://rubygems.org"
-# github-pages disables automatic _plugins loading; explicitly require this compatibility filter.
-gem "github-pages", "232", group: :jekyll_plugins,
-    require: ["github-pages", File.expand_path("_plugins/find-filter.rb", __dir__)]
+
+gem "jekyll", "~> 4.4.1"
 gem "webrick", "1.9.1"
+
+group :jekyll_plugins do
+  gem "jekyll-default-layout", "~> 0.1.5"
+  gem "jekyll-optional-front-matter", "~> 0.3.2"
+  gem "jekyll-github-metadata", "~> 2.16"
+  gem "jekyll-feed", "~> 0.17"
+  gem "jemoji", "~> 0.13"
+end
+
+# Required directly by the content validators.
+gem "addressable", "~> 2.8"
+gem "nokogiri", "~> 1.18"
+
+# Keep Ruby 3.3 and 3.4 standard-library dependencies consistent.
 gem "logger", "1.6.5"
 gem "csv", "3.3.2"
 gem "base64", "0.2.0"
