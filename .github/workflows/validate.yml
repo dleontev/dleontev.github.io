@@ -28,7 +28,9 @@ jobs:
       - name: Build once
         env:
           JEKYLL_ENV: production
-        run: bundle exec jekyll build --trace
+        run: |
+          bundle exec jekyll --version
+          bundle exec jekyll build --trace
       - name: Validate generated content and generate test expectations
         run: bundle exec ruby scripts/validate.rb
       - name: Install browser checks
