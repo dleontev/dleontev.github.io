@@ -1,38 +1,35 @@
-# Network and Systems Administrator
+# Systems & Infrastructure Administrator
 
-I'm Dimitriy. I work across networking, Windows systems, Microsoft 365, and identity in a public-sector IT environment.
-
-I turn recurring support work into clearer troubleshooting, reusable documentation, and automation.
+I'm Dimitriy, a Network Administrator in public-sector IT. I support networks, servers, cloud services, and the devices staff rely on. I trace problems across those systems, plan changes with security and reliability in mind, and automate repeatable tasks so colleagues can run them confidently.
 
 <div class="page-actions">
-  <a class="btn btn-primary" href="{{ '/projects/' | relative_url }}">View projects</a>
-  <a class="btn btn-outline-primary" href="{{ '/blog/' | relative_url }}">Read articles</a>
+  <a class="btn btn-primary" href="{% link pages/projects.html %}">View projects</a>
+  <a class="btn btn-outline-primary" href="{% link pages/about.md %}">About my work</a>
 </div>
+
+{% include social.html %}
 
 ## Featured work
 
 <div class="article-grid">
   <article class="article-card">
-    <p class="project-status">Deployed project</p>
+    <p class="project-status">Deployed personal project</p>
     <h3><a href="{% link _projects/05-pomodoro-timer.md %}">Controlled Azure releases</a></h3>
-    <p>A Node.js application promoted through staging, owner approval, and slot swaps, with OIDC identities and checks against the prepared release.</p>
-    <p><a href="https://pomodoro.dleontev.com/">Open the live timer</a> · <a href="https://github.com/dleontev/pomodoro">View source</a></p>
+    <p>I configured Azure hosting for a small web app. See how the release passed staging checks, moved to production after approval, and was verified against the packaged build.</p>
+    <p><a href="https://pomodoro.dleontev.com/">Open the live timer</a> · <a href="https://github.com/dleontev/pomodoro">View the timer source</a></p>
   </article>
   <article class="article-card">
     <p class="project-status">Troubleshooting guide</p>
-    <h3><a href="{% post_url 2026-09-27-where-did-the-email-go-troubleshooting-exchange-online-with-message-trace %}">Where did the email go?</a></h3>
-    <p>Follow a missing message from Exchange Online message trace into the mailbox, interpret the evidence, and verify that the user can open it.</p>
-    <p>Includes a worked example and repeatable PowerShell checks.</p>
+    <h3><a href="{% post_url 2026-09-27-where-did-the-email-go-troubleshooting-exchange-online-with-message-trace %}">Exchange Online message tracing</a></h3>
+    <p>A worked example uses message trace and PowerShell to follow a missing email into the mailbox and confirm the recipient can open it.</p>
   </article>
 </div>
 
-More reading: [Entra sign-in troubleshooting]({% post_url 2026-08-01-entra-sign-in-troubleshooting-framework %}) · [Microsoft 365 service ownership]({% post_url 2026-08-27-microsoft-365-service-ownership-framework %}).
+[CCNA lab practice and study notes]({% post_url 2025-07-01-ccna-ocg %}) · [All technical articles]({% link pages/blog.html %})
 
 ## Skills
 
 {% include skills.html context='home' %}
-
-[More about my background]({% link pages/about.md %}) · [Connect on LinkedIn](https://www.linkedin.com/in/dleontev/)
 
 ## Certifications
 

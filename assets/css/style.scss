@@ -15,7 +15,7 @@ a:hover { text-decoration-thickness:2px; }
 button,input,select { font:inherit; }
 button, .btn { min-height:44px; border:1px solid var(--border); border-radius:.35rem; padding:.45rem .8rem; background:var(--panel); color:var(--text); cursor:pointer; }
 button:disabled,input:disabled { cursor:wait; }
-a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible { outline:3px solid var(--focus); outline-offset:4px; }
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,pre[tabindex]:focus-visible { outline:3px solid var(--focus); outline-offset:4px; }
 h1,h2,h3,h4,h5,h6 { color:var(--text); line-height:1.35; font-weight:600; overflow-wrap:break-word; }
 h1 { font-size:clamp(1.75rem,calc(1.3rem + 1vw),2rem); margin:0 0 1.15rem; }
 h2 { font-size:clamp(1.375rem,calc(1.15rem + .5vw),1.5rem); margin:2rem 0 .75rem; }
@@ -102,6 +102,8 @@ code { font-family:ui-monospace,monospace; overflow-wrap:break-word; }
 .feed-subscribe a { display:inline-block; padding:.5rem; }
 .social-links { display:flex; justify-content:center; flex-wrap:wrap; gap:1.5rem; }
 .social-links a { padding:.5rem; }
+.home-content .page-actions { margin-bottom:.5rem; }
+.home-content .social-links { justify-content:flex-start; gap:.75rem; }
 @media (max-width:991px) { .site-nav { gap:.75rem; } .site-menu { gap:.8rem; } .site-brand { font-size:1.1rem; } }
 @media (max-width:767px) {
   .site-nav { padding-block:1rem; }

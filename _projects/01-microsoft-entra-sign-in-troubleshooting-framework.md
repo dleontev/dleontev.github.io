@@ -4,7 +4,7 @@ order: 1
 status: In progress
 tools: [Microsoft Entra, Identity, Troubleshooting]
 article: /blog/entra-sign-in-troubleshooting-framework
-description: A practical, evidence-first framework for investigating sign-in issues across identity, authentication, Conditional Access, device state, and applications.
+description: A published triage method for narrowing sign-in failures across identity, access policy, devices, and applications. Checklists and helpers are in development.
 permalink: /projects/entra-sign-in-troubleshooting-framework/
 ---
 

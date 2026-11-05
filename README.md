@@ -37,7 +37,7 @@ The workflow uses pinned actions and locked Ruby/npm dependencies. Dependabot pr
 - About: `pages/about.md`.
 - Skills: `_data/skills.yml`; each category has the existing homepage wording and, when applicable, its longer About wording. `_includes/skills.html` renders semantic rows on both pages.
 - Posts: `_posts/YYYY-MM-DD-slug.md`. Supply `title`, `description`, and a `tags` array. The layout supplies h1/date/tags; use h2 for major sections.
-- Projects: `_projects/`. Supply `title`, `order`, `description`, `status`, `tools`, and `permalink`. Set `article` to the article's canonical site-relative URL (for example, `/blog/entra-sign-in-troubleshooting-framework`) when material is available. Current and planned work are grouped separately, and available articles receive direct links.
+- Projects: `_projects/`. Supply `title`, `order`, `description`, `status`, `tools`, and `permalink`. The index groups `Deployed`, `In progress`, and `Planned` projects by status and lists selected published guides separately. Set `article` to the article's canonical site-relative URL (for example, `/blog/entra-sign-in-troubleshooting-framework`) to link a project to its supporting material.
 - Navigation: `_data/navigation.yml`. Home uses an exact URL match; section ancestry is visually marked separately from `aria-current="page"`.
 - Every content page has an explicit title. Project sorting prefixes must never become browser or social-preview titles.
 - Generate internal links with Jekyll `post_url` and `link` tags. Preserve published permalinks or provide redirects.
@@ -46,7 +46,7 @@ Article URLs intentionally have no trailing slash. Other existing routes retain 
 
 ## Structured identity data
 
-`_includes/structured-data.html` emits one JSON-LD graph on indexable HTML pages. The stable `/#person` identity connects the website publisher, article author, project creator, and About profile. Name, job title, image, and professional profile handles come from `_config.yml`; keep them consistent with the visible biography. About declares `schema_type: ProfilePage` in front matter.
+`_includes/structured-data.html` emits one JSON-LD graph on indexable HTML pages. The stable `/#person` identity connects the website publisher, article author, project creator, and About profile. Name, current employment title, image, and professional profile handles come from `_config.yml`. Keep the employment title consistent with the visible biography when changing the portfolio headline. About declares `schema_type: ProfilePage` in front matter.
 
 Home and About include skills and credentials from the same YAML records used for their visible content. Credential URLs link to the existing issuer verification pages. Articles use their publication dates; projects retain their actual status as `CreativeWork` records. Do not infer employment history, credential validity dates, completed software, or modification dates from a build. The 404 and legacy redirect pages intentionally omit structured data.
 

@@ -82,7 +82,17 @@ test('source certification links and every skill remain available',async({page})
   await page.goto('/about/'); expect((await page.locator('.certification-list a').evaluateAll(nodes=>nodes.map(e=>e.href))).sort()).toEqual(data.certifications.map(c=>c.verification_url).sort());
 });
 test('project cards link directly to available material',async({page})=>{
-  await page.goto('/projects/'); await expect(page.getByRole('heading',{name:'Current work',exact:true})).toBeVisible();
+  await page.goto('/projects/');
+  const sections = {'Deployed':'Deployed projects','In progress':'In-progress projects','Planned':'Planned projects'};
+  const projects = data.pages.filter(p=>p.collection==='projects');
+  await expect(page.locator('.project-summary')).toHaveCount(projects.length);
+  for (const [status, heading] of Object.entries(sections)) {
+    const section = page.getByRole('region',{name:heading,exact:true});
+    const urls = await section.locator('.project-summary h3 a').evaluateAll(links=>links.map(link=>link.getAttribute('href')));
+    expect(urls.sort()).toEqual(projects.filter(p=>p.status===status).map(p=>p.url).sort());
+  }
+  const guides = page.getByRole('region',{name:'Published guides',exact:true});
+  await expect(guides.getByRole('link',{name:'CCNA lab practice and study notes'})).toHaveAttribute('href','/blog/ccna-ocg');
   const current=data.pages.filter(p=>p.article);
   for(const target of current) {
     const card=page.locator('.project-summary').filter({has:page.getByRole('heading',{name:target.title,exact:true})});
@@ -126,18 +136,23 @@ test('content, Home and contents remain available without JavaScript',async({bro
   await page.locator('.article-toc summary').click(); await expect(page.locator('.article-toc nav')).toBeVisible(); await context.close();
 });
 
-test('message trace examples scroll by keyboard without JavaScript',async({browser})=>{
+test('message trace and release commands scroll by keyboard without JavaScript',async({browser})=>{
   const context=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
   try {
     const page=await context.newPage();
-    await page.goto('http://127.0.0.1:4000/blog/where-did-the-email-go-troubleshooting-exchange-online-with-message-trace');
-    const examples=page.locator('.language-powershell pre');
-    await expect(examples).toHaveCount(4);
-    const example=examples.first();
-    await expect(example).toHaveAccessibleName('Code example');
-    expect(await example.evaluate(el=>el.scrollWidth>el.clientWidth)).toBe(true);
-    await example.focus(); await expect(example).toBeFocused();
-    await page.keyboard.press('ArrowRight');
-    await expect.poll(()=>example.evaluate(el=>el.scrollLeft)).toBeGreaterThan(0);
+    for (const [route,count] of [
+      ['/blog/where-did-the-email-go-troubleshooting-exchange-online-with-message-trace',4],
+      ['/projects/pomodoro-timer/',1],
+    ]) {
+      await page.goto('http://127.0.0.1:4000'+route);
+      const examples=page.locator('.language-powershell pre');
+      await expect(examples).toHaveCount(count);
+      const example=examples.first();
+      await expect(example).toHaveAccessibleName('Code example');
+      expect(await example.evaluate(el=>el.scrollWidth>el.clientWidth)).toBe(true);
+      await example.focus(); await expect(example).toBeFocused();
+      await page.keyboard.press('ArrowRight');
+      await expect.poll(()=>example.evaluate(el=>el.scrollLeft)).toBeGreaterThan(0);
+    }
   } finally { await context.close(); }
 });
