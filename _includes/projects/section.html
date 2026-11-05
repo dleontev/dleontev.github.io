@@ -1,13 +1,9 @@
-{% assign ordered = site.projects | sort: 'order' %}
-{% assign sections = 'Current work|Planned projects' | split: '|' %}
-{% for section in sections %}
-<section aria-labelledby="{{ section | slugify }}">
-  <h2 id="{{ section | slugify }}">{{ section }}</h2>
-  <div class="project-grid{% if forloop.first %} project-grid--current{% endif %}">
-  {% for project in ordered %}
-    {% assign planned = false %}{% if project.status == 'Planned' %}{% assign planned = true %}{% endif %}
-    {% if forloop.parentloop.first and planned %}{% continue %}{% endif %}
-    {% unless forloop.parentloop.first or planned %}{% continue %}{% endunless %}
+{% assign projects = site.projects | where: 'status', include.status | sort: 'order' %}
+{% if projects.size > 0 %}
+<section aria-labelledby="{{ include.anchor | escape }}">
+  <h2 id="{{ include.anchor | escape }}">{{ include.heading | escape }}</h2>
+  <div class="project-grid{% unless include.status == 'Planned' %} project-grid--current{% endunless %}">
+  {% for project in projects %}
     <article class="project-summary">
       <p class="project-status">{{ project.status | escape }}</p>
       <h3><a href="{{ project.url | relative_url }}">{{ project.title | escape }}</a></h3>
@@ -17,9 +13,9 @@
         {% if article %}<p><a href="{{ article.url | relative_url }}">Read the initial article</a></p>{% endif %}
       {% elsif project.demo_url or project.source_url %}
       <p>{% if project.demo_url %}<a href="{{ project.demo_url | escape }}" aria-label="Open {{ project.title | escape }} live application">Open live app</a>{% endif %}{% if project.demo_url and project.source_url %}<br>{% endif %}{% if project.source_url %}<a href="{{ project.source_url | escape }}" aria-label="View {{ project.title | escape }} source on GitHub">View source on GitHub</a>{% endif %}</p>
-      {% else %}<p class="availability">Scope available; resources planned</p>{% endif %}
+      {% else %}<p class="availability">Project scope available</p>{% endif %}
     </article>
   {% endfor %}
   </div>
 </section>
-{% endfor %}
+{% endif %}

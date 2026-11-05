@@ -2,30 +2,28 @@
 title: "Pomodoro Timer: Controlled Releases on Azure"
 order: 0
 status: Deployed
-tools: [Node.js 24 LTS, Express 5, GitHub Actions, Azure App Service, OIDC, Release verification]
-description: "An Azure release case study: verified source artifacts, staging, owner approval, separate OIDC identities, slot promotion, and deployment troubleshooting."
+tools: [Azure App Service, GitHub Actions, Deployment slots, OpenID Connect, Release verification]
+description: "A personal Azure deployment with staging checks, separate deployment identities, owner approval, and verification of the exact release served in production."
 permalink: /projects/pomodoro-timer/
 demo_url: https://pomodoro.dleontev.com/
 source_url: https://github.com/dleontev/pomodoro
-last_modified_at: "2026-10-23"
+last_modified_at: "2026-11-03"
 ---
 # Pomodoro Timer: Controlled Releases on Azure
 
-**Status:** Deployed · Personal project · Evidence reviewed October 23, 2026
+**Status:** Deployed · Personal project
 
-A small timer became an opportunity to work through a larger operational question: how can I release a change, know what reached production, and recover an earlier version?
-
-The first deployment connected a Node.js application to Azure App Service and a custom domain. The current release process adds staging, an explicit production approval, separate deployment identities, and checks that compare the served application with the prepared release.
+I used a small timer app to work through a release problem. I wanted to test a change before it reached users, confirm exactly what production was serving, and have a way to recover an earlier version.
 
 ## Project at a glance
 
 | Area | What this project demonstrates |
 | --- | --- |
 | Problem | Release changes without sending an unverified package straight to the public app. |
-| My contribution | Configured the hosting, repository connection, and custom DNS; approve production releases. Codex assisted with application implementation, release tooling, tests, and documentation. |
-| Key decisions | Keep the app small; package a known commit; verify staging; approve and swap; verify production. |
-| Recorded result | The reviewed release passed 70 Linux tests, completed staging checks, received owner approval, and passed production verification. |
-| Current evidence | The public release marker matched commit `6f78f67` when checked on October 23. |
+| My contribution | I configured the hosting, repository connection, and custom DNS. The release record shows my production approval. |
+| AI assistance | Codex assisted with the application, release tooling, tests, and documentation. |
+| Release approach | Package a known commit, check it in a staging slot, approve the swap, and compare the production files with the package. Separate OpenID Connect (OIDC) identities handle staging and promotion. |
+| Verified result | The [recorded release](https://github.com/dleontev/pomodoro/actions/runs/39685922391) passed staging and production verification. The live health endpoint returned OK and the version marker still matched commit `6f78f67` on November 3, 2026. |
 
 [Open the live timer](https://pomodoro.dleontev.com/) · [View the source](https://github.com/dleontev/pomodoro) · [Read the release guide](https://github.com/dleontev/pomodoro/blob/6f78f67ef67db690061a217ef31efd18bcecff30/docs/development-deployment.md)
 
@@ -37,16 +35,6 @@ The first deployment connected a Node.js application to Azure App Service and a 
 {:toc}
 </nav>
 </details>
-
-## Keep the application small
-
-Node.js 24 LTS and Express 5 serve a vanilla HTML, CSS, and JavaScript frontend. Express is the only direct dependency. The browser owns the timer, preferences, and audio; the server serves public files and exposes `/health`. There is no database or account system.
-
-The latest interface supports custom session lengths, optional session switching and automatic starts, separate ambient and notification audio, and recovery after a reload. The timer uses an absolute deadline to catch up after delayed callbacks. If a session is discovered more than five seconds late or expired on reload, it records completion once and waits for Start instead of racing through unseen cycles.
-
-Timer state is per tab, while preferences persist in the browser. That keeps hosting straightforward and makes the application useful for testing deployment changes.
-
-{% include elements/figure.html image="/assets/projects/pomodoro/pomodoro-desktop-2026-10-23.jpg" width="1425" height="1341" loading="eager" alt="The live Pomodoro timer with focus and break modes, optional session switching and automatic starts, separate ambient and notification sound controls, and session-length settings." caption="The live interface on October 23, 2026, shown with saved session and audio preferences." %}
 
 ## Promote a verified release through staging
 
@@ -120,6 +108,12 @@ Immediately after a swap, the previous production application remains in `dev`. 
 For an older release, the workflow accepts a `rollback_run_id`. It checks that the selected run is a successful release from this repository's `main` history, downloads its retained source artifact, and verifies the package. The normal staging, approval, swap, and production checks then follow.
 
 Artifact recovery depends on the 90-day retention window. Redeploying retained source runs dependency installation in staging again. If the artifact has expired, a reviewed revert can produce a new release from Git history. A failed production check fails the workflow; it does not trigger an automatic rollback.
+
+## Keep the application small
+
+Node.js 24 LTS and Express 5 serve the HTML, CSS, JavaScript, and `/health` endpoint. The browser handles timer state, preferences, and audio. An absolute deadline lets the timer recover after delayed callbacks or a reload. The hosting stays simple so the case study can focus on deployment behavior.
+
+{% include elements/figure.html image="/assets/projects/pomodoro/pomodoro-desktop-2026-10-23.jpg" width="1425" height="1341" alt="The Pomodoro timer with focus and break modes, automatic starts, audio controls, and session lengths." caption="The live interface on October 23, 2026, shown with saved session and audio preferences." %}
 
 ## Reproduce the local checks
 
