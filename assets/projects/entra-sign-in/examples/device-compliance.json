@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "synthetic": true,
+  "eventMatch": "matched",
+  "signInResult": "failed",
+  "accountState": "enabled",
+  "authentication": "mfaSatisfied",
+  "conditionalAccess": "enforcedFailure",
+  "failedControl": "compliantDevice",
+  "deviceCompliance": "noncompliant"
+}

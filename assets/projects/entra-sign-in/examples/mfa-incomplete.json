@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "synthetic": true,
+  "eventMatch": "matched",
+  "signInResult": "interrupted",
+  "accountState": "enabled",
+  "authentication": "mfaIncomplete",
+  "conditionalAccess": "notApplied"
+}

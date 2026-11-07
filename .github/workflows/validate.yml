@@ -26,6 +26,9 @@ jobs:
         with:
           node-version: '22'
           cache: npm
+      - name: Test offline Entra sign-in triage
+        shell: pwsh
+        run: ./scripts/test-entra-sign-in-triage.ps1
       - name: Check build guards and resolved routing
         run: bundle exec ruby scripts/test-build.rb
       - name: Build once

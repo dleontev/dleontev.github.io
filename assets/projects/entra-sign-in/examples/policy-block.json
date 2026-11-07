@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "synthetic": true,
+  "eventMatch": "matched",
+  "signInResult": "failed",
+  "conditionalAccess": "enforcedFailure",
+  "failedControl": "other"
+}
