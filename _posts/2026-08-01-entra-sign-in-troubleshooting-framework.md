@@ -9,7 +9,7 @@ A sign-in problem can look simple from the outside. A user enters a password, re
 
 That is why effective identity troubleshooting should begin with evidence, not assumptions.
 
-This article introduces the framework I am building for investigating Microsoft Entra sign-in issues in a structured, repeatable, and user-centered way. This first version focuses on the overall method. I will expand it with sanitized lab examples, decision trees, and troubleshooting checklists as the project develops.
+This article explains the method behind the Microsoft Entra sign-in troubleshooting framework. The companion toolkit provides the checklist, forms, worked cases, and an offline PowerShell helper. [Open the toolkit]({% link _projects/01-microsoft-entra-sign-in-troubleshooting-framework.md %})
 
 <details class="article-toc" markdown="1">
 <summary>On this page</summary>
@@ -116,17 +116,9 @@ The final record should capture:
 
 A recurring incident is usually a documentation, monitoring, configuration, or product-feedback opportunity.
 
-## What I Plan to Add Next
+## Put the framework into practice
 
-I will expand this project with practical, sanitized resources, including:
-
-- A Microsoft Entra sign-in triage checklist
-- A decision tree for common failure categories
-- A Conditional Access investigation worksheet
-- A guide to separating MFA, device, application, and policy failures
-- A sanitized escalation template with the evidence engineering teams need
-- Lab examples covering enterprise applications, SSO, hybrid identity, and device state
-- A PowerShell or Microsoft Graph helper for collecting limited troubleshooting context safely
+Work through the device compliance case in the toolkit to see how the same evidence informs the Conditional Access worksheet, the escalation, and the recovery check. The examples use synthetic sign-in records. [Open the worked case]({% link _projects/01-microsoft-entra-sign-in-troubleshooting-framework.md %}#worked-case--a-device-requirement-blocks-access)
 
 ## Security and Privacy Principles
 
@@ -137,5 +129,3 @@ Public examples on this site will use mock or sanitized data. They will not incl
 ## Final Thoughts
 
 The most useful identity troubleshooting process is not the one with the longest checklist. It is the one that helps an engineer move from a vague report to a supported conclusion while protecting the user, the organization, and the security controls already in place.
-
-This article is the first version of that process. I will continue refining it as I build additional Microsoft Entra labs, tools, and documentation.
