@@ -83,13 +83,16 @@ test('source certification links and every skill remain available',async({page})
 });
 test('project cards link directly to available material',async({page})=>{
   await page.goto('/projects/');
-  const sections = {'Deployed':'Deployed projects','In progress':'In-progress projects','Planned':'Planned projects'};
+  const sections = {'Deployed':'Deployed projects','Published':'Published toolkits','In progress':'In-progress projects','Planned':'Planned projects'};
   const projects = data.pages.filter(p=>p.collection==='projects');
   await expect(page.locator('.project-summary')).toHaveCount(projects.length);
   for (const [status, heading] of Object.entries(sections)) {
     const section = page.getByRole('region',{name:heading,exact:true});
+    const expected = projects.filter(p=>p.status===status).map(p=>p.url).sort();
+    await expect(section).toHaveCount(expected.length ? 1 : 0);
+    if (!expected.length) continue;
     const urls = await section.locator('.project-summary h3 a').evaluateAll(links=>links.map(link=>link.getAttribute('href')));
-    expect(urls.sort()).toEqual(projects.filter(p=>p.status===status).map(p=>p.url).sort());
+    expect(urls.sort()).toEqual(expected);
   }
   const guides = page.getByRole('region',{name:'Published guides',exact:true});
   await expect(guides.getByRole('link',{name:'CCNA lab practice and study notes'})).toHaveAttribute('href','/blog/ccna-ocg');

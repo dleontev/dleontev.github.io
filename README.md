@@ -5,9 +5,11 @@ Static Jekyll 4 portfolio at https://dleontev.com. The Gemfile selects Jekyll 4.
 ## Preview and validate
 
 Use Ruby 3.3 or 3.4, Bundler 2.6.3, and Node.js 22. Windows Ruby installations need the matching RubyInstaller Devkit for native gems.
+The offline Entra helper check runs in PowerShell 7 in CI. You can also run that script in Windows PowerShell 5.1.
 
 ```sh
 bundle install
+pwsh -NoProfile -File ./scripts/test-entra-sign-in-triage.ps1
 bundle exec ruby scripts/test-build.rb
 bundle exec jekyll build
 bundle exec ruby scripts/validate.rb
@@ -37,7 +39,7 @@ The workflow uses pinned actions and locked Ruby/npm dependencies. Dependabot pr
 - About: `pages/about.md`.
 - Skills: `_data/skills.yml`; each category has the existing homepage wording and, when applicable, its longer About wording. `_includes/skills.html` renders semantic rows on both pages.
 - Posts: `_posts/YYYY-MM-DD-slug.md`. Supply `title`, `description`, and a `tags` array. The layout supplies h1/date/tags; use h2 for major sections.
-- Projects: `_projects/`. Supply `title`, `order`, `description`, `status`, `tools`, and `permalink`. The index groups `Deployed`, `In progress`, and `Planned` projects by status and lists selected published guides separately. Set `article` to the article's canonical site-relative URL (for example, `/blog/entra-sign-in-troubleshooting-framework`) to link a project to its supporting material.
+- Projects: `_projects/`. Supply `title`, `order`, `description`, `status`, `tools`, and `permalink`. The index groups `Deployed`, `Published`, `In progress`, and `Planned` projects by status and lists selected published guides separately. Set `article` to the article's canonical site-relative URL (for example, `/blog/entra-sign-in-troubleshooting-framework`) to link a project to its supporting material.
 - Navigation: `_data/navigation.yml`. Home uses an exact URL match; section ancestry is visually marked separately from `aria-current="page"`.
 - Every content page has an explicit title. Project sorting prefixes must never become browser or social-preview titles.
 - Generate internal links with Jekyll `post_url` and `link` tags. Preserve published permalinks or provide redirects.
