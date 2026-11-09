@@ -1,4 +1,4 @@
-# Systems & Infrastructure Administrator
+# Systems and Network Administrator
 
 I'm Dimitriy, a Network Administrator in public-sector IT. I support networks, servers, cloud services, and the devices staff rely on. I trace problems across those systems, plan changes with security and reliability in mind, and automate repeatable tasks so colleagues can run them confidently.
 

@@ -4,12 +4,12 @@ schema_type: ProfilePage
 title: About
 permalink: /about/
 weight: 3
-description: "Dimitriy Leontev's background in public-sector network administration, Windows systems, IT operations, and automation, with verified certifications."
+description: "Dimitriy Leontev's background in public-sector systems and network administration, graduate study at UW Bothell, and professional certifications."
 ---
 
 # About
 
-I'm a Network Administrator at Everett Housing Authority. I joined the agency as a Computer Services Technician after supporting Boeing users as an IT Support Technician at Dell Technologies. Moving from frontline support into network administration gave me a view of infrastructure from both sides of a support ticket.
+I'm a Network Administrator at Everett Housing Authority. I joined the agency as an IT Support Specialist after supporting Boeing users as an IT Support Technician at Dell Technologies. Moving from frontline support into network administration gave me a view of infrastructure from both sides of a support ticket.
 
 ## How I work
 {: #how-i-approach-it}
@@ -21,7 +21,9 @@ For changes, I think through who may be affected, how we’ll check that the ser
 ## Education and interests
 {: #professional-focus}
 
-I earned my computer science degree at the University of Washington Bothell. I'm building on my day-to-day administration work through personal projects in release automation, verification, and recovery planning. My [projects]({% link pages/projects.html %}) and [technical articles]({% link pages/blog.html %}) use personal, lab, or sanitized examples.
+I earned my computer science degree at the University of Washington Bothell, where I'm now pursuing a Master of Science in Computer Science & Software Engineering. I'm also working toward additional professional certifications.
+
+I'm building on my day-to-day administration work through personal projects in release automation, verification, and recovery planning. My [projects]({% link pages/projects.html %}) and [technical articles]({% link pages/blog.html %}) use personal, lab, or sanitized examples.
 
 ## Technical skills
 {: #what-i-work-on}
