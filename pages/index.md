@@ -1,9 +1,9 @@
 ---
 layout: page
 home: true
-title: "Dimitriy Leontev | Systems & Infrastructure Administrator"
+title: "Dimitriy Leontev | Systems and Network Administrator"
 permalink: /
-description: "Dimitriy Leontev is a Systems & Infrastructure Administrator working across networks, Windows systems, cloud services, and IT automation."
+description: "Dimitriy Leontev is a Systems and Network Administrator working across networks, Windows and Linux systems, cloud services, and IT automation."
 ---
 
 {% include bio.md %}
