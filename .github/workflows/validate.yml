@@ -32,7 +32,9 @@ jobs:
       - name: Test offline Microsoft 365 incident triage toolkit
         shell: pwsh
         run: |
-          ./tools/microsoft-365-incident-triage-toolkit/tests/Test-M365IncidentTriage.ps1
+          # Isolate expected failure cases from the workflow host's exit code.
+          pwsh -NoProfile -File ./tools/microsoft-365-incident-triage-toolkit/tests/Test-M365IncidentTriage.ps1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           ./scripts/package-triage-toolkit.ps1 -Check
       - name: Check build guards and resolved routing
         run: bundle exec ruby scripts/test-build.rb
