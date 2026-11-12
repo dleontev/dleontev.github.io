@@ -1,0 +1,10 @@
+---
+layout: null
+sitemap: false
+---
+# Public content is open to search, assistant retrieval, and training crawlers.
+# Utility pages remain crawlable so their noindex directives can be read.
+User-agent: *
+Allow: /
+
+Sitemap: {{ '/sitemap.xml' | absolute_url }}

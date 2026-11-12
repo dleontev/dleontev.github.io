@@ -4,8 +4,8 @@ description: 'Build a read-only PowerShell toolkit that captures Microsoft 365 s
 tags: [Microsoft 365, PowerShell, Microsoft Graph, IT Operations]
 related_project: /projects/microsoft-365-support-operations-toolkit/
 related_posts:
-  - /2026/08/27/microsoft-365-service-ownership-framework
-  - /2026/08/01/entra-sign-in-troubleshooting-framework
+  - /blog/microsoft-365-service-ownership-framework
+  - /blog/entra-sign-in-troubleshooting-framework
 ---
 
 A user reports that Outlook is slow. A second ticket mentions Teams. Someone asks whether Microsoft has an incident open, while another person starts checking the network.

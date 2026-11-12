@@ -1,16 +1,41 @@
-title: "Dimitriy Leontev | Microsoft 365, Systems & Cloud"
-description: "Practical Microsoft 365, identity, systems, and cloud operations projects and articles by Dimitriy Leontev."
+title: "Dimitriy Leontev | Systems and Network Administrator"
+description: "Infrastructure projects and technical guides by Dimitriy Leontev, covering systems and network administration, Azure deployments, and PowerShell automation."
 url: "https://dleontev.com"
 baseurl: ""
 repository: dleontev/dleontev.github.io
 social_image: /assets/profile-social.png
 open_new_tab: false
+
+# Rendering defaults previously supplied by the github-pages gem.
+theme: null
+markdown: kramdown
+highlighter: rouge
+strict_front_matter: true
+liquid:
+  error_mode: strict
+  strict_filters: true
+  strict_variables: false
+future: true
+kramdown:
+  input: GFM
+  hard_wrap: false
+  gfm_quirks: [paragraph_end]
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    default_lang: plaintext
+sass:
+  style: compressed
+  sourcemap: never
+
 plugins:
   - jekyll-default-layout
   - jekyll-optional-front-matter
+  - jekyll-github-metadata
   - jemoji
+  - jekyll-feed
 author:
   name: Dimitriy Leontev
+  job_title: Network Administrator
   image: /assets/profile-social.png
   email: info@dleontev.com
   github: dleontev

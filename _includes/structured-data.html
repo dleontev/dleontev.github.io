@@ -1,0 +1,97 @@
+{% unless page.noindex %}
+{% assign schema_url = page.canonical_url | default: page.url | replace: 'index.html', '' | absolute_url %}
+{% assign schema_home = '/' | absolute_url %}
+{% assign schema_person = schema_home | append: '#person' %}
+{% assign schema_website = schema_home | append: '#website' %}
+{% assign schema_page = schema_url | append: '#webpage' %}
+{% assign schema_profile = '/about/' | absolute_url %}
+{% assign schema_type = page.schema_type | default: 'WebPage' %}
+{% assign schema_is_profile = false %}
+{% if page.home or schema_type == 'ProfilePage' %}{% assign schema_is_profile = true %}{% endif %}
+{% capture structured_data %}
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": {{ schema_person | jsonify }},
+      "name": {{ site.author.name | jsonify }},
+      "alternateName": {{ site.author.github | jsonify }},
+      "url": {{ schema_profile | jsonify }},
+      "jobTitle": {{ site.author.job_title | jsonify }},
+      "image": {{ site.author.image | absolute_url | jsonify }},
+      "sameAs": [
+        {{ site.data.social-media.github.url | append: site.author.github | jsonify }},
+        {{ site.data.social-media.linkedin.url | append: site.author.linkedin | jsonify }}
+      ]{% if schema_is_profile %},
+      "knowsAbout": [
+        {% for skill in site.data.skills %}
+        {{ skill.category | append: ': ' | append: skill.home | jsonify }}{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ],
+      "hasCredential": [
+        {% for cert in site.data.certifications %}
+        {
+          "@type": "EducationalOccupationalCredential",
+          "@id": {{ cert.verification_url | append: '#credential' | jsonify }},
+          "name": {{ cert.title | jsonify }},
+          "credentialCategory": "Certification",
+          "url": {{ cert.verification_url | jsonify }},
+          "recognizedBy": { "@type": "Organization", "name": {{ cert.issuer | jsonify }} }
+        }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]{% endif %}
+    },
+    {
+      "@type": "WebSite",
+      "@id": {{ schema_website | jsonify }},
+      "url": {{ schema_home | jsonify }},
+      "name": {{ site.title | jsonify }},
+      "description": {{ site.description | jsonify }},
+      "inLanguage": "en",
+      "publisher": { "@id": {{ schema_person | jsonify }} }
+    },
+    {
+      "@type": {{ schema_type | jsonify }},
+      "@id": {{ schema_page | jsonify }},
+      "url": {{ schema_url | jsonify }},
+      "name": {{ page.title | default: site.title | jsonify }},
+      "description": {{ page.description | default: site.description | strip_html | strip_newlines | jsonify }},
+      "inLanguage": "en",
+      "isPartOf": { "@id": {{ schema_website | jsonify }} }{% if schema_is_profile %},
+      "mainEntity": { "@id": {{ schema_person | jsonify }} }{% elsif page.collection == 'posts' %},
+      "mainEntity": { "@id": {{ schema_url | append: '#article' | jsonify }} }{% elsif page.collection == 'projects' %},
+      "mainEntity": { "@id": {{ schema_url | append: '#project' | jsonify }} }{% endif %}
+    }{% if page.collection == 'posts' %},
+    {
+      "@type": "BlogPosting",
+      "@id": {{ schema_url | append: '#article' | jsonify }},
+      "url": {{ schema_url | jsonify }},
+      "headline": {{ page.title | jsonify }},
+      "description": {{ page.description | strip_html | strip_newlines | jsonify }},
+      "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+      "inLanguage": "en",
+      "keywords": {{ page.tags | jsonify }},
+      "author": { "@id": {{ schema_person | jsonify }} },
+      "publisher": { "@id": {{ schema_person | jsonify }} },
+      "mainEntityOfPage": { "@id": {{ schema_page | jsonify }} },
+      "isPartOf": { "@id": {{ schema_website | jsonify }} }
+    }{% elsif page.collection == 'projects' %},
+    {
+      "@type": "CreativeWork",
+      "@id": {{ schema_url | append: '#project' | jsonify }},
+      "url": {{ schema_url | jsonify }},
+      "name": {{ page.title | jsonify }},
+      "description": {{ page.description | jsonify }},
+      "creativeWorkStatus": {{ page.status | jsonify }},
+      "keywords": {{ page.tools | jsonify }},
+      "inLanguage": "en",
+      "creator": { "@id": {{ schema_person | jsonify }} },
+      "mainEntityOfPage": { "@id": {{ schema_page | jsonify }} },
+      "isPartOf": { "@id": {{ schema_website | jsonify }} }
+    }{% endif %}
+  ]
+}
+{% endcapture %}
+<script type="application/ld+json">{{ structured_data | strip | replace: '<', '\u003c' }}</script>
+{% endunless %}

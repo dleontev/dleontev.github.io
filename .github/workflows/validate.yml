@@ -1,6 +1,7 @@
 name: Validate and deploy site
 on:
   push:
+    branches: [main]
   pull_request:
   workflow_dispatch:
 permissions:
@@ -25,10 +26,22 @@ jobs:
         with:
           node-version: '22'
           cache: npm
+      - name: Test offline Entra sign-in triage
+        shell: pwsh
+        run: ./scripts/test-entra-sign-in-triage.ps1
+      - name: Test offline Microsoft 365 incident triage toolkit
+        shell: pwsh
+        run: |
+          ./tools/microsoft-365-incident-triage-toolkit/tests/Test-M365IncidentTriage.ps1
+          ./scripts/package-triage-toolkit.ps1 -Check
+      - name: Check build guards and resolved routing
+        run: bundle exec ruby scripts/test-build.rb
       - name: Build once
         env:
           JEKYLL_ENV: production
-        run: bundle exec jekyll build --trace
+        run: |
+          bundle exec jekyll --version
+          bundle exec jekyll build --trace
       - name: Validate generated content and generate test expectations
         run: bundle exec ruby scripts/validate.rb
       - name: Install browser checks

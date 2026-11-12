@@ -55,7 +55,7 @@ test('mobile menu and changing theme action work by keyboard and persist',async(
 });
 test('search separates results from the archive and clears without losing focus',async({page})=>{
   await page.goto('/blog/'); const field=page.getByRole('searchbox',{name:'Search articles'}); await expect(field).toBeEnabled();
-  const query=data.pages.find(p=>p.tags?.length).title;
+  const query=data.pages.find(p=>p.collection==='posts' && p.tags?.length).title;
   await field.fill(query); await expect(page.locator('#results-container a')).toHaveCount(1); await expect(page.locator('#results-container p')).not.toBeEmpty();
   await field.fill('zzzz-no-match'); await expect(page.getByRole('status')).toContainText('No matching articles');
   await expect(page.getByRole('heading',{name:'All articles',exact:true})).toBeVisible();
@@ -64,7 +64,7 @@ test('search separates results from the archive and clears without losing focus'
 test('failed and malformed search can retry while browsing remains available',async({page})=>{
   let requests=0; await page.route('**/search.json',route=>{requests++; return requests===1 ? route.fulfill({status:503,body:'Unavailable'}) : route.continue();});
   await page.goto('/blog/'); await expect(page.getByRole('status')).toContainText('Search is unavailable');
-  await expect(page.locator('.article-card')).toHaveCount(data.pages.filter(p=>p.tags).length);
+  await expect(page.locator('.article-card')).toHaveCount(data.pages.filter(p=>p.collection==='posts').length);
   await page.getByRole('button',{name:'Retry search'}).click(); await expect(page.getByRole('searchbox')).toBeEnabled();
   await page.route('**/search.json',route=>route.fulfill({contentType:'application/json',body:'[{"title":"bad"}]'}));
   await page.reload(); await expect(page.getByRole('status')).toContainText('Search is unavailable');
@@ -72,7 +72,7 @@ test('failed and malformed search can retry while browsing remains available',as
 test('slow search stops loading and offers retry',async({page})=>{
   await page.route('**/search.json',()=>new Promise(()=>{})); await page.goto('/blog/');
   await expect(page.getByRole('button',{name:'Retry search'})).toBeVisible({timeout:12000});
-  await expect(page.locator('.article-card')).toHaveCount(data.pages.filter(p=>p.tags).length);
+  await expect(page.locator('.article-card')).toHaveCount(data.pages.filter(p=>p.collection==='posts').length);
 });
 test('source certification links and every skill remain available',async({page})=>{
   await page.setViewportSize({width:320,height:740}); await page.goto('/');
@@ -82,14 +82,37 @@ test('source certification links and every skill remain available',async({page})
   await page.goto('/about/'); expect((await page.locator('.certification-list a').evaluateAll(nodes=>nodes.map(e=>e.href))).sort()).toEqual(data.certifications.map(c=>c.verification_url).sort());
 });
 test('project cards link directly to available material',async({page})=>{
-  await page.goto('/projects/'); await expect(page.getByRole('heading',{name:'Current work',exact:true})).toBeVisible();
+  await page.goto('/projects/');
+  const sections = {'Deployed':'Deployed projects','Published':'Published toolkits','In progress':'In-progress projects','Planned':'Planned projects'};
+  const projects = data.pages.filter(p=>p.collection==='projects');
+  await expect(page.locator('.project-summary')).toHaveCount(projects.length);
+  for (const [status, heading] of Object.entries(sections)) {
+    const section = page.getByRole('region',{name:heading,exact:true});
+    const expected = projects.filter(p=>p.status===status).map(p=>p.url).sort();
+    await expect(section).toHaveCount(expected.length ? 1 : 0);
+    if (!expected.length) continue;
+    const urls = await section.locator('.project-summary h3 a').evaluateAll(links=>links.map(link=>link.getAttribute('href')));
+    expect(urls.sort()).toEqual(expected);
+  }
+  const guides = page.getByRole('region',{name:'Published guides',exact:true});
+  await expect(guides.getByRole('link',{name:'CCNA lab practice and study notes'})).toHaveAttribute('href','/blog/ccna-ocg');
   const current=data.pages.filter(p=>p.article);
   for(const target of current) {
     const card=page.locator('.project-summary').filter({has:page.getByRole('heading',{name:target.title,exact:true})});
     const url=await card.getByRole('link',{name:'Read the initial article'}).getAttribute('href');
-    expect(data.pages.some(p=>p.url===url && p.tags)).toBe(true);
+    expect(url).toBe(target.article);
   }
   await page.goto(current[0].url); await page.getByRole('link',{name:'All projects',exact:true}).click(); await expect(page).toHaveURL(/\/projects\/$/);
+  for(const target of data.pages.filter(p=>p.collection==='posts')) {
+    await page.goto(target.url);
+    const related=page.locator('.related-reading');
+    const urls=await related.locator('li a').evaluateAll(links=>links.map(link=>link.getAttribute('href')));
+    expect(urls.length).toBeLessThanOrEqual(3);
+    expect(new Set(urls).size).toBe(urls.length);
+    expect(urls).not.toContain(target.url);
+    expect(urls.slice(0,target.related_posts.length)).toEqual(target.related_posts);
+    if(target.related_project) await expect(related.getByRole('link',{name:'Explore the related project'})).toHaveAttribute('href',target.related_project);
+  }
 });
 test('mobile contents disclose and focus their target, with a back-to-top link',async({page})=>{
   await page.setViewportSize({width:390,height:844}); await page.goto('/blog/ccna-ocg');
@@ -100,10 +123,44 @@ test('mobile contents disclose and focus their target, with a back-to-top link',
   expect(await page.locator('.related-reading li').count()).toBeLessThanOrEqual(3);
 });
 test('legacy redirects still reach their destination',async({page})=>{
-  for(const target of data.redirects){ await page.goto(target.url); await expect(page).toHaveURL('http://127.0.0.1:4000'+target.target); }
+  for(const target of data.redirects){ await page.goto(target.url+'#skills'); await expect(page).toHaveURL('http://127.0.0.1:4000'+target.target+'#skills'); }
+});
+
+test('legacy redirects work without JavaScript',async({browser})=>{
+  const context=await browser.newContext({javaScriptEnabled:false});
+  try {
+    const page=await context.newPage();
+    for(const target of data.redirects){ await page.goto('http://127.0.0.1:4000'+target.url); await expect(page).toHaveURL('http://127.0.0.1:4000'+target.target); }
+  } finally { await context.close(); }
 });
 test('content, Home and contents remain available without JavaScript',async({browser})=>{
   const context=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}}); const page=await context.newPage();
   await page.goto('http://127.0.0.1:4000/blog/ccna-ocg'); await expect(page.getByRole('link',{name:'Home',exact:true})).toBeVisible();
   await page.locator('.article-toc summary').click(); await expect(page.locator('.article-toc nav')).toBeVisible(); await context.close();
+});
+
+test('PowerShell examples scroll by keyboard without JavaScript',async({browser})=>{
+  const context=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
+  try {
+    const page=await context.newPage();
+    for (const [route,count] of [
+      ['/blog/where-did-the-email-go-troubleshooting-exchange-online-with-message-trace',4],
+      ['/blog/building-a-microsoft-365-incident-triage-toolkit-with-powershell',6],
+      ['/projects/pomodoro-timer/',1],
+    ]) {
+      await page.goto('http://127.0.0.1:4000'+route);
+      const examples=page.locator('.language-powershell pre');
+      await expect(examples).toHaveCount(count);
+      for (const example of await examples.all()) {
+        await expect(example).toHaveAttribute('tabindex','0');
+        await expect(example).toHaveAccessibleName('Code example');
+      }
+      const example=examples.first();
+      await expect(example).toHaveAccessibleName('Code example');
+      expect(await example.evaluate(el=>el.scrollWidth>el.clientWidth)).toBe(true);
+      await example.focus(); await expect(example).toBeFocused();
+      await page.keyboard.press('ArrowRight');
+      await expect.poll(()=>example.evaluate(el=>el.scrollLeft)).toBeGreaterThan(0);
+    }
+  } finally { await context.close(); }
 });

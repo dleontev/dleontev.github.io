@@ -1,4 +1,5 @@
 ---
 layout: default
 ---
-<div class="content-column markdown-body{% if page.home %} home-content{% endif %}">{{ content }}</div>
+{% assign accessible_content = content | replace: '<pre class="highlight">', '<pre class="highlight" tabindex="0" role="region" aria-label="Code example">' | replace: '<pre>', '<pre tabindex="0" role="region" aria-label="Code example">' %}
+<div class="content-column markdown-body{% if page.home %} home-content{% endif %}">{{ accessible_content }}</div>

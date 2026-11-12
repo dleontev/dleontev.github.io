@@ -1,0 +1,33 @@
+Microsoft Entra Sign-In Troubleshooting Framework v1.0
+Copy the sections you need into an approved internal ticket.
+Use synthetic values when sharing examples publicly.
+
+TRIAGE CHECKLIST
+[ ] Record impact, intended task, app, resource, and client.
+[ ] Capture the time and time zone. Convert to UTC for the handoff.
+[ ] Record the visible error and request or correlation ID when available.
+[ ] Match the interactive sign-in to the tenant, user, app or resource, and time.
+[ ] Record the sign-in result, authentication steps, applied policies, and relevant device evidence.
+[ ] Assign the next check to an owner. Verify the original task after remediation.
+
+CONDITIONAL ACCESS WORKSHEET
+Matched event and time in UTC
+App and requested resource
+Policy and mode
+Per-policy result
+Grant control and whether the policy requires one or all selected controls
+Authentication and device evidence from the event
+Conditions that explain why the policy applied
+Unresolved evidence
+Next check and owner
+Recovery check
+
+ESCALATION TEMPLATE
+Impact and original task
+Reproduction steps and affected context
+Matched event, time in UTC, and visible error
+Evidence that supports the next check
+Checks completed and remaining gaps
+Requested action and owner
+User update and next checkpoint
+Recovery check and who will confirm it

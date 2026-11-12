@@ -3,14 +3,16 @@ layout: page
 ---
 <article>
 <h1 id="article-top">{{ page.title | escape }}</h1>
-<p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%-d %B %Y' }}</time> · {% assign minutes = content | number_of_words | divided_by: 180 %}{{ minutes | at_least: 1 }} min read</p>
+<p class="post-meta post-byline">By <a rel="author" href="{{ '/about/' | relative_url }}">{{ site.author.name | escape }}</a></p>
+<p class="post-meta post-details"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%-d %B %Y' }}</time> · {% assign minutes = content | number_of_words | divided_by: 180 %}{{ minutes | at_least: 1 }} min read</p>
 <ul class="topic-list" aria-label="Article topics">{% for tag in page.tags %}<li><a href="{{ '/blog/tags' | relative_url }}#{{ tag | slugify }}">{{ tag | escape }}</a></li>{% endfor %}</ul>
 {{ content }}
 <aside class="related-reading" aria-label="Related reading">
   <h2>Continue reading</h2>
-  {% if page.related_project %}<p><a href="{{ page.related_project | relative_url }}">Explore the related project</a></p>{% endif %}
+  {% if page.related_project %}{% assign project = site.projects | find: 'url', page.related_project %}
+  {% if project %}<p><a href="{{ project.url | relative_url }}">Explore the related project</a></p>{% endif %}{% endif %}
   {% assign selected = '' | split: ',' %}
-  {% for reference in page.related_posts %}{% assign match = site.posts | where: 'id', reference %}{% assign selected = selected | concat: match %}{% endfor %}
+  {% for reference in page.related_posts %}{% assign match = site.posts | find: 'url', reference %}{% if match %}{% assign selected = selected | push: match %}{% endif %}{% endfor %}
   {% for other in site.posts %}
     {% unless other.url == page.url %}{% for tag in other.tags %}{% if page.tags contains tag %}{% assign selected = selected | push: other %}{% break %}{% endif %}{% endfor %}{% endunless %}
   {% endfor %}

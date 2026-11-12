@@ -1,24 +1,35 @@
-# Microsoft 365, systems & cloud
+# Systems and Network Administrator
 
-I'm Dimitriy, a Network Administrator focused on Microsoft 365, identity, systems, infrastructure, and secure cloud operations.
-
-I solve problems across technology boundaries and turn recurring support work into clearer standards, documentation, and automation.
+I'm Dimitriy, a Network Administrator in public-sector IT. I support networks, servers, cloud services, and the devices staff rely on. I trace problems across those systems, plan changes with security and reliability in mind, and automate repeatable tasks so colleagues can run them confidently.
 
 <div class="page-actions">
-  <a class="btn btn-primary" href="{{ '/projects/' | relative_url }}">View projects</a>
-  <a class="btn btn-outline-primary" href="{{ '/blog/' | relative_url }}">Read articles</a>
+  <a class="btn btn-primary" href="{% link pages/projects.html %}">View projects</a>
+  <a class="btn btn-outline-primary" href="{% link pages/about.md %}">About my work</a>
 </div>
+
+{% include social.html %}
 
 ## Featured work
 
-- [Microsoft Entra sign-in troubleshooting framework]({% link _projects/01-microsoft-entra-sign-in-troubleshooting-framework.md %}) — an in-progress project with an initial article available.
-- [Microsoft 365 service ownership framework]({% post_url 2026-08-27-microsoft-365-service-ownership-framework %}) — a practical approach to health, support, governance, and continuous improvement.
+<div class="article-grid">
+  <article class="article-card">
+    <p class="project-status">Deployed personal project</p>
+    <h3><a href="{% link _projects/05-pomodoro-timer.md %}">Controlled Azure releases</a></h3>
+    <p>I configured Azure hosting for a small web app. See how the release passed staging checks, moved to production after approval, and was verified against the packaged build.</p>
+    <p><a href="https://pomodoro.dleontev.com/">Open the live timer</a> · <a href="https://github.com/dleontev/pomodoro">View the timer source</a></p>
+  </article>
+  <article class="article-card">
+    <p class="project-status">Troubleshooting guide</p>
+    <h3><a href="{% post_url 2026-09-27-where-did-the-email-go-troubleshooting-exchange-online-with-message-trace %}">Exchange Online message tracing</a></h3>
+    <p>A worked example uses message trace and PowerShell to follow a missing email into the mailbox and confirm the recipient can open it.</p>
+  </article>
+</div>
+
+[CCNA lab practice and study notes]({% post_url 2025-07-01-ccna-ocg %}) · [All technical articles]({% link pages/blog.html %})
 
 ## Skills
 
 {% include skills.html context='home' %}
-
-[More about my background]({% link pages/about.md %}) · [Connect on LinkedIn](https://www.linkedin.com/in/dleontev/)
 
 ## Certifications
 

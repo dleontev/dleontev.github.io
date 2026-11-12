@@ -5,9 +5,16 @@ require "uri"
 require "addressable/uri"
 require "yaml"
 require "set"
-load File.expand_path("build-manifest.rb", __dir__)
-manifest = JSON.parse(File.read(".validation/manifest.json"))
+require_relative "validate-structured-data"
+require_relative "validate-discovery"
+require_relative "validate-feed"
 root = "_site"
+manifest_path = ".validation/manifest.json"
+abort "Validation manifest missing; run bundle exec jekyll build first" unless File.file?(manifest_path)
+manifest = JSON.parse(File.read(manifest_path))
+unless manifest["schema_version"] == 1 && manifest["source_root"] == File.expand_path(".") && manifest["destination"] == File.expand_path(root)
+  abort "Validation manifest does not match this source/output; run bundle exec jekyll build first"
+end
 failures = []
 files = Dir.glob("#{root}/**/*").select { |p| File.file?(p) }.to_set
 html_files = files.select { |p| p.end_with?(".html") }
@@ -56,8 +63,20 @@ documents.each do |file, doc|
     end
   end
 end
+post_urls = manifest.fetch("pages").select { |page| page["collection"] == "posts" }.map { |page| page["url"] }
+project_urls = manifest.fetch("pages").select { |page| page["collection"] == "projects" }.map { |page| page["url"] }
 manifest.fetch("pages").each do |page|
-  file = resolve.call(page.fetch("url"))
+  {"article" => post_urls, "related_project" => project_urls}.each do |field, urls|
+    failures << "#{page['source']}: invalid #{field} reference #{page[field]}" if page[field] && !urls.include?(page[field])
+  end
+  if page["related_posts"].is_a?(Array)
+    page["related_posts"].each do |url|
+      failures << "#{page['source']}: invalid related_posts reference #{url}" unless post_urls.include?(url)
+    end
+  else
+    failures << "#{page['source']}: related_posts must be an array of canonical article URLs"
+  end
+  file = File.join(root, page.fetch("output"))
   doc = documents[file]
   unless doc
     failures << "Missing page #{page['url']}"
@@ -68,6 +87,19 @@ manifest.fetch("pages").each do |page|
   failures << "Wrong canonical #{page['url']}" unless doc.at_css('link[rel="canonical"]')&.[]('href') == "https://dleontev.com#{page['url']}"
 end
 index = JSON.parse(File.read("#{root}/search.json"))
+manifest.fetch('redirects').each do |redirect|
+  file = File.join(root, redirect.fetch('output'))
+  doc = documents[file]
+  unless doc
+    failures << "Missing redirect #{redirect['url']}"
+    next
+  end
+  refresh = doc.at_css('head noscript meta[http-equiv="refresh"]')
+  failures << "#{file}: missing instant redirect without JavaScript" unless refresh&.[]('content') == "0; url=#{redirect['target']}"
+  failures << "#{file}: missing visible redirect destination" unless doc.css('main a[href]').any? { |link| link['href'] == redirect['target'] }
+  failures << "#{file}: redirect must remain noindex" unless doc.at_css('meta[name="robots"]')&.[]('content').to_s.include?('noindex')
+  failures << "#{file}: redirect canonical must match destination" unless doc.at_css('link[rel="canonical"]')&.[]('href') == "https://dleontev.com#{redirect['target']}"
+end
 index.each do |post|
   failures << "Invalid search entry" unless post["title"].is_a?(String) && post["tags"].is_a?(Array)
   uri = URI.parse(post.fetch("url"))
@@ -90,6 +122,9 @@ failures << "Certification views disagree" unless home_links == about_links && h
 YAML.safe_load_file("_data/asset-aliases.yml").each do |old_path,new_path|
   failures << "Missing legacy/canonical asset #{old_path}" unless resolve.call(old_path) && resolve.call(new_path)
 end
+failures.concat(validate_structured_data(documents, manifest))
+failures.concat(validate_discovery(documents, manifest, root))
+failures.concat(validate_feed(documents, manifest, root))
 if failures.any?
   warn failures.uniq.join("\n")
   abort "#{failures.uniq.length} validation failures"

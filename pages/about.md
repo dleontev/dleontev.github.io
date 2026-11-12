@@ -1,55 +1,35 @@
 ---
 layout: page
+schema_type: ProfilePage
 title: About
 permalink: /about/
 weight: 3
-description: "Dimitriy Leontev’s background, technical focus, approach to public-sector IT, and verified certifications."
+description: "Dimitriy Leontev's background in public-sector systems and network administration, graduate study at UW Bothell, and professional certifications."
 ---
 
 # About
 
-I'm Dimitriy Leontev, a Network Administrator focused on Microsoft 365, identity, systems, infrastructure, and secure cloud operations.
+I'm a Network Administrator at Everett Housing Authority. I joined the agency as an IT Support Specialist after supporting Boeing users as an IT Support Technician at Dell Technologies. Moving from frontline support into network administration gave me a view of infrastructure from both sides of a support ticket.
 
-I work in a public-sector IT environment where my responsibilities span Microsoft 365 administration, Microsoft Entra ID, Exchange Online, SharePoint Online, Microsoft Teams, Microsoft Purview, Active Directory, Windows Server and endpoints, networking, security, automation, documentation, and day-to-day IT operations.
+## How I work
+{: #how-i-approach-it}
 
-What I enjoy most is working across the boundaries between those systems.
+My day-to-day work covers connectivity, systems administration, cloud services, and staff support. When someone reports an application or access problem, I establish who is affected and what changed. Then I trace the dependencies from the device and network through identity and the service itself. I keep staff informed in plain language and give colleagues and vendors the technical evidence they need to help.
 
-A problem that appears to be a Teams issue may actually involve identity, licensing, policy, networking, endpoint state, or the way a business process was designed. I like narrowing those problems down, understanding the underlying cause, communicating clearly with the people affected, and turning recurring issues into better standards, documentation, automation, or technical improvements.
+For changes, I think through who may be affected, how we’ll check that the service works afterward, and what we can do if it fails. When the same issue keeps coming up, I document the checks or turn a repeatable step into a PowerShell script or workflow that a colleague can pick up.
 
-## What I Work On
+## Education and interests
+{: #professional-focus}
 
-My current areas of focus include:
+I earned my computer science degree at the University of Washington Bothell, where I'm now pursuing a Master of Science in Computer Science & Software Engineering. I'm also working toward additional professional certifications.
+
+I'm building on my day-to-day administration work through personal projects in release automation, verification, and recovery planning. My [projects]({% link pages/projects.html %}) and [technical articles]({% link pages/blog.html %}) use personal, lab, or sanitized examples.
+
+## Technical skills
+{: #what-i-work-on}
 
 {% include skills.html context='about' %}
-
-## How I Approach IT
-
-I try to look beyond whether a technical change simply works.
-
-A production service also needs to be reliable, supportable, understandable, secure, and useful to the people who depend on it.
-
-That means considering questions such as:
-
-- How will this be supported after deployment?
-- What happens when it fails?
-- Can another administrator understand how it works?
-- Can repetitive work be standardized or automated?
-- Are permissions and administrative access appropriately limited?
-- What privacy, security, accessibility, records-retention, or governance requirements apply?
-- How will we know whether the change actually improved the service?
-
-Working in the public sector has made those questions especially important. Technical decisions often need to account for security, privacy, accessibility, public records, records retention, procurement, operational continuity, and the needs of users with different levels of technical experience.
-
-## Professional Focus
-
-I am continuing to deepen my expertise in Microsoft 365 and Microsoft Entra while expanding my systems, cloud, automation, and infrastructure engineering capabilities.
-
-My long-term interests are in roles where Microsoft cloud services, identity, infrastructure, troubleshooting, security, and customer experience intersect.
-
-The projects and articles on this site document that work through sanitized technical examples, lab environments, reusable frameworks, and lessons learned. I intentionally avoid publishing organizational data, production configurations, user information, credentials, or security-sensitive details.
 
 ## Certifications
 
 {% include certifications.html format="list" %}
-
-You can also find me on [LinkedIn](https://www.linkedin.com/in/dleontev/) and [GitHub](https://github.com/dleontev).

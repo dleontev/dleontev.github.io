@@ -1,10 +1,9 @@
 ---
 layout: page
 home: true
-title: "Dimitriy Leontev | Microsoft 365, Systems & Cloud"
+title: "Dimitriy Leontev | Systems and Network Administrator"
 permalink: /
-description: "Explore Dimitriy Leontev's Microsoft 365, identity, systems, and cloud projects, practical articles, and verified certifications."
+description: "Dimitriy Leontev is a Systems and Network Administrator working across networks, Windows and Linux systems, cloud services, and IT automation."
 ---
 
-{% capture biography %}{% include bio.md %}{% endcapture %}
-{{ biography | markdownify }}
+{% include bio.md %}

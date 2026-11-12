@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" height="820" viewBox="0 0 650 820" role="img" aria-labelledby="architecture-title architecture-desc">
+  <title id="architecture-title">Pomodoro application and deployment flow</title>
+  <desc id="architecture-desc">The browser connects over HTTPS to Node and Express on Azure App Service. GitHub main triggers validation, then uploads a source artifact. A deployment job requiring that build downloads the artifact and authenticates through Entra OIDC federation using a user-assigned managed identity. It deploys to App Service; Oryx remote build activity was observed in the initial successful deployment.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#334e68"/></marker>
+    <marker id="token-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#725218"/></marker>
+    <style>
+      text{font-family:Arial,Helvetica,sans-serif;fill:#183247}
+      .heading{font-size:24px;font-weight:700}
+      .label{font-size:22px;font-weight:700}
+      .detail{font-size:18px}
+      .note{font-size:17px;fill:#425d71}
+      .node{fill:#fff;stroke:#9bb3c6;stroke-width:1.5}
+      .flow{fill:none;stroke:#334e68;stroke-width:2.5;marker-end:url(#arrow)}
+      .token{fill:none;stroke:#725218;stroke-width:2.5;stroke-dasharray:7 5;marker-end:url(#token-arrow)}
+    </style>
+  </defs>
+  <rect width="650" height="820" rx="16" fill="#f2f6fa"/>
+  <text x="30" y="43" class="heading">Application and CI/CD architecture</text>
+  <text x="30" y="72" class="note">Logical flow · verified source and deployment evidence</text>
+  <rect x="30" y="105" width="250" height="105" rx="10" class="node"/>
+  <text x="50" y="141" class="label">Browser</text>
+  <text x="50" y="171" class="detail">Timer, audio, local state</text>
+  <text x="50" y="196" class="note">pomodoro.dleontev.com</text>
+  <path d="M280 157 H340" class="flow"/>
+  <text x="286" y="140" class="note">HTTPS</text>
+  <rect x="345" y="105" width="275" height="105" rx="10" class="node"/>
+  <text x="365" y="141" class="label">Azure App Service</text>
+  <text x="365" y="171" class="detail">Node.js 24 · Express 5</text>
+  <text x="365" y="196" class="note">Static files + /health</text>
+  <text x="30" y="253" class="heading">Source and validation</text>
+  <rect x="30" y="275" width="250" height="85" rx="10" class="node"/>
+  <text x="50" y="310" class="label">GitHub main</text>
+  <text x="50" y="340" class="detail">Push or manual dispatch</text>
+  <path d="M155 360 V395" class="flow"/>
+  <rect x="30" y="400" width="250" height="120" rx="10" class="node"/>
+  <text x="50" y="435" class="label">Build job</text>
+  <text x="50" y="465" class="detail">Locked install · syntax</text>
+  <text x="50" y="495" class="detail">Tests · startup smoke</text>
+  <path d="M155 520 V555" class="flow"/>
+  <rect x="30" y="560" width="250" height="105" rx="10" class="node"/>
+  <text x="50" y="595" class="label">Source artifact</text>
+  <text x="50" y="625" class="detail">node-app</text>
+  <text x="50" y="650" class="note">Excludes node_modules</text>
+  <rect x="345" y="560" width="275" height="105" rx="10" class="node"/>
+  <text x="365" y="595" class="label">Deploy job</text>
+  <text x="365" y="625" class="detail">needs: build</text>
+  <text x="365" y="650" class="note">Login + webapps-deploy</text>
+  <path d="M280 610 H340" class="flow"/>
+  <path d="M482 560 V410" class="flow"/>
+  <text x="495" y="484" class="note">Package</text>
+  <rect x="345" y="290" width="275" height="115" rx="10" class="node"/>
+  <text x="365" y="325" class="label">Kudu / OneDeploy</text>
+  <text x="365" y="355" class="detail">Remote Oryx build</text>
+  <text x="365" y="383" class="note">Observed in initial rerun</text>
+  <path d="M482 290 V215" class="flow"/>
+  <rect x="345" y="725" width="275" height="70" rx="10" fill="#fff9e9" stroke="#a6884b" stroke-width="1.5"/>
+  <text x="365" y="755" class="label">User-assigned identity</text>
+  <text x="365" y="781" class="note">Entra OIDC · temporary access</text>
+  <path d="M482 725 V670" class="token"/>
+  <text x="30" y="741" class="note">Dashed: token exchange</text>
+  <text x="30" y="770" class="note">No client secret or</text>
+  <text x="30" y="793" class="note">publish profile in workflow</text>
+</svg>

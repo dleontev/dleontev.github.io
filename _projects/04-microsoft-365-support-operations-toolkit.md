@@ -4,7 +4,7 @@ order: 4
 status: In progress
 tools: [Microsoft 365, PowerShell, Support Engineering]
 description: A read-only Microsoft 365 incident triage collector with a walkthrough, synthetic examples, offline tests, and an escalation template.
-article: 2026-09-15-building-a-microsoft-365-incident-triage-toolkit-with-powershell
+article: /blog/building-a-microsoft-365-incident-triage-toolkit-with-powershell
 permalink: /projects/microsoft-365-support-operations-toolkit/
 ---
 
