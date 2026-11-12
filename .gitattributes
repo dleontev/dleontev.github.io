@@ -8,3 +8,6 @@
 *.png binary
 *.webp binary
 *.jpg binary
+tools/microsoft-365-incident-triage-toolkit/** text eol=lf
+scripts/package-triage-toolkit.ps1 text eol=lf
+assets/downloads/*.zip binary

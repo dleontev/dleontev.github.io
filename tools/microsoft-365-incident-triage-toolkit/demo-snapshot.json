@@ -1,0 +1,53 @@
+{
+  "synthetic": true,
+  "snapshotAtUtc": "2026-09-14T16:30:00Z",
+  "collections": {
+    "healthOverviews": {
+      "value": [
+        { "id": "demo-exchange", "service": "Exchange Online", "status": "ServiceDegradation" },
+        { "id": "demo-teams", "service": "Microsoft Teams", "status": "ServiceOperational" },
+        { "id": "demo-sharepoint", "service": "SharePoint Online", "status": "ServiceOperational" }
+      ]
+    },
+    "issues": {
+      "value": [
+        {
+          "id": "DEMO-EX-001",
+          "title": "Synthetic example: delayed mailbox access",
+          "service": "Exchange Online",
+          "status": "ServiceDegradation",
+          "classification": "incident",
+          "startDateTime": "2026-09-14T15:45:00Z",
+          "endDateTime": null,
+          "lastModifiedDateTime": "2026-09-14T16:20:00Z",
+          "isResolved": false,
+          "impactDescription": "Fictional users may experience delayed mailbox access. This is not a real Microsoft advisory."
+        },
+        {
+          "id": "DEMO-TM-002",
+          "title": "Synthetic example: resolved meeting join delays",
+          "service": "Microsoft Teams",
+          "status": "ServiceRestored",
+          "classification": "advisory",
+          "startDateTime": "2026-09-13T17:00:00Z",
+          "endDateTime": "2026-09-13T18:00:00Z",
+          "lastModifiedDateTime": "2026-09-13T18:15:00Z",
+          "isResolved": true,
+          "impactDescription": "Fictional meeting join delays have ended; included to demonstrate recently updated resolved issues."
+        },
+        {
+          "id": "DEMO-SP-003",
+          "title": "Synthetic example: older resolved issue",
+          "service": "SharePoint Online",
+          "status": "ServiceRestored",
+          "classification": "advisory",
+          "startDateTime": "2026-09-01T10:00:00Z",
+          "endDateTime": "2026-09-01T11:00:00Z",
+          "lastModifiedDateTime": "2026-09-01T11:15:00Z",
+          "isResolved": true,
+          "impactDescription": "Outside the demo selection window; retained in evidence but omitted from report candidates."
+        }
+      ]
+    }
+  }
+}
