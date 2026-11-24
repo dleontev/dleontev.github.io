@@ -66,6 +66,18 @@ The normal content validator checks strict sitemap XML, unique canonical URLs, e
 
 After publication, check that the public sitemap and robots file return HTTP 200. In the verified `dleontev.com` property in Google Search Console and Bing Webmaster Tools, submit the sitemap and inspect Home, About, the Projects index, a project, and a recent article. Review indexing/canonical results and Bing AI Performance where available. Local preview URLs cannot be submitted; account verification and live deployment must come first.
 
+## Microsoft 365 incident triage toolkit
+
+The Microsoft 365 incident triage toolkit source, offline tests, and synthetic samples live in `tools/microsoft-365-incident-triage-toolkit/`, which is excluded from Jekyll output. The downloadable ZIP is built from an explicit file list. After changing toolkit files, use PowerShell 7.5 or later:
+
+```powershell
+./tools/microsoft-365-incident-triage-toolkit/tests/Test-M365IncidentTriage.ps1
+./scripts/package-triage-toolkit.ps1
+./scripts/package-triage-toolkit.ps1 -Check
+```
+
+The offline tests do not connect to a tenant. Published samples must stay synthetic; live output belongs outside the repository.
+
 ## Article navigation and search
 
 `jekyll-feed` generates `/feed.xml` as an Atom feed of the ten most recent published articles, including full content, summaries, canonical article links, and the shared author name. `{% feed_meta %}` adds feed discovery in the shared head, and the footer exposes a Subscribe link. The feed remains outside the HTML sitemap. Content validation checks strict Atom XML, article coverage and order, author identity, and discovery/Subscribe links.

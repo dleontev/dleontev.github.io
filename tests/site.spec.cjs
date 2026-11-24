@@ -139,17 +139,22 @@ test('content, Home and contents remain available without JavaScript',async({bro
   await page.locator('.article-toc summary').click(); await expect(page.locator('.article-toc nav')).toBeVisible(); await context.close();
 });
 
-test('message trace and release commands scroll by keyboard without JavaScript',async({browser})=>{
+test('PowerShell examples scroll by keyboard without JavaScript',async({browser})=>{
   const context=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
   try {
     const page=await context.newPage();
     for (const [route,count] of [
       ['/blog/where-did-the-email-go-troubleshooting-exchange-online-with-message-trace',4],
+      ['/blog/building-a-microsoft-365-incident-triage-toolkit-with-powershell',6],
       ['/projects/pomodoro-timer/',1],
     ]) {
       await page.goto('http://127.0.0.1:4000'+route);
       const examples=page.locator('.language-powershell pre');
       await expect(examples).toHaveCount(count);
+      for (const example of await examples.all()) {
+        await expect(example).toHaveAttribute('tabindex','0');
+        await expect(example).toHaveAccessibleName('Code example');
+      }
       const example=examples.first();
       await expect(example).toHaveAccessibleName('Code example');
       expect(await example.evaluate(el=>el.scrollWidth>el.clientWidth)).toBe(true);
