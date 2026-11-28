@@ -5,7 +5,6 @@ status: Deployed
 tools: [Azure App Service, GitHub Actions, Deployment slots, OpenID Connect, Release verification]
 description: "A personal Azure deployment with staging checks, separate deployment identities, owner approval, and verification of the exact release served in production."
 permalink: /projects/pomodoro-timer/
-demo_url: https://pomodoro.dleontev.com/
 source_url: https://github.com/dleontev/pomodoro
 last_modified_at: "2026-11-03"
 ---
@@ -25,7 +24,7 @@ I used a small timer app to work through a release problem. I wanted to test a c
 | Release approach | Package a known commit, check it in a staging slot, approve the swap, and compare the production files with the package. Separate OpenID Connect (OIDC) identities handle staging and promotion. |
 | Verified result | The [recorded release](https://github.com/dleontev/pomodoro/actions/runs/39685922391) passed staging and production verification. The live health endpoint returned OK and the version marker still matched commit `6f78f67` on November 3, 2026. |
 
-[Open the live timer](https://pomodoro.dleontev.com/) · [View the source](https://github.com/dleontev/pomodoro) · [Read the release guide](https://github.com/dleontev/pomodoro/blob/6f78f67ef67db690061a217ef31efd18bcecff30/docs/development-deployment.md)
+[View the source](https://github.com/dleontev/pomodoro) · [Read the release guide](https://github.com/dleontev/pomodoro/blob/6f78f67ef67db690061a217ef31efd18bcecff30/docs/development-deployment.md)
 
 <details class="article-toc" markdown="1">
 <summary>On this page</summary>
